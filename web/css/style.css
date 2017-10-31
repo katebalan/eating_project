@@ -44,7 +44,7 @@ h1 {
 }
 
 .ea-list_item:nth-child(even) {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .ea-list_name {

@@ -1,0 +1,9 @@
+EatingBundle\Entity\Products:
+  genus_{1..30}:
+    name: <product_name()>
+    kkal_per_100gr: <numberBetween(1000, 2000)>
+    proteins_per_100gr: <numberBetween(0, 30)>
+    fats_per_100gr: <numberBetween(0, 30)>
+    carbohydrates_per_100gr: <numberBetween(0, 30)>
+    activities: <activities()>
+    createdAt: <dateTimeBetween('-6 months', 'now')>

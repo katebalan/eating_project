@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Kkal per 100gr</th>
+            <th>Proteins per 100gr</th>
+            <th>Fats per 100gr</th>
+            <th>Carbohydrates per 100gr</th>
+            <th>Activities</th>
+            <th>Created at</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.kkalPer100gr }}</td>
+                <td>{{ product.proteinsPer100gr }}</td>
+                <td>{{ product.fatsPer100gr }}</td>
+                <td>{{ product.carbohydratesPer100gr }}</td>
+                <td>{{ product.activities }}</td>
+                <td>{{ product.createdAt|date('Y-m-d') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

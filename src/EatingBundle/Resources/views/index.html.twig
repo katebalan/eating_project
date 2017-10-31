@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Products{% endblock %}
+
 {% block body %}
-    <h1>Our Products</h1>
-    <div class="ea-list wrapper">
-        <div class="ea-list_header ea-items">
-            <div class="ea-item">Name</div>
-            <div class="ea-item">Kkal per 100gr</div>
-            <div class="ea-item">Proteins per 100gr</div>
-            <div class="ea-item">Fats per 100gr</div>
-            <div class="ea-item">Carbohydrates per 100gr</div>
-            <div class="ea-item">Activities</div>
-            <div class="ea-item">Created at</div>
-        </div>
-        <div class="ea-list_items">
+    <div class="wrapper">
+        <h1>Our Products</h1>
+        <div class="ea-list">
         {% for product in products %}
-            <div class="ea-items">
-                <div class="ea-item">{{ product.name }}</div>
-                <div class="ea-item">{{ product.kkalPer100gr }}</div>
-                <div class="ea-item">{{ product.proteinsPer100gr }}</div>
-                <div class="ea-item">{{ product.fatsPer100gr }}</div>
-                <div class="ea-item">{{ product.carbohydratesPer100gr }}</div>
-                <div class="ea-item">{{ product.activities }}</div>
-                <div class="ea-item">{{ product.createdAt|date('Y-m-d') }}</div>
+            <div class="ea-list_items">
+                {#<div class="ea-list_item">Name</div>#}
+                <div class="ea-list_name">{{ product.name }}</div>
+                <div class="ea-list_item">Kkal per 100gr</div>
+                <div class="ea-list_item">{{ product.kkalPer100gr }}</div>
+                <div class="ea-list_item">Proteins per 100gr</div>
+                <div class="ea-list_item">{{ product.proteinsPer100gr }}</div>
+                <div class="ea-list_item">Fats per 100gr</div>
+                <div class="ea-list_item">{{ product.fatsPer100gr }}</div>
+                <div class="ea-list_item">Carbohydrates per 100gr</div>
+                <div class="ea-list_item">{{ product.carbohydratesPer100gr }}</div>
+                <div class="ea-list_item">Activities</div>
+                <div class="ea-list_item">{{ product.activities }}</div>
+                <div class="ea-list_item">Created at</div>
+                <div class="ea-list_item">{{ product.createdAt|date('Y-m-d') }}</div>
             </div>
         {% endfor %}
         </div>

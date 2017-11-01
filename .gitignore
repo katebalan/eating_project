@@ -44,7 +44,6 @@ web/cov/
 
 # environment
 *.*~
-.idea/workspace.xml
 .idea/*
 /nbproject/*
 

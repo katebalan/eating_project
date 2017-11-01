@@ -15,7 +15,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
 
-        return $this->render('EatingBundle::index.html.twig', [
+        return $this->render('EatingBundle::list.html.twig', [
             'products' => $products
         ]);
     }
@@ -29,7 +29,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
 
-        return $this->render('EatingBundle::index.html.twig', [
+        return $this->render('EatingBundle::add.html.twig', [
             'products' => $products
         ]);
     }

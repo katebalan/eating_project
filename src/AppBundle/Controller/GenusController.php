@@ -14,30 +14,30 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class GenusController extends Controller
 {
-    /**
-     * @Route("/genus/new")
-     */
-    public function newAction()
-    {
-        $genus = new Genus();
-        $genus->setName('Octropus'.rand(1, 100));
-        $genus->setSubFamily('Octopodinae');
-        $genus->setSpeciesCount(rand(100, 9999));
-
-        $note = new GenusNote();
-        $note->setUsername('AquaWeaver');
-        $note->setUserAvatarFilename('ryan.jpeg');
-        $note->setNote('I counted 8 legs... as they wrapped around me');
-        $note->setCreatedAt(new \DateTime('-1 month'));
-        $note->setGenus($genus);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($genus);
-        $em->persist($note);
-        $em->flush();
-
-        return new Response('<html><body>New genus created!</body></html>');
-    }
+//    /**
+//     * @Route("/genus/new")
+//     */
+//    public function newAction()
+//    {
+//        $genus = new Genus();
+//        $genus->setName('Octropus'.rand(1, 100));
+//        $genus->setSubFamily('Octopodinae');
+//        $genus->setSpeciesCount(rand(100, 9999));
+//
+//        $note = new GenusNote();
+//        $note->setUsername('AquaWeaver');
+//        $note->setUserAvatarFilename('ryan.jpeg');
+//        $note->setNote('I counted 8 legs... as they wrapped around me');
+//        $note->setCreatedAt(new \DateTime('-1 month'));
+//        $note->setGenus($genus);
+//
+//        $em = $this->getDoctrine()->getManager();
+//        $em->persist($genus);
+//        $em->persist($note);
+//        $em->flush();
+//
+//        return new Response('<html><body>New genus created!</body></html>');
+//    }
 
     /**
      * @Route("/genus")

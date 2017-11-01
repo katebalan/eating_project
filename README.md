@@ -42,3 +42,8 @@ https://knpuniversity.com/screencast/symfony-forms/the-form-type-class
 ./bin/console doctrine:migrations:migrate
 
 ```
+#### **forms**
+```
+http://symfony.com/doc/current/reference/forms/types.html
+https://web-programming.com.ua/dobavlenie-datepicker-vidzhet-kalendarya-na-jquery/
+```

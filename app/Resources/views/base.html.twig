@@ -16,6 +16,8 @@
             </div>
         {% endfor %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

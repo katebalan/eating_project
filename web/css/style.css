@@ -14,8 +14,12 @@ h1 {
     text-align: center;
 }
 
-.wrapper {
+.ea-wrapper {
     background-color: rgba(39, 102, 145, 0.1);
+}
+
+.ea-header {
+    position: relative;
 }
 
 .ea-list {
@@ -54,4 +58,43 @@ h1 {
     font-weight: bold;
     text-align: center;
     box-sizing: border-box;
+}
+
+.ea-button {
+    background-color: rgba(39, 102, 145, 0.2);
+    border-radius: 6px;
+    position: absolute;
+    top: 30px;
+    right: 300px;
+}
+
+.ea-button a {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-weight: bolder;
+}
+
+.ea-button:hover, .ea-list_items:hover {
+    background-color: rgba(39, 102, 145, 0.5);
+}
+/*--------*/
+/*NEW PRODUCT*/
+/*--------*/
+.ea-form__inside div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    /*width: auto;*/
+    padding: 15px 20px;
+}
+.ea-form__field {
+    width: 40%;
+}
+
+.ea-form__label {
+    width: 40%;
 }

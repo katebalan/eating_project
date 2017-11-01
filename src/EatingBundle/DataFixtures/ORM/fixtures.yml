@@ -6,4 +6,4 @@ EatingBundle\Entity\Products:
     fats_per_100gr: <numberBetween(0, 30)>
     carbohydrates_per_100gr: <numberBetween(0, 30)>
     activities: <activities()>
-    createdAt: <dateTimeBetween('-6 months', 'now')>
+    createdAt: <dateTimeBetween('-6 months', '-1 months')>

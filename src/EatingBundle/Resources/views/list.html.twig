@@ -3,8 +3,13 @@
 {% block title %}Products{% endblock %}
 
 {% block body %}
-    <div class="wrapper">
-        <h1>Our Products</h1>
+    <div class="ea-wrapper">
+        <div class="ea-header">
+            <h1>Our Products</h1>
+            <div class="ea-button">
+                <a href="{{ path('products_new') }}">New Product</a>
+            </div>
+        </div>
         <div class="ea-list">
         {% for product in products %}
             <div class="ea-list_items">

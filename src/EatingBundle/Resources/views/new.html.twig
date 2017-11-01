@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products New{% endblock %}
+
+{% block body %}
+<div class="ea-wrapper">
+    <h1>New Product</h1>
+    <div class="ea-form">
+        {{ form_start(productForm) }}
+            {{ form_widget(productForm) }}
+            <button type="submit" class="btn">Save</button>
+        {{ form_end(productForm) }}
+    </div>
+</div>
+{% endblock %}

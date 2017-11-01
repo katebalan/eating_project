@@ -1,41 +1,56 @@
-# Cache and logs (Symfony2)
-/app/cache/*
-/app/logs/*
-!app/cache/.gitkeep
-!app/logs/.gitkeep
+# configs
+/app/config/parameters.yml
 
-# Email spool folder
-/app/spool/*
+# var
+/var/*
+!var/SymfonyRequirements.php
 
-# Cache, session files and logs (Symfony3)
+# cache
+!/var/cache
 /var/cache/*
-/var/logs/*
-/var/sessions/*
 !var/cache/.gitkeep
+
+# logs
+.sass-cache/
+npm-debug.log
+/.web-server-pid
+!/var/logs
+/var/logs/*
 !var/logs/.gitkeep
+
+# sessions
+!/var/sessions
+/var/sessions/*
 !var/sessions/.gitkeep
 
-# Parameters
-/app/config/parameters.yml
-/app/config/parameters.ini
+# vendors
+vendor/
+bower_components/
+#components/
+node_modules/
+modules/
 
-# Managed by Composer
-/app/bootstrap.php.cache
-/var/bootstrap.php.cache
-/bin/*
-!bin/console
-!bin/symfony_requirements
-
-# Assets and user uploads
+# assets
 /web/bundles/
+
+# tests
+/phpunit.xml
+cov/
+web/cov/
+
+# build
+/build/
+!/build/debug/.gitkeep
+
+# environment
+*.*~
+.idea/workspace.xml
+.idea/*
+/nbproject/*
+
+# uploads
 /web/uploads/
 
-# PHPUnit
-/app/phpunit.xml
-/phpunit.xml
-
-# Build data
-/build/
-
-# Backup entities generated with doctrine:generate:entities command
-**/Entity/*~
+# sourcemaps
+/web/dist/css/*.css.map
+/web/dist/js/*.js.map

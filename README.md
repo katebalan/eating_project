@@ -14,7 +14,7 @@ Just do it
 
 ```
 composer require doctrine/doctrine-migrations-bundle
-https://knpuniversity.com/screencast/doctrine-relations/relation-query#play
+https://knpuniversity.com/screencast/symfony-forms/the-form-type-class
 
 ```
 ```

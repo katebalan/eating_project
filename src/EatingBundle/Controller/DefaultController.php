@@ -4,7 +4,6 @@ namespace EatingBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use EatingBundle\Repository\ProductsRepository;
 
 class DefaultController extends Controller
 {
@@ -13,6 +12,20 @@ class DefaultController extends Controller
      */
     public function listAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
+
+        return $this->render('EatingBundle::index.html.twig', [
+            'products' => $products
+        ]);
+    }
+
+    /**
+     * @Route("/add")
+     */
+    public function addAction()
+    {
+        # TO DO
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
 

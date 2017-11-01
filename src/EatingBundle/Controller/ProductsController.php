@@ -7,10 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class ProductsController extends Controller
 {
     /**
-     * @Route("/", name="products_list")
+     * @Route("/products", name="products_list")
      */
     public function listAction()
     {
@@ -23,7 +23,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/new", name="products_new")
+     * @Route("/products/new", name="products_new")
      */
     public function newAction(Request $request)
     {
@@ -32,7 +32,7 @@ class DefaultController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
-            $product->setCreatedAt(new \DateTime('-1 month'));
+            $product->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);

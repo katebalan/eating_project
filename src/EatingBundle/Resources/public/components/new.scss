@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+form.ea-form__inside {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ea-form {
+  &__inside div {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    padding: 15px 20px;
+    width: 100%;
+    font-size: 24px;
+  }
+
+  &__field {
+    width: 40%;
+    padding: 5px 10px;
+    box-shadow: 1px 1px 3px 2px grey;
+    border: none;
+    font-size: inherit;
+  }
+
+  &__label {
+    width: 40%;
+    padding: 5px 10px;
+  }
+}
+
+button.ea-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bolder;
+  text-align: center;
+  border: none
+}

@@ -27,13 +27,13 @@ gulp.task('hello', function() {
 });
 
 gulp.task('sass', function(){
-    return gulp.src('src/EatingBundle/Resources/public/**/*.scss')
+    return gulp.src('src/EatingBundle/Resources/public/style.scss')
         .pipe(sass()) // Using gulp-sass
         .pipe(gulp.dest('web/css'))
 });
 
 gulp.task('watch', function(){
-    gulp.watch('src/EatingBundle/Resources/public/**/*.scss', ['sass']);
+    gulp.watch('src/EatingBundle/Resources/public/style.scss', ['sass']);
     // Other watchers
 });
 // var paths = {

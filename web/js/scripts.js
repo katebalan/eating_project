@@ -1,3 +1,3 @@
-jQuery(document).ready(function() {
-    $('.js-datepicker').datetimepicker();
-});
+// jQuery(document).ready(function() {
+//     $('.js-datepicker').datetimepicker();
+// });

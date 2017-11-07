@@ -17,7 +17,7 @@ class ProductsController extends Controller
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
 
-        return $this->render('EatingBundle::list.html.twig', [
+        return $this->render('EatingBundle:Products:list.html.twig', [
             'products' => $products
         ]);
     }
@@ -42,7 +42,7 @@ class ProductsController extends Controller
 
             return $this->redirectToRoute('products_list');
         }
-        return $this->render('EatingBundle::new.html.twig', [
+        return $this->render('EatingBundle:Products:new.html.twig', [
             'productForm' => $form->createView()
         ]);
     }

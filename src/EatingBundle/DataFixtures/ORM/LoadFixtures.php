@@ -33,17 +33,17 @@ class LoadFixtures2 implements FixtureInterface
         return $genera[$key].$number;
     }
 
-    public function activities()
+    public function activity_name()
     {
-        $genera = [
+        $activity = [
             'Walking',
             'Running',
             'Gym',
             'Yoga',
         ];
+        $number = rand(0, 100);
+        $key = array_rand($activity);
 
-        $key = array_rand($genera);
-
-        return $genera[$key];
+        return $activity[$key].$number;
     }
 }

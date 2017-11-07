@@ -5,5 +5,13 @@ EatingBundle\Entity\Products:
     proteins_per_100gr: <numberBetween(0, 30)>
     fats_per_100gr: <numberBetween(0, 30)>
     carbohydrates_per_100gr: <numberBetween(0, 30)>
-    activities: <activities()>
+    rating: <numberBetween(1, 6)>
     createdAt: <dateTimeBetween('-6 months', 'now')>
+EatingBundle\Entity\Activity:
+  activity_{1..20}:
+    name: <activity_name()>
+    kkal_per_5minutes: <numberBetween(5, 108)>
+    proteins_per_5minutes: <numberBetween(5, 20)>
+    fats_per_5minutes: <numberBetween(5, 20)>
+    carbohydrates_per_5minutes: <numberBetween(5, 20)>
+    rating: <numberBetween(1, 6)>

@@ -45,9 +45,9 @@ class Products
     private $carbohydrates_per_100gr;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $activities;
+    private $rating;
 
     /**
      * @ORM\Column(type="datetime")
@@ -137,17 +137,17 @@ class Products
     /**
      * @return mixed
      */
-    public function getActivities()
+    public function getRating()
     {
-        return $this->activities;
+        return $this->rating;
     }
 
     /**
-     * @param mixed $activities
+     * @param mixed $rating
      */
-    public function setActivities($activities)
+    public function setRating($rating)
     {
-        $this->activities = $activities;
+        $this->rating = $rating;
     }
 
     /**

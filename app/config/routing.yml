@@ -1,7 +1,7 @@
 eating:
     resource: "@EatingBundle/Controller/"
     type:     annotation
-    prefix:   /
+#    prefix:   /
 
 app:
     resource: '@AppBundle/Controller/'

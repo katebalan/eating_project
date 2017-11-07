@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EA-Activity{% endblock %}
+
+{% block body %}
+    <div class="ea-wrapper">
+        <div class="ea-header">
+            <h1>Our Activity</h1>
+            <div class="ea-button ea-button_list">
+                <a href="{{ path('activity_new') }}">New Activity</a>
+            </div>
+        </div>
+        <div class="ea-list">
+            {% for activ in activity %}
+                <div class="ea-list_items">
+                    <div class="ea-list_name">{{ activ.name }}</div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Kkal per 5 minutes</div>
+                        <div class="ea-list_item">{{ activ.kkalPer5minutes }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Proteins per 5 minutes</div>
+                        <div class="ea-list_item">{{ activ.proteinsPer5minutes }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Fats per 5 minutes</div>
+                        <div class="ea-list_item">{{ activ.fatsPer5minutes }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Carbohydrates per 5 minutes</div>
+                        <div class="ea-list_item">{{ activ.carbohydratesPer5minutes }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Rating</div>
+                        <div class="ea-list_item">{{ activ.rating }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

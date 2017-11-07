@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}EA-Products New{% endblock %}
+{% block title %}{{ parent() }} Products New{% endblock %}
 
 {% block body %}
-<div class="ea-wrapper">
     <h1>New Product</h1>
     <div class="ea-form">
         {{ form_start(productForm) }}
@@ -11,5 +10,4 @@
             <button type="submit" class="ea-button">Save</button>
         {{ form_end(productForm) }}
     </div>
-</div>
 {% endblock %}

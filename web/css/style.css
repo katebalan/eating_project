@@ -8,14 +8,14 @@ body {
 
 h1 {
   font-size: 36px;
-  padding: 25px 0 20px;
+  padding: 35px 0;
   text-align: center; }
 
 .ea-wrapper {
-  margin: 0 auto;
+  margin: 60px auto;
   max-width: 1200px; }
 
-.ea-header {
+.ea-title {
   position: relative; }
 
 .ea-list {
@@ -26,8 +26,7 @@ h1 {
     width: 35%;
     margin: 10px;
     border-radius: 10px;
-    background-color: rgba(39, 102, 145, 0.2);
-    box-shadow: 1px 1px 3px 2px grey; }
+    background-color: rgba(39, 102, 145, 0.2); }
     .ea-list_items:nth-child(4n+1), .ea-list_items:nth-child(4n) {
       width: 55%; }
   .ea-list_block {
@@ -53,7 +52,7 @@ h1 {
 .ea-button {
   background-color: rgba(39, 102, 145, 0.2);
   border-radius: 6px;
-  box-shadow: 1px 1px 3px 2px grey; }
+  box-shadow: 1px 1px 10px 0 grey; }
   .ea-button_list {
     position: absolute;
     top: 30px;
@@ -93,8 +92,8 @@ form.ea-form__inside {
   font-size: inherit; }
 
 .ea-form__label {
-  width: 40%;
-  padding: 5px 10px; }
+  width: 42%;
+  padding: 5px 0; }
 
 button.ea-button {
   padding: 15px 30px;
@@ -102,3 +101,30 @@ button.ea-button {
   font-weight: bolder;
   text-align: center;
   border: none; }
+
+.ea-header {
+  background: rgba(39, 102, 145, 0.2);
+  box-shadow: 1px 1px 10px 0 grey;
+  margin-bottom: 20px;
+  position: fixed;
+  width: 100%;
+  top: 0; }
+  .ea-header ul {
+    list-style: none;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: 60%;
+    margin: 0 auto; }
+    .ea-header ul li {
+      padding: 0; }
+      .ea-header ul li a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #000;
+        font-weight: bold; }
+        .ea-header ul li a:hover {
+          background: rgba(39, 102, 145, 0.4); }

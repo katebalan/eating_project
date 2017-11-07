@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+.ea-header {
+  background: rgba(39, 102, 145, 0.2);
+  box-shadow: 1px 1px 10px 0 grey;
+  margin-bottom: 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+
+  ul {
+    list-style: none;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    width: 60%;
+    margin: 0 auto;
+
+    li {
+      padding: 0;
+      a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 20px;
+        color: #000;
+        font-weight: bold;
+
+        &:hover {
+          background: rgba(39, 102, 145, 0.4);
+        }
+      }
+    }
+  }
+
+}

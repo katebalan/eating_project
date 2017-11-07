@@ -1,11 +1,6 @@
 @charset "UTF-8";
 
-.ea-wrapper {
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-.ea-header {
+.ea-title {
   position: relative;
 }
 
@@ -19,7 +14,7 @@
     margin: 10px;
     border-radius: 10px;
     background-color: rgba(39, 102, 145, 0.2);
-    box-shadow: 1px 1px 3px 2px grey;
+    //box-shadow: 1px 1px 3px 2px grey;
 
     &:nth-child(4n+1), &:nth-child(4n){
       width: 55%;
@@ -59,7 +54,7 @@
 .ea-button {
   background-color: rgba(39, 102, 145, 0.2);
   border-radius: 6px;
-  box-shadow: 1px 1px 3px 2px grey;
+  box-shadow: 1px 1px 10px 0 grey;
 
   &_list {
     position: absolute;

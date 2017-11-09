@@ -3,6 +3,7 @@
 namespace EatingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,9 +32,17 @@ class ActivityFormType extends AbstractType
                 'attr' => ['class' => 'ea-form__field'],
                 'label_attr' => ['class' => 'ea-form__label']
             ])
-            ->add('rating', null, [
+            ->add('rating', ChoiceType::class, [
                 'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+                'label_attr' => ['class' => 'ea-form__label'],
+                'choices' => [
+                    '1' => 1,
+                    '2' => 2,
+                    '3' => 3,
+                    '4' => 4,
+                    '5' => 5,
+                    '6' => 6
+                ]
             ]);
     }
 

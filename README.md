@@ -19,6 +19,9 @@ and make migrations:
 you can use fixtures with command
 ```
 php bin/console doctrine:fixtures:load
+npm install
+bower install
+
 ```
 
 #### HOW TO FIX PROBLEMS WITH .gitignore file on repository

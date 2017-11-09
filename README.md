@@ -6,7 +6,28 @@ A Symfony project created on September 22, 2017, 4:15 pm.
 # To install project
 
 ```
+php
+symfony - How install symfony on ububntu
+composer
+mysql 
+
 composer install
+
+create file app/config/parameters.yml
+
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: eating_project
+    database_user: root
+    database_password: garrypotter
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: ket11141@gmail.com
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+
 ```
 then you need create database:
 ```
@@ -21,7 +42,6 @@ you can use fixtures with command
 php bin/console doctrine:fixtures:load
 npm install
 bower install
-
 ```
 
 #### HOW TO FIX PROBLEMS WITH .gitignore file on repository

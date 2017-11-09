@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Products{% endblock %}
+
+{% block body %}
+    <div class="ea-title">
+        <h1>Our Users</h1>
+        <div class="ea-button ea-button_list">
+            <a href="{{ path('user_new') }}">New User</a>
+        </div>
+    </div>
+    <div class="ea-list">
+        {% for user in users %}
+            <div class="ea-list_items">
+                <a href="{{ path('user_show', {'userId': user.id }) }}">
+                    <div class="ea-list_name">{{ user.firstName }} {{ user.secondName }}</div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Kkal daily</div>
+                        <div class="ea-list_item">{{ user.dailyKkal }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Proteins daily</div>
+                        <div class="ea-list_item">{{ user.dailyProteins }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Fats daily</div>
+                        <div class="ea-list_item">{{ user.dailyFats }}</div>
+                    </div>
+                    <div class="ea-list_block">
+                        <div class="ea-list_item">Carbohydrates daily</div>
+                        <div class="ea-list_item">{{ user.dailyCarbohydrates }}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

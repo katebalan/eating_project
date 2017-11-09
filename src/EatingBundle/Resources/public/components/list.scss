@@ -19,6 +19,12 @@
     &:nth-child(4n+1), &:nth-child(4n){
       width: 55%;
     }
+
+    a {
+      display: block;
+      text-decoration: unset;
+      color: unset;
+    }
   }
 
   &_block {

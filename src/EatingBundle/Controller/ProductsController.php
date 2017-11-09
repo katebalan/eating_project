@@ -12,7 +12,7 @@ class ProductsController extends Controller
     /**
      * @Route("/products", name="products_list")
      */
-    public function listAction()
+    public function productsListAction()
     {
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
@@ -25,7 +25,7 @@ class ProductsController extends Controller
     /**
      * @Route("/products/new", name="products_new")
      */
-    public function newAction(Request $request)
+    public function productsNewAction(Request $request)
     {
         $form = $this->createForm(ProductsFormType::class);
 

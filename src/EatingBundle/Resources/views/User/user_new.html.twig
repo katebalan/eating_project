@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} User New{% endblock %}
+
+{% block body %}
+    <h1>New User</h1>
+    <div class="ea-form">
+        {{ form_start(userForm) }}
+        {{ form_widget(userForm) }}
+        <button type="submit" class="ea-button">Save</button>
+        {{ form_end(userForm) }}
+    </div>
+{% endblock %}

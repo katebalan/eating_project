@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} User Show{% endblock %}
+
+{% block body %}
+    <h1>User: {{ user.firstName }} {{ user.secondName }}</h1>
+    <div class="ea-list_block">
+        <div class="ea-list_item">Weight</div>
+        <div class="ea-list_item">{{ user.weight }}</div>
+    </div>
+    <div class="ea-list_block">
+        <div class="ea-list_item">Height</div>
+        <div class="ea-list_item">{{ user.height }}</div>
+    </div>
+    <div class="ea-list_block">
+        <div class="ea-list_item">E-mail</div>
+        <div class="ea-list_item">{{ user.email }}</div>
+    </div>
+    <div class="ea-list_block">
+        <div class="ea-list_item">Phone</div>
+        <div class="ea-list_item">{{ user.phone }}</div>
+    </div>
+    <div class="ea-list_block">
+        <div class="ea-list_item">Age</div>
+        <div class="ea-list_item">{{ user.age }}</div>
+    </div>
+    <div class="ea-list_block">
+        <div class="ea-list_item">Gender</div>
+        <div class="ea-list_item">{{ user.gender }}</div>
+    </div>
+    </div>
+{% endblock %}

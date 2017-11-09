@@ -30,17 +30,17 @@ class Activity
     private $kkal_per_5minutes;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $proteins_per_5minutes;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $fats_per_5minutes;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $carbohydrates_per_5minutes;
 

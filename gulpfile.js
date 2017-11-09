@@ -19,12 +19,41 @@
 
 var gulp = require('gulp');
 // Requires the gulp-sass plugin
-var sass = require('gulp-sass');
+var sass = require('gulp-sass'),
+    watch = require('gulp-watch'),
+    prefixer = require('gulp-autoprefixer'),
+    uglify = require('gulp-uglify'),
+    sourcemaps = require('gulp-sourcemaps'),
+    rigger = require('gulp-rigger'),
+    cssmin = require('gulp-minify-css'),
+    imagemin = require('gulp-imagemin'),
+    pngquant = require('imagemin-pngquant'),
+    rimraf = require('rimraf'),
+    browserSync = require("browser-sync"),
+    reload = browserSync.reload;
 
 
-gulp.task('hello', function() {
-    console.log('Hello Zelhviuvoirjvoijl');
-});
+var path = {
+    build: { //Тут мы укажем куда складывать готовые после сборки файлы
+        js: 'web/js/',
+        css: 'web/css/',
+        img: 'web/img/',
+        fonts: 'web/fonts/'
+    },
+    src: { //Пути откуда брать исходники
+        js: 'src/EatingBundle/Resources/public/main.js',//В стилях и скриптах нам понадобятся только main файлы
+        style: 'src/EatingBundle/Resources/public/style.scss',
+        img: 'src/EatingBundle/Repository/public/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+        fonts: 'src/EatingBundle/Repository/public/fonts/**/*.*'
+    },
+    watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
+        js: 'src/EatingBundle/Repository/public/**/*.js',
+        style: 'src/EatingBundle/Repository/public/**/*.scss',
+        img: 'src/EatingBundle/Repository/public/img/**/*.*',
+        fonts: 'src/EatingBundle/Repository/public/fonts/**/*.*'
+    },
+    clean: './build'
+};
 
 gulp.task('sass', function(){
     return gulp.src('src/EatingBundle/Resources/public/style.scss')
@@ -36,43 +65,67 @@ gulp.task('watch', function(){
     gulp.watch('src/EatingBundle/Resources/public/style.scss', ['sass']);
     // Other watchers
 });
-// var paths = {
-//     scripts: ['client/js/**/*.coffee', '!client/external/**/*.coffee'],
-//     images: 'client/img/**/*'
-// };
-//
-// // Not all tasks need to use streams
-// // A gulpfile is just another node program and you can use any package available on npm
-// gulp.task('clean', function() {
-//     // You can use multiple globbing patterns as you would with `gulp.src`
-//     return del(['build']);
-// });
-//
-// gulp.task('scripts', ['clean'], function() {
-//     // Minify and copy all JavaScript (except vendor scripts)
-//     // with sourcemaps all the way down
-//     return gulp.src(paths.scripts)
-//         .pipe(sourcemaps.init())
-//         .pipe(coffee())
-//         .pipe(uglify())
-//         .pipe(concat('all.min.js'))
-//         .pipe(sourcemaps.write())
-//         .pipe(gulp.dest('build/js'));
-// });
-//
-// // Copy all static images
-// gulp.task('images', ['clean'], function() {
-//     return gulp.src(paths.images)
-//     // Pass in options to the task
-//         .pipe(imagemin({optimizationLevel: 5}))
-//         .pipe(gulp.dest('build/img'));
-// });
-//
-// // Rerun the task when a file changes
-// gulp.task('watch', function() {
-//     gulp.watch(paths.scripts, ['scripts']);
-//     gulp.watch(paths.images, ['images']);
-// });
-//
-// // The default task (called when you run `gulp` from cli)
-// gulp.task('default', ['watch', 'scripts', 'images']);
+
+gulp.task('js:build', function () {
+    gulp.src(path.src.js) //Найдем наш main файл
+        .pipe(rigger()) //Прогоним через rigger
+        .pipe(sourcemaps.init()) //Инициализируем sourcemap
+        .pipe(uglify()) //Сожмем наш js
+        .pipe(sourcemaps.write()) //Пропишем карты
+        .pipe(gulp.dest(path.build.js)) //Выплюнем готовый файл в build
+        .pipe(reload({stream: true})); //И перезагрузим сервер
+});
+
+gulp.task('style:build', function () {
+    gulp.src(path.src.style) //Выберем наш main.scss
+        .pipe(sourcemaps.init()) //То же самое что и с js
+        .pipe(sass()) //Скомпилируем
+        .pipe(prefixer()) //Добавим вендорные префиксы
+        .pipe(cssmin()) //Сожмем
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(path.build.css)) //И в build
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('image:build', function () {
+    gulp.src(path.src.img) //Выберем наши картинки
+        .pipe(imagemin({ //Сожмем их
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()],
+            interlaced: true
+        }))
+        .pipe(gulp.dest(path.build.img)) //И бросим в build
+        .pipe(reload({stream: true}));
+});
+
+gulp.task('fonts:build', function() {
+    gulp.src(path.src.fonts)
+        .pipe(gulp.dest(path.build.fonts))
+});
+
+gulp.task('build', [
+    'js:build',
+    'style:build',
+    'fonts:build',
+    'image:build'
+]);
+
+gulp.task('watch', function(){
+    watch([path.watch.style], function(event, cb) {
+        gulp.start('style:build');
+    });
+    watch([path.watch.js], function(event, cb) {
+        gulp.start('js:build');
+    });
+    watch([path.watch.img], function(event, cb) {
+        gulp.start('image:build');
+    });
+    watch([path.watch.fonts], function(event, cb) {
+        gulp.start('fonts:build');
+    });
+});
+
+gulp.task('clean', function (cb) {
+    rimraf(path.clean, cb);
+});

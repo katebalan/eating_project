@@ -4,13 +4,14 @@ namespace EatingBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class User
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -19,9 +20,9 @@ class User
      */
     private $id;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      */
-    private $username;
+    private $email;
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -42,10 +43,6 @@ class User
      * @ORM\Column(type="string", nullable=true)
      */
     private $phone;
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $email;
     /**
      * @ORM\Column(type="float")
      */
@@ -93,28 +90,34 @@ class User
      */
     private $current_carbohydrates = 0;
 
+    public function getUsername() {
+        return $this->email;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getPassword()
+    {
+    }
+
+    public function getSalt()
+    {
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+
     /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
     }
 
     /**
@@ -195,14 +198,6 @@ class User
     public function setPhone($phone)
     {
         $this->phone = $phone;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**

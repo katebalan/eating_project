@@ -13,21 +13,20 @@
         {% for activ in activity %}
             <div class="ea-list_items">
                 <div class="ea-list_name">{{ activ.name }}</div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Kkal per 5 minutes</div>
-                    <div class="ea-list_item">{{ activ.kkalPer5minutes }}</div>
-                </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Proteins per 5 minutes</div>
-                    <div class="ea-list_item">{{ activ.proteinsPer5minutes }}</div>
-                </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Fats per 5 minutes</div>
-                    <div class="ea-list_item">{{ activ.fatsPer5minutes }}</div>
-                </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Carbohydrates per 5 minutes</div>
-                    <div class="ea-list_item">{{ activ.carbohydratesPer5minutes }}</div>
+                <div class="ea-table">
+                    <div class="ea-table__row">
+                        <div class="ea-table__item">Kkal</div>
+                        <div class="ea-table__item">Proteins</div>
+                        <div class="ea-table__item">Fats</div>
+                        <div class="ea-table__item">Carbohydrates</div>
+                    </div>
+                    <div class="ea-table__row">
+                        <div class="ea-table__item">{{ activ.kkalPer5minutes }}</div>
+                        <div class="ea-table__item">{{ activ.proteinsPer5minutes }}</div>
+                        <div class="ea-table__item">{{ activ.fatsPer5minutes }}</div>
+                        <div class="ea-table__item">{{ activ.carbohydratesPer5minutes }}</div>
+                    </div>
+                    <div class="ea-table__description">* - per 5 minutes</div>
                 </div>
                 <div class="ea-list_block">
                     <div class="ea-list_item">Rating</div>

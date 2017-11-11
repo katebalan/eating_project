@@ -13,21 +13,20 @@
         {% for product in products %}
             <div class="ea-list_items">
                 <div class="ea-list_name">{{ product.name }}</div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Kkal per 100gr</div>
-                    <div class="ea-list_item">{{ product.kkalPer100gr }}</div>
-                </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Proteins per 100gr</div>
-                    <div class="ea-list_item">{{ product.proteinsPer100gr }}</div>
-                </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Fats per 100gr</div>
-                    <div class="ea-list_item">{{ product.fatsPer100gr }}</div>
-                </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Carbohydrates per 100gr</div>
-                    <div class="ea-list_item">{{ product.carbohydratesPer100gr }}</div>
+                <div class="ea-table">
+                    <div class="ea-table__row">
+                        <div class="ea-table__item">Kkal</div>
+                        <div class="ea-table__item">Proteins</div>
+                        <div class="ea-table__item">Fats</div>
+                        <div class="ea-table__item">Carbohydrates</div>
+                    </div>
+                    <div class="ea-table__row">
+                        <div class="ea-table__item">{{ product.kkalPer100gr }}</div>
+                        <div class="ea-table__item">{{ product.proteinsPer100gr }}</div>
+                        <div class="ea-table__item">{{ product.fatsPer100gr }}</div>
+                        <div class="ea-table__item">{{ product.carbohydratesPer100gr }}</div>
+                    </div>
+                    <div class="ea-table__description">* - per 100gr</div>
                 </div>
                 <div class="ea-list_block">
                     <div class="ea-list_item">Rating</div>

@@ -10,14 +10,14 @@
   justify-content: center;
 
   &_items {
-    width: 40%;
+    width: 100%;
     margin: 10px;
     border-radius: 10px;
     background-color: rgba(39, 102, 145, 0.2);
     //box-shadow: 1px 1px 3px 2px grey;
 
     &:nth-child(4n+1), &:nth-child(4n){
-      width: 55%;
+      //width: 55%;
     }
 
     a {
@@ -78,6 +78,6 @@
   }
 }
 
-.ea-button:hover, .ea-list_items:hover, .ea-list_block:hover {
+.ea-button:hover, .ea-list_items:hover {
   background-color: rgba(39, 102, 145, 0.5);
 }

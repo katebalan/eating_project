@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.ea-table {
+  padding: 0 20px;
+
+  &__row {
+    display: flex;
+    flex-wrap: nowrap;
+
+    &:first-child {
+      font-weight: bold;
+    }
+  }
+
+  &__item {
+    width: 24%;
+    text-align: center;
+    border: 1px solid rgba(39, 102, 145, 0.2);
+    padding: 5px 0;
+  }
+
+  &__description {
+    text-align: right;
+    font-size: 12px;
+    padding: 0 60px;
+  }
+}

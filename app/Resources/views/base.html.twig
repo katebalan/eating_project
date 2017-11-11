@@ -20,12 +20,12 @@
                 </div>
             {% endfor %}
             {% block body %}{% endblock %}
-            {% block footer %}
-                {% include 'EatingBundle:regions:footer.html.twig' %}
-            {% endblock %}
-            {% block javascripts %}
-                <script src="{{ asset('js/main.js') }}"></script>
-            {% endblock %}
         </div>
+        {% block footer %}
+            {% include 'EatingBundle:regions:footer.html.twig' %}
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('js/main.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

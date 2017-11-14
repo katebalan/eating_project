@@ -46,4 +46,16 @@ class LoadFixtures2 implements FixtureInterface
 
         return $activity[$key].$number;
     }
+
+    public function user_phone()
+    {
+        $phone = '+38099';
+        for($i = 0; $i < 7; $i++){
+            $number = rand(0, 9);
+            $phone = $phone.$number;
+        }
+
+        return $phone;
+    }
+
 }

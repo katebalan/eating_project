@@ -12,10 +12,6 @@ class UserFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
             ->add('firstName', null, [
                 'attr' => ['class' => 'ea-form__field'],
                 'label_attr' => ['class' => 'ea-form__label']

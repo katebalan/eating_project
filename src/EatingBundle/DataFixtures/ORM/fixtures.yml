@@ -15,3 +15,18 @@ EatingBundle\Entity\Activity:
     fats_per_5minutes: <numberBetween(5, 20)>
     carbohydrates_per_5minutes: <numberBetween(5, 20)>
     rating: <numberBetween(1, 6)>
+EatingBundle\Entity\User:
+  user_{1..5}:
+    email: ket11141+<current()>@gmail.com
+    first_name: <userName()>
+    age: <numberBetween(16, 86)>
+    gender: <boolean(50)>
+    phone: <user_phone()>
+    weight: <numberBetween(45, 80)>
+    height: <numberBetween(110, 188)>
+    energy_exchange: 1
+    daily_kkal: 0
+    daily_proteins: 0
+    daily_fats: 0
+    daily_carbohydrates: 0
+

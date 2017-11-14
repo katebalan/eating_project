@@ -101,14 +101,17 @@ class User implements UserInterface
 
     public function getPassword()
     {
+        // leaving blank - I don't need/have a password!
     }
 
     public function getSalt()
     {
+        // leaving blank - I don't need/have a password!
     }
 
     public function eraseCredentials()
     {
+        // leaving blank - I don't need/have a password!
     }
 
 

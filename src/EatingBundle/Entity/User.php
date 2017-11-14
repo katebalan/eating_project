@@ -23,6 +23,10 @@ class User implements UserInterface
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
+//    /**
+//     * @ORM\Column(type="string", length=64)
+//     */
+//    private $password;
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -101,7 +105,7 @@ class User implements UserInterface
 
     public function getPassword()
     {
-        // leaving blank - I don't need/have a password!
+//        return $this->password;
     }
 
     public function getSalt()

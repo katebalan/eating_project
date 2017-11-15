@@ -72,6 +72,6 @@ https://web-programming.com.ua/dobavlenie-datepicker-vidzhet-kalendarya-na-jquer
 https://css-tricks.com/gulp-for-beginners/
 
 #TO DO
-https://knpuniversity.com/screencast/symfony-security/login-form-authenticator#play
+https://knpuniversity.com/screencast/symfony-security/logout-and-last-username#play
 
 ```

@@ -27,10 +27,11 @@ security:
             #http_basic: ~
             pattern:    ^/
             provider: our_db_provider
-
+            logout:
+                path: /logout
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
             guard:
-              authenticators:
-                - app.security.login_form_authenticator
+                authenticators:
+                    - app.security.login_form_authenticator
 

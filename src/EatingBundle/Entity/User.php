@@ -23,10 +23,18 @@ class User implements UserInterface
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
-//    /**
-//     * @ORM\Column(type="string", length=64)
-//     */
-//    private $password;
+    /**
+     * The encoded password
+     *
+     * @ORM\Column(type="string", length=64)
+     */
+    private $password;
+    /**
+     * A non-persisted field that's used to create the encoded password.
+     *
+     * @var string
+     */
+    private $plainPassword;
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -105,7 +113,7 @@ class User implements UserInterface
 
     public function getPassword()
     {
-//        return $this->password;
+        return $this->password;
     }
 
     public function getSalt()
@@ -115,9 +123,35 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
-        // leaving blank - I don't need/have a password!
+        $this->plainPassword = null;
     }
 
+
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        $this->password = null;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
 
     /**
      * @return mixed

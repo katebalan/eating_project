@@ -10,22 +10,24 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {% block header %}
-            {% include 'EatingBundle:regions:header.html.twig' %}
-        {% endblock %}
-        <div class="ea-wrapper">
-            {% for msg in app.session.flashBag.get('success') %}
-                <div class="alert alert-success">
-                    {{ msg }}
-                </div>
-            {% endfor %}
-            {% block body %}{% endblock %}
+        <div class="ea-content">
+            {% block header %}
+                {% include 'EatingBundle:regions:header.html.twig' %}
+            {% endblock %}
+            <div class="ea-wrapper">
+                {% for msg in app.session.flashBag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+                {% block body %}{% endblock %}
+            </div>
+            {% block footer %}
+                {% include 'EatingBundle:regions:footer.html.twig' %}
+            {% endblock %}
+            {% block javascripts %}
+                <script src="{{ asset('js/main.js') }}"></script>
+            {% endblock %}
         </div>
-        {% block footer %}
-            {% include 'EatingBundle:regions:footer.html.twig' %}
-        {% endblock %}
-        {% block javascripts %}
-            <script src="{{ asset('js/main.js') }}"></script>
-        {% endblock %}
     </body>
 </html>

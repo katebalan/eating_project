@@ -12,12 +12,7 @@
   &_items {
     width: 100%;
     margin: 10px;
-    border-radius: 10px;
     background-color: $color-grey2;
-
-    &:nth-child(4n+1), &:nth-child(4n){
-      //width: 55%;
-    }
 
     a {
       display: block;
@@ -39,7 +34,6 @@
     width: 50%;
     padding: 3px 10px;
     box-sizing: border-box;
-    //color: #fff;
     
     &:nth-child(odd) {
       text-align: right;
@@ -60,8 +54,6 @@
 
 .ea-button {
   background-color: $color-grey2;
-  border-radius: 6px;
-  box-shadow: 1px 1px 10px 0 grey;
 
   &_list {
     position: absolute;

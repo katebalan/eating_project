@@ -13,8 +13,7 @@
     width: 100%;
     margin: 10px;
     border-radius: 10px;
-    background-color: rgba(39, 102, 145, 0.2);
-    //box-shadow: 1px 1px 3px 2px grey;
+    background-color: $color-grey2;
 
     &:nth-child(4n+1), &:nth-child(4n){
       //width: 55%;
@@ -40,7 +39,8 @@
     width: 50%;
     padding: 3px 10px;
     box-sizing: border-box;
-
+    //color: #fff;
+    
     &:nth-child(odd) {
       text-align: right;
       font-weight: bolder;
@@ -54,11 +54,12 @@
     font-weight: bold;
     text-align: center;
     box-sizing: border-box;
+    color: #000;
   }
 }
 
 .ea-button {
-  background-color: rgba(39, 102, 145, 0.2);
+  background-color: $color-grey2;
   border-radius: 6px;
   box-shadow: 1px 1px 10px 0 grey;
 
@@ -69,7 +70,7 @@
   }
 
   a {
-    color: black;
+    color: #000;
     font-size: 16px;
     text-decoration: none;
     padding: 10px 15px;
@@ -79,5 +80,5 @@
 }
 
 .ea-button:hover, .ea-list_items:hover {
-  background-color: rgba(39, 102, 145, 0.5);
+  background-color: $color-light-grey2;
 }

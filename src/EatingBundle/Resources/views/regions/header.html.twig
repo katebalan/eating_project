@@ -1,5 +1,6 @@
 <div class="ea-header">
-    <ul>
+    <div class="ea-header__nav">
+        <ul>
         {% if is_granted('ROLE_USER') %}
             <li><a href="{{ path('security_logout') }}">Logout</a></li>
         {% else %}
@@ -9,4 +10,8 @@
         <li><a href="{{ path('products_list') }}">Products</a></li>
         <li><a href="{{ path('activity_list') }}">Activities</a></li>
     </ul>
+    </div>
+    <div class="ea-header__image">
+        {#<img src="{{ asset('img/background_food.jpg') }}">#}
+    </div>
 </div>

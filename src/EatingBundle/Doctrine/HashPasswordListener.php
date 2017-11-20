@@ -17,17 +17,34 @@ class HashPasswordListener implements EventSubscriber
         $this->passwordEncoder = $passwordEncoder;
     }
 
-
     public function getSubscribedEvents()
     {
         return ['prePersist', 'preUpdate'];
     }
+
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if( !$entity instanceof User) {
+        if (!$entity instanceof User) {
             return;
         }
 
+        $this->encodePassword($entity);
     }
+
+    /**
+     * @param User $entity
+     */
+    public function encodePassword(User $entity)
+    {
+        if( !$entity->getPlainPassword()) {
+            return;
+        }
+        $encoded = $this->passwordEncoder->encodePassword(
+            $entity,
+            $entity->getPlainPassword()
+        );
+        $entity->setPassword($encoded);
+    }
+
 }

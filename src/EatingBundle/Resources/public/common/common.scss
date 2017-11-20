@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+$color-grey:  #756f65;
+$color-light-grey: lighten($color-grey, 10%);
+$color-dark-grey: darken($color-grey, 10%);
+$color-grey2: #ceccca;
+$color-light-grey2: lighten($color-grey2, 10%);
+
 * {
   margin: 0;
   padding: 0;
@@ -20,10 +26,11 @@ h1 {
   font-size: 36px;
   padding: 35px 0;
   text-align: center;
+  color: $color-dark-grey;
 }
 
 .ea-wrapper {
-  margin: 60px auto;
+  margin: 0 auto 60px;
   max-width: 900px;
 }
 

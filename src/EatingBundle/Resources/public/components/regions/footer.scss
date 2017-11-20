@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .ea-footer {
-  background: rgba(39, 102, 145, 0.2);
+  background: $color-grey;
   box-shadow: 1px 1px 10px 0 grey;
   width: 100%;
 
@@ -11,6 +11,7 @@
     box-sizing: border-box;
     margin: 0 auto;
     text-align: right;
+    color: #fff;
 
     span {
       font-weight: bold;

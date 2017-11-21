@@ -66,6 +66,7 @@ class UserController extends Controller
             $user->setDailyFats($daily_fats);
             $user->setDailyProteins($daily_proteins);
             $user->setDailyCarbohydrates($daily_carbohydrates);
+            $user->setPassword('1');
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

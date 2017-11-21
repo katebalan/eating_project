@@ -242,6 +242,14 @@ class User implements UserInterface
     }
 
     /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
      * @param mixed $email
      */
     public function setEmail($email)

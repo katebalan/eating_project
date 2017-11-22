@@ -21,6 +21,7 @@ EatingBundle\Entity\User:
     first_name: <userName()>
     age: <numberBetween(16, 86)>
     plainPassword: fuck123456
+    roles: ['ROLE_ADMIN']
     gender: <boolean(50)>
     phone: <user_phone()>
     weight: <numberBetween(45, 80)>

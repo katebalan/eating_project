@@ -20,7 +20,9 @@
                         {{ msg }}
                     </div>
                 {% endfor %}
-                {% block body %}{% endblock %}
+                {% block body %}
+                    {% include 'EatingBundle:regions:footer.html.twig' %}
+                {% endblock %}
             </div>
             {% block footer %}
                 {% include 'EatingBundle:regions:footer.html.twig' %}

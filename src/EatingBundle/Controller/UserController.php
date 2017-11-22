@@ -4,6 +4,7 @@ namespace EatingBundle\Controller;
 
 use EatingBundle\Form\UserFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -27,6 +28,8 @@ class UserController extends Controller
      */
     public function userNewAction(Request $request)
     {
+//        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(UserFormType::class);
 
         $form->handleRequest($request);

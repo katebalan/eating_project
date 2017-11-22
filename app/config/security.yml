@@ -33,4 +33,5 @@ security:
             guard:
                 authenticators:
                     - app.security.login_form_authenticator
-
+    access_control:
+         - { path: ^/admin, roles: ROLE_USER }

@@ -3,6 +3,7 @@
 namespace EatingBundle\Controller;
 
 use EatingBundle\Form\LoginFormType;
+use EatingBundle\Form\UserRegistrationFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -27,7 +28,7 @@ class SecurityController extends Controller
             '@Eating/security/login.html.twig',
             array(
                 'form' => $form->createView(),
-                'error'         => $error,
+                'error' => $error,
             )
         );
 
@@ -39,5 +40,17 @@ class SecurityController extends Controller
     public function logoutAction()
     {
         throw new \Exception('this should not be reached!');
+    }
+
+    /**
+     * @Route("/register", name="user_register")
+     */
+    public function registerAction()
+    {
+        $form = $this->createForm(UserRegistrationFormType::class);
+
+        return $this->render('@Eating/security/login.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

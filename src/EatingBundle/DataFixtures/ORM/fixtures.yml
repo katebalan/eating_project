@@ -20,7 +20,7 @@ EatingBundle\Entity\User:
     email: ket11141+<current()>@gmail.com
     first_name: <userName()>
     age: <numberBetween(16, 86)>
-    password: 123456
+    plainPassword: fuck123456
     gender: <boolean(50)>
     phone: <user_phone()>
     weight: <numberBetween(45, 80)>
@@ -30,4 +30,3 @@ EatingBundle\Entity\User:
     daily_proteins: 0
     daily_fats: 0
     daily_carbohydrates: 0
-

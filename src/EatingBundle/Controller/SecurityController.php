@@ -97,7 +97,13 @@ class SecurityController extends Controller
 
             $this->addFlash('success', 'Welcome '.$user->getFirstName().' '.$user->getSecondName());
 
-            return $this->redirectToRoute('user_show', ['userId' => $user->getId()]);
+//            return $this->redirectToRoute('user_show', ['userId' => $user->getId()]);
+            return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
+                $user,
+                $request,
+                $this->get('app.security.login_form_authenticator'),
+                'main'
+            );
         }
 
         return $this->render('@Eating/security/register.html.twig', [

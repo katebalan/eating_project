@@ -4,7 +4,13 @@
     <h1>It's Eating-project!</h1>
     <p>This project can help you to control your eating and sports.</p>
     <p>You can try it: </p>
-    <ul>
-        <li><a href="{{ path('security_login') }}">Login</a></li>
-    </ul>
+    {% if is_granted('ROLE_USER') %}
+        <p>You are already inside system</p>
+        <div><a href="{{ path('user_show', {'userId': user.id }) }}">Your page</a></div>
+    {% else %}
+        <ul>
+            <li><a href="{{ path('security_login') }}">Login</a></li>
+            <li><a href="{{ path('user_register') }}">Registration</a></li>
+        </ul>
+    {% endif %}
 {% endblock %}

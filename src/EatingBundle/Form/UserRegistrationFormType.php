@@ -17,12 +17,21 @@ class UserRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'attr' => ['class' => 'ea-form__field'],
+                'label_attr' => ['class' => 'ea-form__label']
+            ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class
             ])
-            ->add('firstName')
-            ->add('secondName')
+            ->add('firstName', null, [
+                'attr' => ['class' => 'ea-form__field'],
+                'label_attr' => ['class' => 'ea-form__label']
+            ])
+            ->add('secondName', null, [
+                'attr' => ['class' => 'ea-form__field'],
+                'label_attr' => ['class' => 'ea-form__label']
+            ])
             ->add('age', null, [
                 'attr' => ['class' => 'ea-form__field'],
                 'label_attr' => ['class' => 'ea-form__label']

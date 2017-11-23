@@ -16,18 +16,19 @@ EatingBundle\Entity\Activity:
     carbohydrates_per_5minutes: <numberBetween(5, 20)>
     rating: <numberBetween(1, 6)>
 EatingBundle\Entity\User:
-  user_{1..5}:
-    email: ket11141+<current()>@gmail.com
-    first_name: <userName()>
+  user_:
+    email: ket11141@gmail.com
+    first_name: Gregory
+    second_name: House
     age: <numberBetween(16, 86)>
-    plainPassword: fuck123456
+    plainPassword: fuckyou
     roles: ['ROLE_ADMIN']
     gender: <boolean(50)>
     phone: <user_phone()>
     weight: <numberBetween(45, 80)>
     height: <numberBetween(110, 188)>
-    energy_exchange: 1
-    daily_kkal: 0
-    daily_proteins: 0
-    daily_fats: 0
-    daily_carbohydrates: 0
+    energy_exchange: 1.1
+    daily_kkal: 2012
+    daily_proteins: 83.85
+    daily_fats: 37.26
+    daily_carbohydrates: 335.38

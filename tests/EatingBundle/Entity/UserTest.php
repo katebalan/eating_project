@@ -18,7 +18,22 @@ class UserTest extends TestCase
 	$user->setSecondName("lalalala");
 	$SecondName = $user->getSecondName();     
 	$this->assertEquals("lalalala", $SecondName);
-
+	
+    $lower = 'abcdefghijklmnopqrstuvwxy';
+    $upper = strtoupper($lower);
+    $numbers = '1234567890';
+    $dash = '-';
+    $underscore = '_';
+    $symbols = '`~!@#$%^&*()+=[]\\{}|:";\'<>?,./';
+    $chars = $lower . $upper . $numbers . $underscore . $dash . $symbols;
+    $max = strlen($chars) - 1;
+    for ($i = 0; $i < $max; $i++) {
+        $char = substr($chars, $i, 1);
+        $password = $char;
+	$user->setPassword($password );
+	$Password = $user->getPassword();     
+	$this->assertEquals($password , $Password);
+    }
 	$user->setPassword("123456");
 	$Password = $user->getPassword();     
 	$this->assertEquals("123456", $Password);
@@ -83,5 +98,12 @@ class UserTest extends TestCase
 	$CurrentCarbohydrates= $user->getCurrentCarbohydrates();     
 	$this->assertEquals(123, $CurrentCarbohydrates);
 
+	$user->setPlainPassword(123);
+	$PlainPassword= $user->getPlainPassword();     
+	$this->assertEquals(123, $PlainPassword);
+	$user->eraseCredentials();
+	$PlainPassword= $user->getPlainPassword();   
+	$this->assertNull($PlainPassword);
+	
     }
 }

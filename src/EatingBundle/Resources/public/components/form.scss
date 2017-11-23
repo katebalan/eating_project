@@ -9,17 +9,19 @@ form.ea-form__inside {
 }
 
 .ea-form {
-  &__inside div {
+  &__inside div, div {
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
     flex-direction: column;
-    padding: 15px 20px;
+    padding: 5px 20px;
     width: 100%;
-    font-size: 24px;
+    font-size: 20px;
+    box-sizing: border-box;
   }
 
   &__field {
+    display: block;
     width: 40%;
     padding: 5px 10px;
     box-shadow: 1px 1px 3px 2px grey;
@@ -28,12 +30,13 @@ form.ea-form__inside {
   }
 
   &__label {
+    display: block;
     width: 42%;
     padding: 5px 0;
   }
 }
 
-button.ea-button {
+.ea-button--center {
   padding: 15px 30px;
   font-size: 18px;
   font-weight: bolder;

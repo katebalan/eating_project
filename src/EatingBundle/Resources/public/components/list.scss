@@ -51,26 +51,3 @@
     color: #000;
   }
 }
-
-.ea-button {
-  background-color: $color-grey2;
-
-  &_list {
-    position: absolute;
-    top: 30px;
-    right: 60px;
-  }
-
-  a {
-    color: #000;
-    font-size: 16px;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    font-weight: bolder;
-  }
-}
-
-.ea-button:hover, .ea-list_items:hover {
-  background-color: $color-light-grey2;
-}

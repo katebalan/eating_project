@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.ea-button {
+  background-color: $color-grey2;
+  margin: 15px 0;
+
+  &_list {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+  }
+
+  a {
+    color: #000;
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    font-weight: bolder;
+  }
+
+  &:hover {
+    background-color: $color-light-grey2;
+  }
+
+  &--front {
+    margin: 10px 20px;
+    text-align: center;
+    background-color: #b3b768;
+
+    a {
+      font-size: 20px;
+    }
+
+    &:hover {
+      background-color: darken(#b3b768, 10%);
+    }
+  }
+
+  &__wrapper {
+    //box-sizing: border-box;
+  }
+}
+
+.ea-list_items:hover {
+  background-color: $color-light-grey2;
+}

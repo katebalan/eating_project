@@ -76,7 +76,7 @@ https://knpuniversity.com/screencast/symfony-security/logout-and-last-username#p
 
 ```
 
-# gulp
+# gulpfile's command
 ```
 gulp sass
 ```

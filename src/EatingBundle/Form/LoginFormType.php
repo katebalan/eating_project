@@ -25,7 +25,9 @@ class LoginFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults([
+            'attr' => ['class' => 'ea-form__inside']
+        ]);
     }
 
     public function getBlockPrefix()

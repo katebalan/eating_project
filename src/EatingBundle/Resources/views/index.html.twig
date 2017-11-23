@@ -2,15 +2,13 @@
 
 {% block body %}
     <h1>It's Eating-project!</h1>
-    <p>This project can help you to control your eating and sports.</p>
-    <p>You can try it: </p>
+    <p class="ea-text">This project can help you to control your eating and sports.</p>
     {% if is_granted('ROLE_USER') %}
-        <p>You are already inside system</p>
-        <div><a href="{{ path('user_show', {'userId': user.id }) }}">Your page</a></div>
+        <p class="ea-text ea-text--bold">You are inside system!</p>
+        <div class="ea-button ea-button--front"><a href="{{ path('user_show', {'userId': userId }) }}">Your page</a></div>
     {% else %}
-        <ul>
-            <li><a href="{{ path('security_login') }}">Login</a></li>
-            <li><a href="{{ path('user_register') }}">Registration</a></li>
-        </ul>
+        <p class="ea-text ea-text--bold">You can try it: </p>
+        <div class="ea-button ea-button--front"><a href="{{ path('security_login') }}">Login</a></div>
+        <div class="ea-button ea-button--front"><a href="{{ path('user_register') }}">Registration</a></div>
     {% endif %}
 {% endblock %}

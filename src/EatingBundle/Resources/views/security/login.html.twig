@@ -12,7 +12,9 @@
             {{ form_start(form) }}
                 {{ form_row(form._username) }}
                 {{ form_row(form._password) }}
-                <button type="submit" class="ea-button">Login</button>
+                <div class="ea-button__wrapper">
+                    <button type="submit" class="ea-button ea-button--center">Login</button>
+                </div>
                 {#<input type="hidden" name="_target_path" value="/account" />#}
             {{ form_end(form) }}
             {#
@@ -21,5 +23,17 @@
                     <input type="hidden" name="_target_path" value="/account" />
              #}
         </form>
+    </div>
+    <div>
+        <p class="ea-text ea-text--bold">Or you can try it: </p>
+        <div class="ea-button ea-button--front">
+            <a href="{{ path('user_register') }}">Registration</a>
+        </div>
+        <div class="ea-button ea-button--front">
+            <a href="{{ path('activity_list') }}">List of Activities </a>
+        </div>
+        <div class="ea-button ea-button--front">
+            <a href="{{ path('products_list') }}">List of products</a>
+        </div>
     </div>
 {% endblock %}

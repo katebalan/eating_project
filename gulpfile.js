@@ -4,19 +4,6 @@
  * Initialization
  * @type {Gulp|*|exports|module.exports}
  */
-// var gulp = require('gulp'),
-//     plugins = require('gulp-load-plugins')(),
-//     mains = require('main-bower-files'),
-//     kss = require('kss'),
-//     auto_prefixer = require('autoprefixer'),
-//     argv = require('yargs').argv,
-//     browserify = require('browserify'),
-//     vinyl_source = require('vinyl-source-stream'),
-//     vinyl_buffer = require('vinyl-buffer'),
-//     rename = require('gulp-rename'),
-//     rev = require('gulp-rev'),
-//     del = require('del');
-
 var gulp = require('gulp');
 // Requires the gulp-sass plugin
 var sass = require('gulp-sass'),
@@ -43,30 +30,30 @@ var path = {
     src: { //Пути откуда брать исходники
         js: 'src/EatingBundle/Resources/public/main.js',//В стилях и скриптах нам понадобятся только main файлы
         style: 'src/EatingBundle/Resources/public/style.scss',
-        img: 'src/EatingBundle/Repository/public/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
-        fonts: 'src/EatingBundle/Repository/public/fonts/**/*.*'
+        img: 'src/EatingBundle/Resources/public/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
+        fonts: 'src/EatingBundle/Resources/public/fonts/**/*.*'
     },
     watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
-        js: 'src/EatingBundle/Repository/public/**/*.js',
-        style: 'src/EatingBundle/Repository/public/**/*.scss',
-        img: 'src/EatingBundle/Repository/public/img/**/*.*',
-        fonts: 'src/EatingBundle/Repository/public/fonts/**/*.*'
+        js: 'src/EatingBundle/Resources/public/**/*.js',
+        style: 'src/EatingBundle/Resources/public/**/*.scss',
+        img: 'src/EatingBundle/Resources/public/img/**/*.*',
+        fonts: 'src/EatingBundle/Resources/public/fonts/**/*.*'
     },
     clean: './build'
 };
 
-gulp.task('sass', function(){
-    return gulp.src('src/EatingBundle/Resources/public/style.scss')
-        .pipe(sass()) // Using gulp-sass
-        .pipe(gulp.dest('web/css'))
-});
+// gulp.task('sass', function(){
+//     return gulp.src('src/EatingBundle/Resources/public/style.scss')
+//         .pipe(sass()) // Using gulp-sass
+//         .pipe(gulp.dest('web/css'))
+// });
 
 gulp.task('watch', function(){
     gulp.watch('src/EatingBundle/Resources/public/style.scss', ['sass']);
     // Other watchers
 });
 
-gulp.task('js:build', function () {
+gulp.task('js', function () {
     gulp.src(path.src.js) //Найдем наш main файл
         .pipe(rigger()) //Прогоним через rigger
         .pipe(sourcemaps.init()) //Инициализируем sourcemap
@@ -76,7 +63,7 @@ gulp.task('js:build', function () {
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
 
-gulp.task('style:build', function () {
+gulp.task('sass', function () {
     gulp.src(path.src.style) //Выберем наш main.scss
         .pipe(sourcemaps.init()) //То же самое что и с js
         .pipe(sass()) //Скомпилируем
@@ -87,7 +74,7 @@ gulp.task('style:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('image:build', function () {
+gulp.task('img', function () {
     gulp.src(path.src.img) //Выберем наши картинки
         .pipe(imagemin({ //Сожмем их
             progressive: true,
@@ -105,21 +92,21 @@ gulp.task('fonts:build', function() {
 });
 
 gulp.task('build', [
-    'js:build',
-    'style:build',
+    'js',
+    'sass',
     'fonts:build',
-    'image:build'
+    'img'
 ]);
 
 gulp.task('watch', function(){
     watch([path.watch.style], function(event, cb) {
-        gulp.start('style:build');
+        gulp.start('sass');
     });
     watch([path.watch.js], function(event, cb) {
-        gulp.start('js:build');
+        gulp.start('js');
     });
     watch([path.watch.img], function(event, cb) {
-        gulp.start('image:build');
+        gulp.start('img');
     });
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');

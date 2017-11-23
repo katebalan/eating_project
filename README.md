@@ -75,3 +75,17 @@ https://css-tricks.com/gulp-for-beginners/
 https://knpuniversity.com/screencast/symfony-security/logout-and-last-username#play
 
 ```
+
+# gulp
+```
+gulp sass
+```
+- compile sass files in one file
+```
+gulp js
+``` 
+- compile all js files in one file
+```
+gulp img
+``` 
+- add all images to web/img folder

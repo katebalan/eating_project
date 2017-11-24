@@ -5,9 +5,11 @@
 {% block body %}
     <div class="ea-title">
         <h1>Our Users</h1>
-        <div class="ea-button ea-button_list">
-            <a href="{{ path('user_new') }}">New User</a>
-        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="ea-button ea-button_list">
+                <a href="{{ path('user_new') }}">New User</a>
+            </div>
+        {% endif %}
     </div>
     <div class="ea-list">
         {% for user in users %}

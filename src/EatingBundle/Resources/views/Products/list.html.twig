@@ -5,9 +5,11 @@
 {% block body %}
     <div class="ea-title">
         <h1>Our Products</h1>
-        <div class="ea-button ea-button_list">
-            <a href="{{ path('products_new') }}">New Product</a>
-        </div>
+        {% if is_granted('ROLE_USER') %}
+            <div class="ea-button ea-button_list">
+                <a href="{{ path('products_new') }}">New Product</a>
+            </div>
+        {% endif %}
     </div>
     <div class="ea-list">
         {% for product in products %}

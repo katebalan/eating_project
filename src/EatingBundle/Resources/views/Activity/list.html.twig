@@ -5,9 +5,11 @@
 {% block body %}
     <div class="ea-title">
         <h1>Our Activity</h1>
-        <div class="ea-button ea-button_list">
-            <a href="{{ path('activity_new') }}">New Activity</a>
-        </div>
+        {% if is_granted('ROLE_USER') %}
+            <div class="ea-button ea-button_list">
+                <a href="{{ path('activity_new') }}">New Activity</a>
+            </div>
+        {% endif %}
     </div>
     <div class="ea-list">
         {% for activ in activity %}

@@ -16,6 +16,8 @@ class SecurityController extends Controller
      */
     public function loginAction()
     {
+//        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
+
         $authenticationUtils = $this->get('security.authentication_utils');
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -49,6 +51,8 @@ class SecurityController extends Controller
      */
     public function registerAction(Request $request)
     {
+//        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
+
         $form = $this->createForm(UserRegistrationFormType::class);
 
         $form->handleRequest($request);

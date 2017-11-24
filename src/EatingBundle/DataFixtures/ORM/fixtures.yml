@@ -1,5 +1,5 @@
 EatingBundle\Entity\Products:
-  genus_{1..30}:
+  products_{1..30}:
     name: <product_name()>
     kkal_per_100gr: <numberBetween(1000, 2000)>
     proteins_per_100gr: <numberBetween(0, 30)>

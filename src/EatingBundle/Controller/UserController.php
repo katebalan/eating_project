@@ -95,8 +95,15 @@ class UserController extends Controller
             throw $this->createNotFoundException('User not found');
         }
 
+        $consumption = $em->getRepository('EatingBundle:Consumption')->findBy(['user' => $user]);
+
+
+        $products = $em->getRepository('EatingBundle:Products')->findBy(['id' => $consumption[0]->getProduct()]);
+        dump($products);
+        exit;
         return $this->render('@Eating/User/user_show.html.twig', [
-            'user' => $user
+            'user' => $user,
+            'consumption' => $consumption
         ]);
     }
 }

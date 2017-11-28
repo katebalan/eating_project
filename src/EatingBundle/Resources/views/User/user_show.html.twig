@@ -66,4 +66,9 @@
         </div>
         <div class="ea-table__description">* - current</div>
     </div>
+    {% for product in consumption %}
+        {% include '@Eating/Consumption/consumption_show.html.twig' with {
+            'product': product
+        } only %}
+    {% endfor %}
 {% endblock %}

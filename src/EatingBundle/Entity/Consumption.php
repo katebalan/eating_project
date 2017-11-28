@@ -19,12 +19,12 @@ class Consumption
      */
     private $id;
     /**
-     * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\User", inversedBy="consumption")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
     /**
-     * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\Products")
+     * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\Products", inversedBy="consumption")
      * @ORM\JoinColumn(nullable=false)
      */
     private $product;
@@ -60,17 +60,17 @@ class Consumption
     /**
      * @return mixed
      */
-    public function getProductId()
+    public function getProduct()
     {
-        return $this->product_id;
+        return $this->product;
     }
 
     /**
-     * @param mixed $product_id
+     * @param mixed $product
      */
-    public function setProductId(Products $product_id)
+    public function setProduct($product)
     {
-        $this->product_id = $product_id;
+        $this->product = $product;
     }
 
     /**

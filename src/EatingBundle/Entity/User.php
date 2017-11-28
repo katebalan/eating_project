@@ -115,6 +115,10 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    /**
+     * @ORM\OneToMany(targetEntity="EatingBundle\Entity\Consumption", mappedBy="user")
+     */
+    private $consumption;
 
     public function getUsername() {
         return $this->email;

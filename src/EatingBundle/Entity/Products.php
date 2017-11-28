@@ -46,6 +46,10 @@ class Products
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+    /**
+     * @ORM\OneToMany(targetEntity="EatingBundle\Entity\Consumption", mappedBy="product")
+     */
+    private $consumption;
 
     /**
      * @return mixed

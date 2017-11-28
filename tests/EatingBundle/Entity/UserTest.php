@@ -38,9 +38,9 @@ class UserTest extends TestCase
 	$Password = $user->getPassword();     
 	$this->assertEquals("123456", $Password);
 
-	$user->setAge(20);
+	$user->setAge(2000);
 	$Age = $user->getAge();     
-	$this->assertEquals(20, $Age);
+	$this->assertEquals(2000, $Age);
 
 	$user->setGender("123456");
 	$Gender = $user->getGender();     

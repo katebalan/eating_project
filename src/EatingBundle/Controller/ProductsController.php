@@ -13,8 +13,8 @@ class ProductsController extends Controller
      * @Route("/products", name="products_list")
      */
     public function productsListAction()
-    {
-        $em = $this->getDoctrine()->getManager();
+    {  
+      $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
 
         return $this->render('EatingBundle:Products:list.html.twig', [

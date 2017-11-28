@@ -18,37 +18,30 @@ class Products
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string")
      */
     private $name;
-
     /**
      * @ORM\Column(type="integer")
      */
     private $kkal_per_100gr;
-
     /**
      * @ORM\Column(type="float")
      */
     private $proteins_per_100gr;
-
     /**
      * @ORM\Column(type="float")
      */
     private $fats_per_100gr;
-
     /**
      * @ORM\Column(type="float")
      */
     private $carbohydrates_per_100gr;
-
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $rating;
-
     /**
      * @ORM\Column(type="datetime")
      */

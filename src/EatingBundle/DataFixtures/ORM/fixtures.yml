@@ -15,8 +15,9 @@ EatingBundle\Entity\Activity:
     fats_per_5minutes: <numberBetween(5, 20)>
     carbohydrates_per_5minutes: <numberBetween(5, 20)>
     rating: <numberBetween(1, 6)>
+    createdAt: <dateTimeBetween('-6 months', 'now')>
 EatingBundle\Entity\User:
-  user_:
+  user_1:
     email: ket11141@gmail.com
     first_name: Gregory
     second_name: House
@@ -32,3 +33,29 @@ EatingBundle\Entity\User:
     daily_proteins: 83.85
     daily_fats: 37.26
     daily_carbohydrates: 335.38
+    createdAt: <dateTimeBetween('-6 months', 'now')>
+  user_2:
+    email: ket11@ukr.net
+    first_name: Catherine
+    second_name: Balan
+    age: 21
+    plainPassword: fuckyou
+    roles: ['ROLE_ADMIN']
+    gender: false
+    phone: <user_phone()>
+    weight: 58
+    height: 165
+    energy_exchange: 1.5
+    daily_kkal: 2012
+    daily_proteins: 83.85
+    daily_fats: 37.26
+    daily_carbohydrates: 335.38
+    createdAt: <dateTimeBetween('-6 months', 'now')>
+EatingBundle\Entity\Consumption:
+  consumption_{1..5}:
+    user: '@user_*'
+    product: '@products_*'
+    how_much: <numberBetween(70, 233)>
+    meals_of_the_day: <meals_of_the_day()>
+    createdAt: <dateTimeBetween('-6 hours', 'now')>
+    

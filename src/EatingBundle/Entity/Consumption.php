@@ -20,12 +20,14 @@ class Consumption
     private $id;
     /**
      * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
     /**
      * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\Products")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $product_id;
+    private $product;
     /**
      * @ORM\Column(type="integer")
      */

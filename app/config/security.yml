@@ -36,5 +36,3 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/user, roles: ROLE_USER }
-         - { path: ^/register, roles: ROLE_ANONYMOUS }
-         - { path: ^/login, roles: ROLE_ANONYMOUS }

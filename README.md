@@ -89,3 +89,15 @@ gulp js
 gulp img
 ``` 
 - add all images to web/img folder
+
+
+# git 
+git push -u origin consumption
+
+You do these steps:
+
+git checkout -b your_branch
+git push -u origin your_branch
+show all branches (see result):
+
+git branch

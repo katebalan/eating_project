@@ -58,4 +58,3 @@ EatingBundle\Entity\Consumption:
     how_much: <numberBetween(70, 233)>
     meals_of_the_day: <meals_of_the_day()>
     createdAt: <dateTimeBetween('-6 hours', 'now')>
-    

@@ -40,7 +40,7 @@ class ActivityController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'New activity is creted!');
-           return $this->redirectToRoute('activity_list');
+            return $this->redirectToRoute('activity_list');
         }
 
         return $this->render('EatingBundle:Activity:new.html.twig', [

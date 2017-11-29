@@ -30,6 +30,7 @@ class ActivityController extends Controller
         $form = $this->createForm(ActivityFormType::class);
 
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
             $activity = $form->getData();
             $activity->setCreatedAt(new \DateTime('now'));
@@ -43,7 +44,7 @@ class ActivityController extends Controller
         }
 
         return $this->render('EatingBundle:Activity:new.html.twig', [
-            'activityForm' =>$form->createView()
+            'activityForm' => $form->createView()
         ]);
     }
 }

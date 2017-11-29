@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Consumption New{% endblock %}
+
+{% block body %}
+    <h1>New Consumption</h1>
+    <div class="ea-form">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="ea-button">Save</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

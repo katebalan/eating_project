@@ -23,6 +23,7 @@ class RecommendationController extends Controller
         ]);
     }*/
 
+
     public function productsListAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -42,9 +43,25 @@ class RecommendationController extends Controller
             $Dcarbohydrates=$products[$i]->getCarbohydratesPer100gr()-$carbohydrates;
            if( $Dproteins*$Dproteins+$Dfats*$Dfats+$Dcarbohydrates*$Dcarbohydrates<3000) $pr[]=$products[$i];
         }
+        usort($pr, function($a, $b) {
+     /*       if ($a == $b)
+            {
+                return 0;
+            }
+            else */if ($a->getRating() > $b->getRating())
+            {
+                return -1;
+            }
+            else {
+                return 1;
+            }
+
+        }
+        );
         return $this->render('EatingBundle:Recommendation:list.html.twig', [
             'products' => $pr
         ]);
+
     }
 
 

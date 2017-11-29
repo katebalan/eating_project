@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
     /**
+     * Controller are used to show all users in system
+     *
+     * @return mixed
      * @Route("/admin/user", name="user_list")
      */
     public function userListAction()
@@ -24,6 +27,10 @@ class UserController extends Controller
     }
 
     /**
+     * Controller are used to create new user
+     *
+     * @param Request $request
+     * @return mixed
      * @Route("/admin/user/new", name="user_new")
      */
     public function userNewAction(Request $request)
@@ -84,6 +91,10 @@ class UserController extends Controller
     }
 
     /**
+     * Controller are used to show user page
+     *
+     * @param $userId
+     * @return mixed
      * @Route("/user/{userId}", name="user_show")
      */
     public function userShowAction($userId)

@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 class ProductsController extends Controller
 {
     /**
+     * Controller are used for show list of all products
+     *
+     * @return mixed
      * @Route("/products", name="products_list")
      */
     public function productsListAction()
@@ -23,6 +26,10 @@ class ProductsController extends Controller
     }
 
     /**
+     * Controller are used to create new product
+     *
+     * @param Request $request
+     * @return mixed
      * @Route("/products/new", name="products_new")
      */
     public function productsNewAction(Request $request)

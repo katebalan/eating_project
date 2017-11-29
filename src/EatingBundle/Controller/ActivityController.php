@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 class ActivityController extends Controller
 {
     /**
+     * Controller are used to show list of all activity
+     *
+     * @return mixed
      * @Route("/activity", name="activity_list")
      */
     public function listAction()
@@ -23,6 +26,9 @@ class ActivityController extends Controller
     }
 
     /**
+     * Controller are used to create new activity
+     *
+     * @return mixed
      * @Route("/activity/new", name="activity_new")
      */
     public function newAction(Request $request)

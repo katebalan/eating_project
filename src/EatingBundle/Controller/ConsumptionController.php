@@ -11,6 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConsumptionController extends Controller
 {
     /**
+     * Controller are used for create new consumption only for user,
+     * that is log in system, and change current values in user entity
+     *
+     * @param Request $request
+     * @return mixed
      * @Route("/consumption/new", name="consumption_new")
      */
     public function consumptionNewAction(Request $request)
@@ -22,15 +27,12 @@ class ConsumptionController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $user = $this->getUser();
             $form_info = $form->getData();
-//            dump($user->getCurrentKkal());
-//            exit;
 
             $em = $this->getDoctrine()->getManager();
             $product = $em->getRepository('EatingBundle:Products')->findOneBy(['name' => $form_info['product_name']]);
 
             if( empty($product) ) {
                 $this->addFlash('error', 'Product doesn\'t exist');
-
             }
             else {
                 $consumption = new Consumption();
@@ -40,11 +42,16 @@ class ConsumptionController extends Controller
                 $consumption->setUser($user);
                 $consumption->setProduct($product);
                 $consumption->setCreatedAt(new \DateTime('now'));
-                $current_kkal = $consumption->getHowMuch() * $product->getKkalPer100gr() / 100;
+
+                $current_kkal = $user->getCurrentKkal() + $consumption->getHowMuch() * $product->getKkalPer100gr() / 100;
+                $current_proteins = $user->getCurrentProteins() + $consumption->getHowMuch() * $product->getProteinsPer100gr() / 100;
+                $current_fats = $user->getCurrentFats() + $consumption->getHowMuch() * $product->getFatsPer100gr() / 100;
+                $current_carb = $user->getCurrentCarbohydrates() + $consumption->getHowMuch() * $product->getCarbohydratesPer100gr() / 100;
+
                 $user->setCurrentKkal($current_kkal);
-                $current_proteins = $consumption->getHowMuch() * $product->getProteinsPer100gr() / 100;
                 $user->setCurrentProteins($current_proteins);
-//                To DO FATS, Carbohydrates
+                $user->setCurrentFats($current_fats);
+                $user->setCurrentCarbohydrates($current_carb);
 
                 $em->persist($consumption);
                 $em->flush();

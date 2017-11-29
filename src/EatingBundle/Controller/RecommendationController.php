@@ -44,11 +44,7 @@ class RecommendationController extends Controller
            if( $Dproteins*$Dproteins+$Dfats*$Dfats+$Dcarbohydrates*$Dcarbohydrates<3000) $pr[]=$products[$i];
         }
         usort($pr, function($a, $b) {
-     /*       if ($a == $b)
-            {
-                return 0;
-            }
-            else */if ($a->getRating() > $b->getRating())
+            if ($a->getRating() > $b->getRating())
             {
                 return -1;
             }

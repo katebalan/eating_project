@@ -94,6 +94,7 @@ class SecurityController extends Controller
             $user->setDailyFats($daily_fats);
             $user->setDailyProteins($daily_proteins);
             $user->setDailyCarbohydrates($daily_carbohydrates);
+            $user->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

@@ -32,6 +32,7 @@ class ActivityController extends Controller
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
             $activity = $form->getData();
+            $activity->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($activity);

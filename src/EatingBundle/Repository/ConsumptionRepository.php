@@ -15,7 +15,7 @@ class ConsumptionRepository extends EntityRepository
      */
     public function findByDateAndUserActive(User $user){
         return $this->createQueryBuilder('consumption')
-            ->where('createdAt' >= "2017-11-30 00:14:56")
+            ->where('createdAt >= 2017-11-30 00:14:56')
             ->andWhere('user' == $user)
 
             ->getQuery()

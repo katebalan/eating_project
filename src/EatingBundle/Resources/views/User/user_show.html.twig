@@ -1,31 +1,146 @@
 {% extends 'base.html.twig' %}
 
+{% set breakfast = 'false' %}
+{% set dinner = 'false' %}
+{% set supper = 'false' %}
+
+{% for item in consumption %}
+    {% if item.mealsOfTheDay=='Breakfast' %}
+        {% set breakfast = 'true' %}
+    {% elseif item.mealsOfTheDay=='Dinner' %}
+        {% set dinner = 'true' %}
+    {% elseif item.mealsOfTheDay=='Supper' %}
+        {% set supper = 'true' %}
+    {% endif %}
+{% endfor %}
+
+
 {% block title %}{{ parent() }} User Show{% endblock %}
 
 {% block body %}
-    <h1>User: {{ user.firstName }} {{ user.secondName }}</h1>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Weight</div>
-        <div class="ea-list_item">{{ user.weight }}</div>
+    <h1>User : {{ user.firstName }} {{ user.secondName }}</h1>
+    <div class="ea-user-show__info">
+        <div class="ea-list_block">
+            <div class="ea-list_item">Weight</div>
+            <div class="ea-list_item">{{ user.weight }}</div>
+        </div>
+        <div class="ea-list_block">
+            <div class="ea-list_item">Height</div>
+            <div class="ea-list_item">{{ user.height }}</div>
+        </div>
+        <div class="ea-list_block">
+            <div class="ea-list_item">E-mail</div>
+            <div class="ea-list_item">{{ user.username }}</div>
+        </div>
+        <div class="ea-list_block">
+            <div class="ea-list_item">Phone</div>
+            <div class="ea-list_item">{{ user.phone }}</div>
+        </div>
+        <div class="ea-list_block">
+            <div class="ea-list_item">Age</div>
+            <div class="ea-list_item">{{ user.age }}</div>
+        </div>
+        <div class="ea-list_block">
+            <div class="ea-list_item">Gender</div>
+            <div class="ea-list_item">
+                {% if user.gender %}
+                    Male
+                {% else %}
+                    Female
+                {% endif %}
+            </div>
+        </div>
     </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Height</div>
-        <div class="ea-list_item">{{ user.height }}</div>
+    <div class="ea-table">
+        <div class="ea-table__row ea-table__row--bold">
+            <div class="ea-table__item">Kkal</div>
+            <div class="ea-table__item">Proteins</div>
+            <div class="ea-table__item">Fats</div>
+            <div class="ea-table__item">Carbohydrates</div>
+        </div>
+        <div class="ea-table__row">
+            <div class="ea-table__item">{{ user.dailyKkal }}</div>
+            <div class="ea-table__item">{{ user.dailyProteins }}</div>
+            <div class="ea-table__item">{{ user.dailyFats }}</div>
+            <div class="ea-table__item">{{ user.dailyCarbohydrates }}</div>
+        </div>
+        <div class="ea-table__description">* - daily</div>
     </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">E-mail</div>
-        <div class="ea-list_item">{{ user.username }}</div>
+    <div class="ea-table">
+        <div class="ea-table__row ea-table__row--bold">
+            <div class="ea-table__item">Kkal</div>
+            <div class="ea-table__item">Proteins</div>
+            <div class="ea-table__item">Fats</div>
+            <div class="ea-table__item">Carbohydrates</div>
+        </div>
+        <div class="ea-table__row">
+            <div class="ea-table__item">{{ user.currentKkal }}</div>
+            <div class="ea-table__item">{{ user.currentProteins }}</div>
+            <div class="ea-table__item">{{ user.currentFats }}</div>
+            <div class="ea-table__item">{{ user.currentCarbohydrates }}</div>
+        </div>
+        <div class="ea-table__description">* - current</div>
     </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Phone</div>
-        <div class="ea-list_item">{{ user.phone }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Age</div>
-        <div class="ea-list_item">{{ user.age }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Gender</div>
-        <div class="ea-list_item">{{ user.gender }}</div>
-    </div>
+    {% if consumption %}
+        <div class="ea-table">
+            <h3>Consumption</h3>
+            <a href="{{ path('consumption_new') }}">New consumption</a>
+            {% if breakfast == 'true' %}
+                <h4>Breakfast</h4>
+                <div class="ea-table__row ea-table__row--bold">
+                    <div class="ea-table__item">Product</div>
+                    <div class="ea-table__item">Gramm</div>
+                    <div class="ea-table__item">Kkal</div>
+                    <div class="ea-table__item">Proteins</div>
+                    <div class="ea-table__item">Fats</div>
+                    <div class="ea-table__item">Carbohydrates</div>
+                </div>
+                {% for item in consumption %}
+                    {% if item.mealsOfTheDay=='Breakfast' %}
+                        {% include '@Eating/Consumption/consumption_show.html.twig' with {
+                        'item': item
+                        } only %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if dinner == 'true' %}
+                <h4>Dinner</h4>
+                <div class="ea-table__row ea-table__row--bold">
+                    <div class="ea-table__item">Product</div>
+                    <div class="ea-table__item">Gramm</div>
+                    <div class="ea-table__item">Kkal</div>
+                    <div class="ea-table__item">Proteins</div>
+                    <div class="ea-table__item">Fats</div>
+                    <div class="ea-table__item">Carbohydrates</div>
+                </div>
+                {% for item in consumption %}
+                    {% if item.mealsOfTheDay=='Dinner' %}
+                        {% include '@Eating/Consumption/consumption_show.html.twig' with {
+                            'item': item
+                        } only %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% if supper == 'true' %}
+                <h4>Supper</h4>
+                <div class="ea-table__row ea-table__row--bold">
+                    <div class="ea-table__item">Product</div>
+                    <div class="ea-table__item">Gramm</div>
+                    <div class="ea-table__item">Kkal</div>
+                    <div class="ea-table__item">Proteins</div>
+                    <div class="ea-table__item">Fats</div>
+                    <div class="ea-table__item">Carbohydrates</div>
+                </div>
+                {% for item in consumption %}
+                    {% if item.mealsOfTheDay=='Supper' %}
+                        {% include '@Eating/Consumption/consumption_show.html.twig' with {
+                        'item': item
+                        } only %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <a href="#">History</a>
+        </div>
+    {% endif %}
 {% endblock %}

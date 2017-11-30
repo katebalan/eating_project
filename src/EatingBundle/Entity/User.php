@@ -111,6 +111,14 @@ class User implements UserInterface
      * @ORM\Column(type="float")
      */
     private $current_carbohydrates = 0;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+    /**
+     * @ORM\OneToMany(targetEntity="EatingBundle\Entity\Consumption", mappedBy="user")
+     */
+    private $consumption;
 
     public function getUsername() {
         return $this->email;
@@ -457,4 +465,21 @@ class User implements UserInterface
     {
         $this->current_carbohydrates = $current_carbohydrates;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
 }

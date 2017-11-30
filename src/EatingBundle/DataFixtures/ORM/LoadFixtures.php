@@ -58,4 +58,16 @@ class LoadFixtures2 implements FixtureInterface
         return $phone;
     }
 
+    public function meals_of_the_day()
+    {
+        $meals = [
+            'Breakfast',
+            'Dinner',
+            'Supper'
+        ];
+
+        $key = array_rand($meals);
+
+        return $meals[$key];
+    }
 }

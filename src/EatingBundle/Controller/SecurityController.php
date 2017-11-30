@@ -12,11 +12,14 @@ use Symfony\Component\HttpFoundation\Request;
 class SecurityController extends Controller
 {
     /**
+     * Controller are used to login users
+     *
+     * @return mixed
      * @Route("/login", name="security_login")
      */
     public function loginAction()
     {
-//        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
+    //        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
 
         $authenticationUtils = $this->get('security.authentication_utils');
         // get the login error if there is one
@@ -39,6 +42,8 @@ class SecurityController extends Controller
     }
 
     /**
+     * Controller are used to logout users
+     *
      * @Route("/logout", name="security_logout")
      */
     public function logoutAction()
@@ -47,11 +52,15 @@ class SecurityController extends Controller
     }
 
     /**
+     * Controller are used to register new users
+     *
+     * @param Request $request
+     * @return mixed
      * @Route("/register", name="user_register")
      */
     public function registerAction(Request $request)
     {
-//        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
+    //        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
 
         $form = $this->createForm(UserRegistrationFormType::class);
 
@@ -94,6 +103,7 @@ class SecurityController extends Controller
             $user->setDailyFats($daily_fats);
             $user->setDailyProteins($daily_proteins);
             $user->setDailyCarbohydrates($daily_carbohydrates);
+            $user->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -101,7 +111,6 @@ class SecurityController extends Controller
 
             $this->addFlash('success', 'Welcome '.$user->getFirstName().' '.$user->getSecondName());
 
-//            return $this->redirectToRoute('user_show', ['userId' => $user->getId()]);
             return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
                 $user,
                 $request,

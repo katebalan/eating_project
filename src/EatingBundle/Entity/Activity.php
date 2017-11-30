@@ -18,36 +18,34 @@ class Activity
      * @ORM\Column(type="integer")
      */
     private $id;
-
     /**
      * @ORM\Column(type="string")
      */
     private $name;
-
     /**
      * @ORM\Column(type="integer")
      */
     private $kkal_per_5minutes;
-
     /**
      * @ORM\Column(type="float")
      */
     private $proteins_per_5minutes;
-
     /**
      * @ORM\Column(type="float")
      */
     private $fats_per_5minutes;
-
     /**
      * @ORM\Column(type="float")
      */
     private $carbohydrates_per_5minutes;
-
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $rating;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * @return mixed
@@ -151,6 +149,22 @@ class Activity
     public function setRating($rating)
     {
         $this->rating = $rating;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param mixed $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
     }
 
 }

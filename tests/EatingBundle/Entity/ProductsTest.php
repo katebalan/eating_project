@@ -29,7 +29,7 @@ class ProductsTest extends TestCase
 
         $product->setCarbohydratesPer100gr(22);
         $CarbohydratesPer100gr = $product->getFatsPer100gr();
-        $this->assertEquals(22, $FatsPer100gr);
+        $this->assertEquals(22, $CarbohydratesPer100gr);
 
         $product->setRating(22);
         $Rating= $product->getRating();
@@ -38,6 +38,5 @@ class ProductsTest extends TestCase
         $product->setCreatedAt(22);
         $CreatedAt= $product->getCreatedAt();
         $this->assertEquals(22, $CreatedAt);
-
     }
 }

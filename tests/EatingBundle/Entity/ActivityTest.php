@@ -11,6 +11,9 @@ class ActivityTest extends TestCase
     {
         $activity = new Activity();
 
+        $id = $activity->getId();
+        $this->assertNull($id);
+
         $activity->setName("lalala");
         $Name = $activity->getName();
         $this->assertEquals("lalala", $Name);
@@ -36,7 +39,7 @@ class ActivityTest extends TestCase
         $this->assertEquals(22, $Rating);
 
         $activity->setCreatedAt(22);
-        $CreatedAt= $product->getCreatedAt();
+        $CreatedAt= $activity->getCreatedAt();
         $this->assertEquals(22, $CreatedAt);
     }
 }

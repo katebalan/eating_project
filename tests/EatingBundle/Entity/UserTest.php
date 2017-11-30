@@ -116,5 +116,8 @@ class UserTest extends TestCase
         $PlainPassword= $user->getPlainPassword();
         $this->assertNull($PlainPassword);
 
+        $user->setCreatedAt(22);
+        $CreatedAt= $user->getCreatedAt();
+        $this->assertEquals(22, $CreatedAt);
     }
 }

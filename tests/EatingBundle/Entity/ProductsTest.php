@@ -2,7 +2,6 @@
 
 namespace EatingBundle\Entity;
 
-use EatingBundle\Entity;
 use PHPUnit\Framework\TestCase;
 
 class ProductsTest extends TestCase

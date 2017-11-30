@@ -52,9 +52,9 @@ EatingBundle\Entity\User:
     daily_carbohydrates: 335.38
     createdAt: <dateTimeBetween('-6 months', 'now')>
 EatingBundle\Entity\Consumption:
-  consumption_{1..5}:
+  consumption_{1..10}:
     user: '@user_*'
     product: '@products_*'
     how_much: <numberBetween(70, 233)>
     meals_of_the_day: <meals_of_the_day()>
-    createdAt: <dateTimeBetween('-6 hours', 'now')>
+    createdAt: <dateTimeBetween('-1 day', 'now')>

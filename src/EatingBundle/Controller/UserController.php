@@ -107,8 +107,8 @@ class UserController extends Controller
         }
 
         $consumption = $em->getRepository('EatingBundle:Consumption')->findByDateAndUserActive($user);
-        dump($consumption);
-        exit;
+//        dump($consumption);
+//        exit;
         return $this->render('@Eating/User/user_show.html.twig', [
             'user' => $user,
             'consumption' => $consumption

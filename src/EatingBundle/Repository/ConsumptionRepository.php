@@ -4,6 +4,7 @@ namespace EatingBundle\Repository;
 
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\AST\Functions\CurrentDateFunction;
 use EatingBundle\Entity\Consumption;
 use EatingBundle\Entity\User;
 
@@ -15,8 +16,10 @@ class ConsumptionRepository extends EntityRepository
      */
     public function findByDateAndUserActive(User $user){
         return $this->createQueryBuilder('consumption')
-            ->where('createdAt >= 2017-11-30 00:14:56')
-            ->andWhere('user' == $user)
+            ->where('consumption.createdAt >= :date')
+            ->setParameter(':date', date('Y-m-d'))
+            ->andWhere('consumption.user = :user')
+            ->setParameter(':user', $user)
 
             ->getQuery()
             ->execute();

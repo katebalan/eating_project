@@ -81,10 +81,11 @@
         </div>
         <div class="ea-table__description">* - current</div>
     </div>
+    <a href="{{ path('recommendation_list') }}">Recommendations</a>
+    <a href="{{ path('consumption_new') }}">New consumption</a>
     {% if consumption %}
         <div class="ea-table">
             <h3>Consumption</h3>
-            <a href="{{ path('consumption_new') }}">New consumption</a>
             {% if breakfast == 'true' %}
                 <h4>Breakfast</h4>
                 <div class="ea-table__row ea-table__row--bold">
@@ -140,7 +141,7 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
-            <a href="#">History</a>
         </div>
     {% endif %}
+    <a href="#">History</a>
 {% endblock %}

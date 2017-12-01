@@ -2,6 +2,15 @@
     <div class="ea-header__nav">
         <ul>
         {% if is_granted('ROLE_USER') %}
+            <li>
+                <a href={{ path('user_show', { 'userId': app.user.id }) }}>
+                    {% if app.user.firstName and app.user.secondName %}
+                        {{ app.user.firstName~' '~app.user.secondName }}
+                    {% else %}
+                        {{ app.user.email }}
+                    {% endif %}
+                </a>
+            </li>
             <li><a href="{{ path('security_logout') }}">Logout</a></li>
         {% else %}
             <li><a href="{{ path('security_login') }}">Login</a></li>

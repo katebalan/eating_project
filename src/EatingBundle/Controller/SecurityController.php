@@ -5,16 +5,18 @@ namespace EatingBundle\Controller;
 use EatingBundle\Entity\User;
 use EatingBundle\Form\LoginFormType;
 use EatingBundle\Form\UserRegistrationFormType;
+use EatingBundle\Service\CountService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SecurityController extends Controller
 {
     /**
      * Controller are used to login users
      *
-     * @return mixed
+     * @return Response
      * @Route("/login", name="security_login")
      */
     public function loginAction()
@@ -55,10 +57,11 @@ class SecurityController extends Controller
      * Controller are used to register new users
      *
      * @param Request $request
+     * @param CountService $countService
      * @return mixed
      * @Route("/register", name="user_register")
      */
-    public function registerAction(Request $request)
+    public function registerAction(CountService $countService, Request $request)
     {
     //        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
 
@@ -70,39 +73,7 @@ class SecurityController extends Controller
             /** @var User $user */
             $user = $form->getData();
 
-            $weight = $user->getWeight();
-            $energy_exchange = $user->getEnergyExchange();
-            $daily_kkal = 0;
-
-            if($user->getAge() <= 30 && $user->getGender() == false) {
-                $daily_kkal = (0.0621 * $weight + 2.0357) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() > 30 && $user->getAge() <= 60 && $user->getGender() == false) {
-                $daily_kkal = (0.0342 * $weight + 3.5377) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() > 60 && $user->getGender() == false) {
-                $daily_kkal = (0.0377 * $weight + 2.7545) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() <= 30 && $user->getGender() == true) {
-                $daily_kkal = (0.0630 * $weight + 2.8957) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() > 30 && $user->getGender() == true) {
-                $daily_kkal = (0.0491 * $weight + 2.4587) * 240 * $energy_exchange;
-            }
-            else {
-                $user->setDailyKkal(0);
-            }
-
-            $user->setDailyKkal(round($daily_kkal));
-            $daily_parts = round($daily_kkal / 6, 2, PHP_ROUND_HALF_UP);
-
-            $daily_fats = round($daily_parts / 9, 2, PHP_ROUND_HALF_UP);
-            $daily_proteins = round($daily_parts / 4, 2, PHP_ROUND_HALF_UP);
-            $daily_carbohydrates = $daily_parts;
-
-            $user->setDailyFats($daily_fats);
-            $user->setDailyProteins($daily_proteins);
-            $user->setDailyCarbohydrates($daily_carbohydrates);
+            $user = $countService->CountDailyValues($user);
             $user->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();

@@ -146,5 +146,5 @@
         </div>
     {% endif %}
 
-    <div class="ea-button ea-button--front"><a href="#">History</a></div>
+    <div class="ea-button ea-button--front"><a href="{{ path('consumption_history', {'user': app.user, 'id': app.user.id }) }}">History</a></div>
 {% endblock %}

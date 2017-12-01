@@ -3,10 +3,12 @@
 namespace EatingBundle\Controller;
 
 use EatingBundle\Form\UserFormType;
+use EatingBundle\Service\CountService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserController extends Controller
 {
@@ -30,10 +32,11 @@ class UserController extends Controller
      * Controller are used to create new user
      *
      * @param Request $request
+     * @param CountService $countService
      * @return mixed
      * @Route("/admin/user/new", name="user_new")
      */
-    public function userNewAction(Request $request)
+    public function userNewAction(CountService $countService, Request $request)
     {
 //        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
@@ -43,40 +46,10 @@ class UserController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
-            $weight = $user->getWeight();
-            $energy_exchange = $user->getEnergyExchange();
-            $daily_kkal = 0;
+            $user = $countService->CountDailyValues($user);
 
-            if($user->getAge() <= 30 && $user->getGender() == false) {
-                $daily_kkal = (0.0621 * $weight + 2.0357) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() > 30 && $user->getAge() <= 60 && $user->getGender() == false) {
-                $daily_kkal = (0.0342 * $weight + 3.5377) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() > 60 && $user->getGender() == false) {
-                $daily_kkal = (0.0377 * $weight + 2.7545) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() <= 30 && $user->getGender() == true) {
-                $daily_kkal = (0.0630 * $weight + 2.8957) * 240 * $energy_exchange;
-            }
-            elseif($user->getAge() > 30 && $user->getGender() == true) {
-                $daily_kkal = (0.0491 * $weight + 2.4587) * 240 * $energy_exchange;
-            }
-            else {
-                $user->setDailyKkal(0);
-            }
-
-            $user->setDailyKkal(round($daily_kkal));
-            $daily_parts = round($daily_kkal / 6, 2, PHP_ROUND_HALF_UP);
-
-            $daily_fats = round($daily_parts / 9, 2, PHP_ROUND_HALF_UP);
-            $daily_proteins = round($daily_parts / 4, 2, PHP_ROUND_HALF_UP);
-            $daily_carbohydrates = $daily_parts;
-
-            $user->setDailyFats($daily_fats);
-            $user->setDailyProteins($daily_proteins);
-            $user->setDailyCarbohydrates($daily_carbohydrates);
-            $user->setPassword('1');
+            $user->setPlainPassword('fuckyou');
+            $user->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
@@ -102,18 +75,32 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('EatingBundle:User')->findOneBy(['id' => $userId]);
 
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
+            throw new AccessDeniedException('This user does not have access to this action.');
+        }
+
         if (!$user) {
             throw $this->createNotFoundException('User not found');
         }
 
-        $consumption = $em->getRepository('EatingBundle:Consumption')->findByDateAndUserActive($user);
+        $date = date('y-m-d', time());
 
-        if( empty($consumption)) {
+        $consumption = $em->getRepository('EatingBundle:Consumption')->findByDateAndUserActive($user, $date);
+
+        if( empty($consumption))
+        {
             $user->setCurrentKkal(0);
             $user->setCurrentProteins(0);
             $user->setCurrentFats(0);
             $user->setCurrentCarbohydrates(0);
         }
+
+        $em->persist($user);
+        $em->flush();
 
         return $this->render('@Eating/User/user_show.html.twig', [
             'user' => $user,

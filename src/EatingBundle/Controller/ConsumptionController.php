@@ -3,10 +3,16 @@
 namespace EatingBundle\Controller;
 
 use EatingBundle\Entity\Consumption;
+use EatingBundle\Entity\User;
 use EatingBundle\Form\ConsumptionFormType;
+use EatingBundle\Service\CountService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ConsumptionController extends Controller
 {
@@ -15,10 +21,10 @@ class ConsumptionController extends Controller
      * that is log in system, and change current values in user entity
      *
      * @param Request $request
-     * @return mixed
+     * @return RedirectResponse|Response
      * @Route("/consumption/new", name="consumption_new")
      */
-    public function consumptionNewAction(Request $request)
+    public function consumptionNewAction(CountService $countService, Request $request)
     {
         $form = $this->createForm(ConsumptionFormType::class);
 
@@ -43,17 +49,10 @@ class ConsumptionController extends Controller
                 $consumption->setProduct($product);
                 $consumption->setCreatedAt(new \DateTime('now'));
 
-                $current_kkal = $user->getCurrentKkal() + $consumption->getHowMuch() * $product->getKkalPer100gr() / 100;
-                $current_proteins = $user->getCurrentProteins() + $consumption->getHowMuch() * $product->getProteinsPer100gr() / 100;
-                $current_fats = $user->getCurrentFats() + $consumption->getHowMuch() * $product->getFatsPer100gr() / 100;
-                $current_carb = $user->getCurrentCarbohydrates() + $consumption->getHowMuch() * $product->getCarbohydratesPer100gr() / 100;
-
-                $user->setCurrentKkal($current_kkal);
-                $user->setCurrentProteins($current_proteins);
-                $user->setCurrentFats($current_fats);
-                $user->setCurrentCarbohydrates($current_carb);
+                $user = $countService->CountCurrentValues($user, $consumption->getHowMuch(), $product);
 
                 $em->persist($consumption);
+                $em->persist($user);
                 $em->flush();
 
                 $this->addFlash('success', 'You have eaten new product!');
@@ -68,4 +67,37 @@ class ConsumptionController extends Controller
             'form' =>$form->createView()
         ]);
     }
+
+    /**
+     * @param $user
+     * @Route("/user/{id}/history", name="consumption_history")
+     *
+     */
+    public function consumptionHistoryAction(User $user)
+    {
+        if (!is_object($user) || !$user instanceof UserInterface) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
+            throw new AccessDeniedException('This user does not have access to this action.');
+        }
+        for($i=0, $i < 5, $i++) {
+
+        }
+
+        $date = date('y-m-d', strtotime('-2 days', time()));
+        dump($date);
+
+        $em = $this->getDoctrine()->getManager();
+        $consumption = $em->getRepository('EatingBundle:Consumption')
+            ->findByDateAndUserActive($user, $date);
+        dump($consumption);
+//        $day_consumption[]
+
+
+        exit;
+
+    }
+
 }

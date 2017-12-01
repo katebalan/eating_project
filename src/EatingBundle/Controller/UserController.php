@@ -107,12 +107,17 @@ class UserController extends Controller
         }
 
         $consumption = $em->getRepository('EatingBundle:Consumption')->findByDateAndUserActive($user);
-//        dump($consumption);
-//        exit;
+
+        if( empty($consumption)) {
+            $user->setCurrentKkal(0);
+            $user->setCurrentProteins(0);
+            $user->setCurrentFats(0);
+            $user->setCurrentCarbohydrates(0);
+        }
+
         return $this->render('@Eating/User/user_show.html.twig', [
             'user' => $user,
             'consumption' => $consumption
         ]);
     }
 }
-

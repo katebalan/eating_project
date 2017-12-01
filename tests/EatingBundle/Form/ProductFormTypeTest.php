@@ -2,6 +2,7 @@
 
 use Symfony\Component\Form\Test\TypeTestCase;
 use EatingBundle\Form\ProductsFormType;
+use EatingBundle\Entity\Products;
 
 class ProductFormTypeTest extends TypeTestCase
 {
@@ -18,7 +19,7 @@ class ProductFormTypeTest extends TypeTestCase
 
         $form = $this->factory->create(ProductsFormType::class);
 
-        $product = new \EatingBundle\Entity\Products();
+        $product = new Products();
         
         $product->setName($form_data['name']);
         $product->setKkalPer100gr($form_data['kkal_per_100gr']);

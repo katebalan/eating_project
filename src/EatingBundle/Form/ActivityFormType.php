@@ -50,7 +50,7 @@ class ActivityFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'EatingBundle\Entity\Activity',
-            'attr' => ['class' => 'ea-form__inside' ],
+            'attr' => ['class' => 'ea-form__inside' ]
         ]);
     }
 

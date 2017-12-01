@@ -52,6 +52,7 @@
         </div>
     </div>
     <div class="ea-table">
+        <h3>Daily</h3>
         <div class="ea-table__row ea-table__row--bold">
             <div class="ea-table__item">Kkal</div>
             <div class="ea-table__item">Proteins</div>
@@ -64,9 +65,9 @@
             <div class="ea-table__item">{{ user.dailyFats }}</div>
             <div class="ea-table__item">{{ user.dailyCarbohydrates }}</div>
         </div>
-        <div class="ea-table__description">* - daily</div>
     </div>
     <div class="ea-table">
+        <h3>Current</h3>
         <div class="ea-table__row ea-table__row--bold">
             <div class="ea-table__item">Kkal</div>
             <div class="ea-table__item">Proteins</div>
@@ -79,10 +80,11 @@
             <div class="ea-table__item">{{ user.currentFats }}</div>
             <div class="ea-table__item">{{ user.currentCarbohydrates }}</div>
         </div>
-        <div class="ea-table__description">* - current</div>
     </div>
-    <a href="{{ path('recommendation_list') }}">Recommendations</a>
-    <a href="{{ path('consumption_new') }}">New consumption</a>
+
+    <div class="ea-button ea-button--front"><a href="{{ path('recommendation_list') }}">Your Recommendations</a></div>
+    <div class="ea-button ea-button--front"><a href="{{ path('consumption_new') }}">New consumption</a></div>
+
     {% if consumption %}
         <div class="ea-table">
             <h3>Consumption</h3>
@@ -143,5 +145,6 @@
             {% endif %}
         </div>
     {% endif %}
-    <a href="#">History</a>
+
+    <div class="ea-button ea-button--front"><a href="#">History</a></div>
 {% endblock %}

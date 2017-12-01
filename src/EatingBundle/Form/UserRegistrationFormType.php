@@ -60,9 +60,9 @@ class UserRegistrationFormType extends AbstractType
                 'attr' => ['class' => 'ea-form__field'],
                 'label_attr' => ['class' => 'ea-form__label'],
                 'choices' => [
-                    'Low activity (you are passive)' => 1.1,
-                    'Moderate activity (work is sitting, but the office has to run, and in addition, two or three times a week you find time for sports).' => 1.3,
-                    'High activity (your work is a constant movement)' => 1.5
+                    'Low activity (you are passive)' => 1.3,
+                    'Moderate activity (work is sitting, but the office has to run, and in addition, two or three times a week you find time for sports).' => 1.5,
+                    'High activity (your work is a constant movement)' => 1.7
                 ]
             ]);
     }

@@ -23,6 +23,7 @@ class ConsumptionRepository extends EntityRepository
             ->setParameter(':date_first', $date.' 00:00:00')
             ->setParameter(':date_second', $date.' 23:59:59')
             ->setParameter(':user', $user)
+            ->orderBy('consumption.meals_of_the_day', 'ASC')
 
             ->getQuery()
             ->execute();

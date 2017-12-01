@@ -69,9 +69,9 @@ class ConsumptionController extends Controller
     }
 
     /**
-     * @param $user
+     * @param User $user
+     * @return Response
      * @Route("/user/{id}/history", name="consumption_history")
-     *
      */
     public function consumptionHistoryAction(User $user)
     {
@@ -82,22 +82,38 @@ class ConsumptionController extends Controller
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
             throw new AccessDeniedException('This user does not have access to this action.');
         }
-        for($i=0, $i < 5, $i++) {
 
+        $day_consumption = array();
+
+        for ($i = 0; $i < 5; $i++) {
+            $date = date('y-m-d', strtotime('-'.$i.' days', time()));
+            $em = $this->getDoctrine()->getManager();
+            $consumption = $em->getRepository('EatingBundle:Consumption')
+                ->findByDateAndUserActive($user, $date);
+
+            if ( !empty($consumption)) {
+                $day_consumption[$date]['breakfast'] = array();
+                $day_consumption[$date]['dinner'] = array();
+                $day_consumption[$date]['supper'] = array();
+            }
+
+            for ($j = 0; $j < count($consumption); $j++) {
+                if ($consumption[$j]->getMealsOfTheDay() == 'Breakfast') {
+                    array_push($day_consumption[$date]['breakfast'], $consumption[$j]);
+                }
+                if ($consumption[$j]->getMealsOfTheDay() == 'Dinner') {
+                    array_push($day_consumption[$date]['dinner'], $consumption[$j]);
+                }
+                if ($consumption[$j]->getMealsOfTheDay() == 'Supper') {
+                    array_push($day_consumption[$date]['supper'], $consumption[$j]);
+                }
+            }
         }
 
-        $date = date('y-m-d', strtotime('-2 days', time()));
-        dump($date);
-
-        $em = $this->getDoctrine()->getManager();
-        $consumption = $em->getRepository('EatingBundle:Consumption')
-            ->findByDateAndUserActive($user, $date);
-        dump($consumption);
-//        $day_consumption[]
-
-
-        exit;
-
+        return $this->render('@Eating/Consumption/consumption_history.html.twig', [
+            'user' => $user,
+            'days_consumption' => $day_consumption
+        ]);
     }
 
 }

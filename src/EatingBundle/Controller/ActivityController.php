@@ -28,6 +28,7 @@ class ActivityController extends Controller
     /**
      * Controller are used to create new activity
      *
+     * @param Request $request
      * @return mixed
      * @Route("/activity/new", name="activity_new")
      */

@@ -5,6 +5,7 @@ $color-light-grey: lighten($color-grey, 10%);
 $color-dark-grey: darken($color-grey, 10%);
 $color-grey2: #ceccca;
 $color-light-grey2: lighten($color-grey2, 10%);
+$color-dark-grey2: darken($color-grey2, 10%);
 
 * {
   margin: 0;
@@ -46,7 +47,6 @@ footer {
 
 .ea-text {
   font-size: 20px;
-  //font-style: italic;
   margin: 15px 0;
   text-align: center;
 

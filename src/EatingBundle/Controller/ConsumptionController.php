@@ -21,17 +21,19 @@ class ConsumptionController extends Controller
      * that is log in system, and change current values in user entity
      *
      * @param Request $request
+     * @param User $user
+     * @param CountService $countService
      * @return RedirectResponse|Response
-     * @Route("/consumption/new", name="consumption_new")
+     * @Route("/consumption/{id}/new", name="consumption_new")
      */
-    public function consumptionNewAction(CountService $countService, Request $request)
+    public function consumptionNewAction(CountService $countService, Request $request, User $user)
     {
         $form = $this->createForm(ConsumptionFormType::class);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $user = $this->getUser();
+//            $user = $this->getUser();
             $form_info = $form->getData();
 
             $em = $this->getDoctrine()->getManager();

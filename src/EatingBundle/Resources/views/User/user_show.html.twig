@@ -83,7 +83,7 @@
     </div>
 
     <div class="ea-button ea-button--front"><a href="{{ path('recommendation_list') }}">Your Recommendations</a></div>
-    <div class="ea-button ea-button--front"><a href="{{ path('consumption_new') }}">New consumption</a></div>
+    <div class="ea-button ea-button--front"><a href="{{ path('consumption_new', {'id': user.id}) }}">New consumption</a></div>
 
     {% if consumption %}
         <div class="ea-table">
@@ -146,5 +146,5 @@
         </div>
     {% endif %}
 
-    <div class="ea-button ea-button--front"><a href="{{ path('consumption_history', {'user': user, 'id': user.id }) }}">History</a></div>
+    <div class="ea-button ea-button--front"><a href="{{ path('consumption_history', {'id': user.id }) }}">History</a></div>
 {% endblock %}

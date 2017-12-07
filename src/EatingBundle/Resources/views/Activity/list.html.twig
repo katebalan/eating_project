@@ -5,7 +5,7 @@
 {% block body %}
     <div class="ea-title">
         <h1>Our Activity</h1>
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_ADMIN') %}
             <div class="ea-button ea-button_list">
                 <a href="{{ path('activity_new') }}">New Activity</a>
             </div>
@@ -34,6 +34,13 @@
                     <div class="ea-list_item">Rating</div>
                     <div class="ea-list_item">{{ activ.rating }}</div>
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="ea-list_buttons">
+                        <div class="ea-button ea-button__list-edit">
+                            <a href="{{ path('activity_edit', {'id': activ.id}) }}">Edit</a>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

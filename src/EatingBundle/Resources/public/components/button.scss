@@ -40,6 +40,16 @@
   &__wrapper {
     //box-sizing: border-box;
   }
+
+  &__list-edit {
+    width: fit-content;
+    padding: 3px 10px;
+    background-color: $color-dark-grey2;
+
+    &:hover {
+      background-color: darken($color-dark-grey2, 10%);
+    }
+  }
 }
 
 .ea-list_items:hover {

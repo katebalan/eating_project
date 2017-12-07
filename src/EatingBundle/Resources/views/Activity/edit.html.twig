@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Activity Edit{% endblock %}
+
+{% block body %}
+    <h1>Edit Activity</h1>
+    <div class="ea-form">
+        {{ form_start(activityForm) }}
+        {{ form_widget(activityForm) }}
+        <button type="submit" class="ea-button ea-button--center">Save</button>
+        {{ form_end(activityForm) }}
+    </div>
+{% endblock %}

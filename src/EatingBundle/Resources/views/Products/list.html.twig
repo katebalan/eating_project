@@ -5,7 +5,7 @@
 {% block body %}
     <div class="ea-title">
         <h1>Our Products</h1>
-        {% if is_granted('ROLE_USER') %}
+        {% if is_granted('ROLE_ADMIN') %}
             <div class="ea-button ea-button_list">
                 <a href="{{ path('products_new') }}">New Product</a>
             </div>
@@ -38,6 +38,13 @@
                     <div class="ea-list_item">Created at</div>
                     <div class="ea-list_item">{{ product.createdAt|date('Y-m-d') }}</div>
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="ea-list_buttons">
+                        <div class="ea-button ea-button__list-edit">
+                            <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
+                        </div>
+                    </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

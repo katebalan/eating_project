@@ -2,8 +2,6 @@
 
 namespace EatingBundle\Service;
 
-
-use EatingBundle\Entity\Consumption;
 use EatingBundle\Entity\Products;
 use EatingBundle\Entity\User;
 

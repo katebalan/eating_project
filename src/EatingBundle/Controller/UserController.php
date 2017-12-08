@@ -102,9 +102,29 @@ class UserController extends Controller
         $em->persist($user);
         $em->flush();
 
+        $day_consumption = array();
+
+        if ( !empty($consumption)) {
+            $day_consumption['breakfast'] = array();
+            $day_consumption['dinner'] = array();
+            $day_consumption['supper'] = array();
+        }
+
+        for ($j = 0; $j < count($consumption); $j++) {
+            if ($consumption[$j]->getMealsOfTheDay() == 'Breakfast') {
+                array_push($day_consumption['breakfast'], $consumption[$j]);
+            }
+            if ($consumption[$j]->getMealsOfTheDay() == 'Dinner') {
+                array_push($day_consumption['dinner'], $consumption[$j]);
+            }
+            if ($consumption[$j]->getMealsOfTheDay() == 'Supper') {
+                array_push($day_consumption['supper'], $consumption[$j]);
+            }
+        }
+
         return $this->render('@Eating/User/user_show.html.twig', [
-            'user' => $user,
-            'consumption' => $consumption
+            'day_consumption' => $day_consumption,
+            'user' => $user
         ]);
     }
 }

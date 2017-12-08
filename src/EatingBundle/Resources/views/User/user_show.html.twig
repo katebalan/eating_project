@@ -1,20 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% set breakfast = 'false' %}
-{% set dinner = 'false' %}
-{% set supper = 'false' %}
-
-{% for item in consumption %}
-    {% if item.mealsOfTheDay=='Breakfast' %}
-        {% set breakfast = 'true' %}
-    {% elseif item.mealsOfTheDay=='Dinner' %}
-        {% set dinner = 'true' %}
-    {% elseif item.mealsOfTheDay=='Supper' %}
-        {% set supper = 'true' %}
-    {% endif %}
-{% endfor %}
-
-
 {% block title %}{{ parent() }} User Show{% endblock %}
 
 {% block body %}
@@ -85,64 +70,28 @@
     <div class="ea-button ea-button--front"><a href="{{ path('recommendation_list') }}">Your Recommendations</a></div>
     <div class="ea-button ea-button--front"><a href="{{ path('consumption_new', {'id': user.id}) }}">New consumption</a></div>
 
-    {% if consumption %}
+    {% if day_consumption %}
         <div class="ea-table">
             <h3>Consumption</h3>
-            {% if breakfast == 'true' %}
-                <h4>Breakfast</h4>
-                <div class="ea-table__row ea-table__row--bold">
-                    <div class="ea-table__item">Product</div>
-                    <div class="ea-table__item">Gramm</div>
-                    <div class="ea-table__item">Kkal</div>
-                    <div class="ea-table__item">Proteins</div>
-                    <div class="ea-table__item">Fats</div>
-                    <div class="ea-table__item">Carbohydrates</div>
-                </div>
-                {% for item in consumption %}
-                    {% if item.mealsOfTheDay=='Breakfast' %}
-                        {% include '@Eating/Consumption/consumption_show.html.twig' with {
-                        'item': item
-                        } only %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-            {% if dinner == 'true' %}
-                <h4>Dinner</h4>
-                <div class="ea-table__row ea-table__row--bold">
-                    <div class="ea-table__item">Product</div>
-                    <div class="ea-table__item">Gramm</div>
-                    <div class="ea-table__item">Kkal</div>
-                    <div class="ea-table__item">Proteins</div>
-                    <div class="ea-table__item">Fats</div>
-                    <div class="ea-table__item">Carbohydrates</div>
-                </div>
-                {% for item in consumption %}
-                    {% if item.mealsOfTheDay=='Dinner' %}
+            {% for meal, consumptions in day_consumption %}
+                {% if consumptions %}
+                    <h4>{{ meal|capitalize }}</h4>
+                    <div class="ea-table__row ea-table__row--bold">
+                        <div class="ea-table__item">Product</div>
+                        <div class="ea-table__item">Gramm</div>
+                        <div class="ea-table__item">Kkal</div>
+                        <div class="ea-table__item">Proteins</div>
+                        <div class="ea-table__item">Fats</div>
+                        <div class="ea-table__item">Carbohydrates</div>
+                    </div>
+
+                    {% for item in consumptions %}
                         {% include '@Eating/Consumption/consumption_show.html.twig' with {
                             'item': item
                         } only %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-
-            {% if supper == 'true' %}
-                <h4>Supper</h4>
-                <div class="ea-table__row ea-table__row--bold">
-                    <div class="ea-table__item">Product</div>
-                    <div class="ea-table__item">Gramm</div>
-                    <div class="ea-table__item">Kkal</div>
-                    <div class="ea-table__item">Proteins</div>
-                    <div class="ea-table__item">Fats</div>
-                    <div class="ea-table__item">Carbohydrates</div>
-                </div>
-                {% for item in consumption %}
-                    {% if item.mealsOfTheDay=='Supper' %}
-                        {% include '@Eating/Consumption/consumption_show.html.twig' with {
-                        'item': item
-                        } only %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
         </div>
     {% endif %}
 

@@ -3,69 +3,10 @@
 {% block title %}{{ parent() }} User Show{% endblock %}
 
 {% block body %}
-    <h1>User : {{ user.firstName }} {{ user.secondName }}</h1>
-    <div class="ea-user-show__info">
-        <div class="ea-list_block">
-            <div class="ea-list_item">Weight</div>
-            <div class="ea-list_item">{{ user.weight }}</div>
-        </div>
-        <div class="ea-list_block">
-            <div class="ea-list_item">Height</div>
-            <div class="ea-list_item">{{ user.height }}</div>
-        </div>
-        <div class="ea-list_block">
-            <div class="ea-list_item">E-mail</div>
-            <div class="ea-list_item">{{ user.username }}</div>
-        </div>
-        <div class="ea-list_block">
-            <div class="ea-list_item">Phone</div>
-            <div class="ea-list_item">{{ user.phone }}</div>
-        </div>
-        <div class="ea-list_block">
-            <div class="ea-list_item">Age</div>
-            <div class="ea-list_item">{{ user.age }}</div>
-        </div>
-        <div class="ea-list_block">
-            <div class="ea-list_item">Gender</div>
-            <div class="ea-list_item">
-                {% if user.gender %}
-                    Male
-                {% else %}
-                    Female
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    <div class="ea-table">
-        <h3>Daily</h3>
-        <div class="ea-table__row ea-table__row--bold">
-            <div class="ea-table__item">Kkal</div>
-            <div class="ea-table__item">Proteins</div>
-            <div class="ea-table__item">Fats</div>
-            <div class="ea-table__item">Carbohydrates</div>
-        </div>
-        <div class="ea-table__row">
-            <div class="ea-table__item">{{ user.dailyKkal }}</div>
-            <div class="ea-table__item">{{ user.dailyProteins }}</div>
-            <div class="ea-table__item">{{ user.dailyFats }}</div>
-            <div class="ea-table__item">{{ user.dailyCarbohydrates }}</div>
-        </div>
-    </div>
-    <div class="ea-table">
-        <h3>Current</h3>
-        <div class="ea-table__row ea-table__row--bold">
-            <div class="ea-table__item">Kkal</div>
-            <div class="ea-table__item">Proteins</div>
-            <div class="ea-table__item">Fats</div>
-            <div class="ea-table__item">Carbohydrates</div>
-        </div>
-        <div class="ea-table__row">
-            <div class="ea-table__item">{{ user.currentKkal }}</div>
-            <div class="ea-table__item">{{ user.currentProteins }}</div>
-            <div class="ea-table__item">{{ user.currentFats }}</div>
-            <div class="ea-table__item">{{ user.currentCarbohydrates }}</div>
-        </div>
-    </div>
+    <h1>User : {{ user.firstName }} {{ user.secondName }} </h1>
+    {% include '@Eating/User/user_info.html.twig' with {
+        'user': user
+    } %}
 
     <div class="ea-button ea-button--front"><a href="{{ path('recommendation_list') }}">Your Recommendations</a></div>
     <div class="ea-button ea-button--front"><a href="{{ path('consumption_new', {'id': user.id}) }}">New consumption</a></div>
@@ -95,5 +36,5 @@
         </div>
     {% endif %}
 
-    <div class="ea-button ea-button--front"><a href="{{ path('consumption_history', {'id': user.id }) }}">History</a></div>
+    <div class="ea-button ea-button--front"><a href="{{ path('consumption_history', {'id': user.id}) }}">History</a></div>
 {% endblock %}

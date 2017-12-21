@@ -6,8 +6,10 @@ use EatingBundle\Entity\User;
 
 class UserFormTypeTest extends TypeTestCase
 {
+
     public function testSubmitValidData()
     {
+        
         $form_data = [
             'firstName' => 'Harry',
             'secondName' => 'Potter',

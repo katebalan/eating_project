@@ -11,7 +11,6 @@ eating_project
 * composer install
 * create file app/config/parameters.yml
 ```
-
 # This file is auto-generated during the composer install
 parameters:
     database_host: 127.0.0.1
@@ -48,7 +47,7 @@ git rm -r --cached .
 git add .
 git commit -m "fixed untracked files"
 ```
-Just do it
+Useful links:
 
 ```
 composer require doctrine/doctrine-migrations-bundle

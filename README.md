@@ -8,18 +8,9 @@ eating_project
 
 # To install project
 
-* php7.1
-* symfony3
-* composer
+* composer install
+* create file app/config/parameters.yml
 ```
-php
-symfony - How install symfony on ububntu
-composer
-mysql 
-
-composer install
-
-create file app/config/parameters.yml
 
 # This file is auto-generated during the composer install
 parameters:
@@ -46,9 +37,9 @@ and make migrations:
 you can use fixtures with command
 ```
 php bin/console doctrine:fixtures:load
-npm install
-bower install
 ```
+* npm install
+* bower install
 
 #### HOW TO FIX PROBLEMS WITH .gitignore file on repository
 

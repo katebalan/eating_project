@@ -1,7 +1,10 @@
 eating_project
 ======
 
-A Symfony project created on September 22, 2017, 4:15 pm.
+* Date          September 22, 2017
+* Symfony:      3.3.5
+* PHP:          7.1.x
+* dependencies: Composer, Node,js, npm, Bower, Gulp, SASS
 
 # To install project
 

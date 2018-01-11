@@ -17,6 +17,7 @@ var sass = require('gulp-sass'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
+    jQuery = require("jquery"),
     reload = browserSync.reload;
 
 

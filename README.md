@@ -37,8 +37,10 @@ you can use fixtures with command
 ```
 php bin/console doctrine:fixtures:load
 ```
+kjdkjn vjk 
 * npm install
 * bower install
+uh kjh kj nkjc 
 
 #### HOW TO FIX PROBLEMS WITH .gitignore file on repository
 

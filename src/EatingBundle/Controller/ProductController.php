@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace EatingBundle\Controller;
 
@@ -35,23 +36,6 @@ class ProductController extends Controller
     }
 
     /**
-     * @param Products $product
-     * @return mixed
-     * @Route("/{id}", name="product_show")
-     * @Template()
-     */
-    public function showAction(Products $product)
-    {
-        if (!$product) {
-            throw $this->createNotFoundException('The product does not exist');
-        }
-
-        return [
-            'product' => $product
-        ];
-    }
-
-    /**
      * Controller are used to create new product
      *
      * @param Request $request
@@ -64,6 +48,7 @@ class ProductController extends Controller
         $form = $this->createForm(ProductsFormType::class);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
             $product->setCreatedAt(new \DateTime('now'));
@@ -74,22 +59,43 @@ class ProductController extends Controller
 
             $this->addFlash('success', 'New product is created!');
 
-            return $this->redirectToRoute('product_list');
+            return $this->redirectToRoute('product_show');
         }
         return [
-            'productForm' => $form->createView()
+            'form' => $form->createView()
+        ];
+    }
+
+    /**
+     * @param Products $product
+     * @return mixed
+     * @Route("/{id}", name="product_show")
+     * @Template()
+     */
+    public function showAction(?Products $product)
+    {
+        if (!$product) {
+            throw $this->createNotFoundException('The product does not exist');
+        }
+
+        return [
+            'product' => $product
         ];
     }
 
     /**
      * @param Request $request
-     * @param Products $product
+     * @param Products|null $product
      * @return mixed
      * @Route("/{id}/edit", name="product_edit")
      * @Template()
      */
-    public function editAction(Request $request, Products $product)
+    public function editAction(Request $request, ?Products $product)
     {
+        if (!$product) {
+            throw $this->createNotFoundException('The product does not exist');
+        }
+
         $form = $this->createForm(ProductsFormType::class, $product);
 
         $form->handleRequest($request);
@@ -103,20 +109,20 @@ class ProductController extends Controller
 
             $this->addFlash('success', 'Product is updated!');
 
-            return $this->redirectToRoute('product_list');
+            return $this->redirectToRoute('product_show');
         }
 
         return [
-            'productForm' => $form->createView()
+            'form' => $form->createView()
         ];
     }
 
     /**
-     * @param Products $product
-     * @return mixed
+     * @param Products|null $product
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/{id}/delete", name="product_delete")
      */
-    public function deleteAction(Products $product)
+    public function deleteAction(?Products $product)
     {
         if (!$product) {
             throw $this->createNotFoundException('The product does not exist');
@@ -124,6 +130,8 @@ class ProductController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($product);
             $em->flush();
+
+            $this->addFlash('success', 'Product is deleted!');
         }
 
         return $this->redirectToRoute('product_list');

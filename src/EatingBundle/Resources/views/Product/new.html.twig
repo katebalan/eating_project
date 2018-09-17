@@ -4,10 +4,7 @@
 
 {% block body %}
     <h1>New Product</h1>
-    <div class="ea-form">
-        {{ form_start(productForm) }}
-            {{ form_widget(productForm) }}
-            <button type="submit" class="ea-button ea-button--center">Save</button>
-        {{ form_end(productForm) }}
-    </div>
+    {% include 'EatingBundle:Product:form.html.twig' with {
+        'form': form
+    } %}
 {% endblock %}

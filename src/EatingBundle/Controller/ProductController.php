@@ -4,26 +4,51 @@ namespace EatingBundle\Controller;
 
 use EatingBundle\Entity\Products;
 use EatingBundle\Form\ProductsFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
-class ProductsController extends Controller
+/**
+ * Class ProductsController
+ * @package EatingBundle\Controller
+ *
+ * @Route("/product")
+ */
+class ProductController extends Controller
 {
     /**
      * Controller are used for show list of all products
      *
      * @return mixed
-     * @Route("/products", name="products_list")
+     * @Route("/", name="product_list")
+     * @Template()
      */
-    public function productsListAction()
+    public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
 
-        return $this->render('EatingBundle:Products:list.html.twig', [
+        return [
             'products' => $products
-        ]);
+        ];
+    }
+
+    /**
+     * @param Products $product
+     * @return mixed
+     * @Route("/{id}", name="product_show")
+     * @Template()
+     */
+    public function showAction(Products $product)
+    {
+        if (!$product) {
+            throw $this->createNotFoundException('The product does not exist');
+        }
+
+        return [
+            'product' => $product
+        ];
     }
 
     /**
@@ -31,9 +56,10 @@ class ProductsController extends Controller
      *
      * @param Request $request
      * @return mixed
-     * @Route("/products/new", name="products_new")
+     * @Route("/new", name="product_new")
+     * @Template()
      */
-    public function productsNewAction(Request $request)
+    public function newAction(Request $request)
     {
         $form = $this->createForm(ProductsFormType::class);
 
@@ -48,20 +74,21 @@ class ProductsController extends Controller
 
             $this->addFlash('success', 'New product is created!');
 
-            return $this->redirectToRoute('products_list');
+            return $this->redirectToRoute('product_list');
         }
-        return $this->render('EatingBundle:Products:new.html.twig', [
+        return [
             'productForm' => $form->createView()
-        ]);
+        ];
     }
 
     /**
      * @param Request $request
      * @param Products $product
      * @return mixed
-     * @Route("/products/{id}/edit", name="product_edit")
+     * @Route("/{id}/edit", name="product_edit")
+     * @Template()
      */
-    public function productsEditAction(Request $request, Products $product)
+    public function editAction(Request $request, Products $product)
     {
         $form = $this->createForm(ProductsFormType::class, $product);
 
@@ -76,11 +103,29 @@ class ProductsController extends Controller
 
             $this->addFlash('success', 'Product is updated!');
 
-            return $this->redirectToRoute('products_list');
+            return $this->redirectToRoute('product_list');
         }
 
-        return $this->render('@Eating/Products/edit.html.twig', [
+        return [
             'productForm' => $form->createView()
-        ]);
+        ];
+    }
+
+    /**
+     * @param Products $product
+     * @return mixed
+     * @Route("/{id}/delete", name="product_delete")
+     */
+    public function deleteAction(Products $product)
+    {
+        if (!$product) {
+            throw $this->createNotFoundException('The product does not exist');
+        } else {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($product);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('product_list');
     }
 }

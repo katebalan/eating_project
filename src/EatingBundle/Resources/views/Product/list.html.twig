@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="ea-title">
-        <h1>Our Products</h1>
+        <h1>Products</h1>
         {% if is_granted('ROLE_ADMIN') %}
             <div class="ea-button ea-button_list">
-                <a href="{{ path('products_new') }}">New Product</a>
+                <a href="{{ path('product_new') }}">New Product</a>
             </div>
         {% endif %}
     </div>

@@ -13,9 +13,21 @@
     </div>
     <div class="ea-list">
         {% for product in products %}
-            {% include 'EatingBundle:Product:sheet.html.twig' with {
-                'product': product
-            } %}
+            <div class="ea-list_items">
+                {% include 'EatingBundle:Product:sheet.html.twig' with {
+                    'product': product
+                } %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="ea-list_buttons">
+                        <div class="ea-button ea-button__list-edit">
+                            <a href="{{ path('product_show', {'id': product.id}) }}">Show</a>
+                        </div>
+                        <div class="ea-button ea-button__list-edit">
+                            <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

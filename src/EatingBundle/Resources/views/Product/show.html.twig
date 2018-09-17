@@ -11,7 +11,22 @@
             </div>
         {% endif %}
     </div>
-    {% include 'EatingBundle:Product:sheet.html.twig' with {
-        'product': product
-    } %}
+    <div class="ea-list_items">
+        {% include 'EatingBundle:Product:sheet.html.twig' with {
+            'product': product
+        } %}
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="ea-list_buttons">
+                <div class="ea-button ea-button__list-edit">
+                    <a href="{{ app.request.headers.get('referer') }}">Back</a>
+                </div>
+                <div class="ea-button ea-button__list-edit">
+                    <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
+                </div>
+                <div class="ea-button ea-button__list-edit">
+                    <a href="{{ path('product_delete', {'id': product.id}) }}">Delete</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -1,33 +1,24 @@
-<div class="ea-list_items">
-    <div class="ea-list_name">{{ product.name }}</div>
-    <div class="ea-table">
-        <div class="ea-table__row ea-table__row--bold">
-            <div class="ea-table__item">Kkal</div>
-            <div class="ea-table__item">Proteins</div>
-            <div class="ea-table__item">Fats</div>
-            <div class="ea-table__item">Carbohydrates</div>
-        </div>
-        <div class="ea-table__row">
-            <div class="ea-table__item">{{ product.kkalPer100gr }}</div>
-            <div class="ea-table__item">{{ product.proteinsPer100gr }}</div>
-            <div class="ea-table__item">{{ product.fatsPer100gr }}</div>
-            <div class="ea-table__item">{{ product.carbohydratesPer100gr }}</div>
-        </div>
-        <div class="ea-table__description">* - per 100gr</div>
+<div class="ea-list_name">{{ product.name }}</div>
+<div class="ea-table">
+    <div class="ea-table__row ea-table__row--bold">
+        <div class="ea-table__item">Kkal</div>
+        <div class="ea-table__item">Proteins</div>
+        <div class="ea-table__item">Fats</div>
+        <div class="ea-table__item">Carbohydrates</div>
     </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Rating</div>
-        <div class="ea-list_item">{{ product.rating }}</div>
+    <div class="ea-table__row">
+        <div class="ea-table__item">{{ product.kkalPer100gr }}</div>
+        <div class="ea-table__item">{{ product.proteinsPer100gr }}</div>
+        <div class="ea-table__item">{{ product.fatsPer100gr }}</div>
+        <div class="ea-table__item">{{ product.carbohydratesPer100gr }}</div>
     </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Created at</div>
-        <div class="ea-list_item">{{ product.createdAt|date('Y-m-d') }}</div>
-    </div>
-    {% if is_granted('ROLE_ADMIN') %}
-        <div class="ea-list_buttons">
-            <div class="ea-button ea-button__list-edit">
-                <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
-            </div>
-        </div>
-    {% endif %}
+    <div class="ea-table__description">* - per 100gr</div>
+</div>
+<div class="ea-list_block">
+    <div class="ea-list_item">Rating</div>
+    <div class="ea-list_item">{{ product.rating }}</div>
+</div>
+<div class="ea-list_block">
+    <div class="ea-list_item">Created at</div>
+    <div class="ea-list_item">{{ product.createdAt|date('Y-m-d') }}</div>
 </div>

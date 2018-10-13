@@ -5,6 +5,10 @@ namespace EatingBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * Class DefaultController
+ * @package EatingBundle\Controller
+ */
 class DefaultController extends Controller
 {
     /**

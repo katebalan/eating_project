@@ -10,6 +10,10 @@ use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class UserController
+ * @package EatingBundle\Controller
+ */
 class UserController extends Controller
 {
     /**

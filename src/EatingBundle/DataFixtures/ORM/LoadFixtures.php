@@ -1,14 +1,13 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM;
+namespace EatingBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Genus;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
 
-class LoadFixtures2 implements FixtureInterface
+class LoadFixtures implements FixtureInterface
 {
 
     public function load(ObjectManager $manager)

@@ -6,13 +6,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class RecommendationController
+ * @package EatingBundle\Controller
+ *
+ * @Route("/recommend")
+ */
 class RecommendationController extends Controller
 {
     /**
      * Controller are used to recommend products
      *
      * @return Response
-     * @Route("/recommendation", name="recommendation_list")
+     * @Route("/", name="recommendation_list")
      */
     public function recommendationAction()
     {
@@ -57,6 +63,5 @@ class RecommendationController extends Controller
             'products' => $pr
         ]);
     }
-
 }
 

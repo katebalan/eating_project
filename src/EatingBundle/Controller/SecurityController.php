@@ -11,6 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class SecurityController
+ * @package EatingBundle\Controller
+ */
 class SecurityController extends Controller
 {
     /**

@@ -9,6 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class ActivityController
+ * @package EatingBundle\Controller
+ */
 class ActivityController extends Controller
 {
     /**

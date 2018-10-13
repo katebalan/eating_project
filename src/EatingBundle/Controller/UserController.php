@@ -173,4 +173,14 @@ class UserController extends Controller
             'form' => $form->createView()
         ];
     }
+
+    /**
+     * @Route("/user", name="redirect_show")
+     */
+    public function redirectShowAction()
+    {
+        $user = $this->getUser();
+
+        return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
+    }
 }

@@ -16,25 +16,17 @@ class UserRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
+            ->add('email', EmailType::class)
             ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class
+                'type' => PasswordType::class,
+                'invalid_message' => 'The password fields must match.',
+                'options' => array('attr' => array('class' => 'password-field')),
+                'first_options'  => array('label' => 'Password'),
+                'second_options' => array('label' => 'Repeat Password'),
             ])
-            ->add('firstName', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
-            ->add('secondName', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
-            ->add('age', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
+            ->add('firstName', null)
+            ->add('secondName', null)
+            ->add('age', null)
             ->add('gender', ChoiceType::class, [
                 'attr' => ['class' => 'ea-form__field'],
                 'label_attr' => ['class' => 'ea-form__label'],
@@ -43,18 +35,9 @@ class UserRegistrationFormType extends AbstractType
                     'Female' => false,
                 ]
             ])
-            ->add('phone', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
-            ->add('weight', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
-            ->add('height', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
-            ])
+            ->add('phone', null)
+            ->add('weight', null)
+            ->add('height', null)
             ->add('energyExchange', ChoiceType::class, [
                 'attr' => ['class' => 'ea-form__field'],
                 'label_attr' => ['class' => 'ea-form__label'],

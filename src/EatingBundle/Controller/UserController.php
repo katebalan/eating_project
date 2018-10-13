@@ -95,7 +95,7 @@ class UserController extends Controller
             throw $this->createNotFoundException('User not found');
         }
 
-        $date = date('y-m-d', time());
+        $date = new \DateTime();
 
         $consumption = $em->getRepository('EatingBundle:Consumption')->findByDateAndUserActive($user, $date);
 
@@ -132,6 +132,45 @@ class UserController extends Controller
         return [
             'day_consumption' => $day_consumption,
             'user' => $user
+        ];
+    }
+
+
+    /**
+     * @param Request $request
+     * @param User|null $user
+     * @return mixed
+     * @Route("/user/{id}/edit", name="user_edit")
+     * @Template()
+     */
+    public function editAction(Request $request, ?User $user)
+    {
+        if (!$user) {
+            throw $this->createNotFoundException('The product does not exist');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
+            throw new AccessDeniedException('This user does not have access to this action.');
+        }
+
+        $form = $this->createForm(UserFormType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'User is updated!');
+
+            return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
+        }
+
+        return [
+            'form' => $form->createView()
         ];
     }
 }

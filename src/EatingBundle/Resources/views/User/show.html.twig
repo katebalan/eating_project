@@ -3,7 +3,6 @@
 {% block title %}{{ parent() }} User Show{% endblock %}
 
 {% block body %}
-    {#<h1>User : {{ user.firstName }} {{ user.secondName }} </h1>#}
     {% include '@Eating/User/user_info.html.twig' with {
         'user': user
     } %}

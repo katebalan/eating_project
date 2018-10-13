@@ -50,7 +50,6 @@ class ProductsFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'EatingBundle\Entity\Products',
-            'attr' => ['class' => 'ea-form__inside' ],
         ]);
     }
 

@@ -11,7 +11,8 @@ class ProductsRepository extends EntityRepository
     /**
      * @return Products[]
      */
-    public function findAllOrderedByDescActive(){
+    public function findAllOrderedByDescActive()
+    {
         return $this->createQueryBuilder('products')
             ->orderBy('products.createdAt', 'DESC')
 

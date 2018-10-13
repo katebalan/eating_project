@@ -15,18 +15,22 @@ class ConsumptionRepository extends EntityRepository
      * @param $date
      * @return Consumption[]
      */
-    public function findByDateAndUserActive(User $user, $date){
-        return $this->createQueryBuilder('consumption')
-            ->where('consumption.createdAt >= :date_first')
-            ->andwhere('consumption.createdAt <= :date_second')
-            ->andWhere('consumption.user = :user')
-            ->setParameter(':date_first', $date.' 00:00:00')
-            ->setParameter(':date_second', $date.' 23:59:59')
-            ->setParameter(':user', $user)
-            ->orderBy('consumption.meals_of_the_day', 'ASC')
+    public function findByDateAndUserActive(User $user, \Datetime $date)
+    {
+        $from = new \DateTime($date->format("Y-m-d")." 00:00:00");
+        $to   = new \DateTime($date->format("Y-m-d")." 23:59:59");
 
-            ->getQuery()
-            ->execute();
+        $qb = $this->createQueryBuilder("e");
+        $qb
+            ->andWhere('e.createdAt BETWEEN :from AND :to')
+            ->andWhere('e.user = :user')
+            ->setParameter('from', $from )
+            ->setParameter('to', $to)
+            ->setParameter(':user', $user)
+        ;
+        $result = $qb->getQuery()->getResult();
+
+        return $result;
     }
 
 }

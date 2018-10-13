@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Tests\Fixtures\ToString;
 
 /**
  * Class ConsumptionController
@@ -35,40 +36,29 @@ class ConsumptionController extends Controller
      */
     public function newAction(CountService $countService, Request $request, User $user)
     {
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ConsumptionFormType::class);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-//            $user = $this->getUser();
-            $form_info = $form->getData();
+            $user = $this->getUser();
+            $consumption = $form->getData();
 
-            $em = $this->getDoctrine()->getManager();
-            $product = $em->getRepository('EatingBundle:Products')->findOneBy(['name' => $form_info['product_name']]);
+            $consumption->setUser($user);
+            $consumption->setCreatedAt(new \DateTime('now'));
 
-            if (empty($product) ) {
-                $this->addFlash('error', 'Product doesn\'t exist');
-            } else {
-                $consumption = new Consumption();
+            $user = $countService->CountCurrentValues($user, $consumption->getHowMuch(), $consumption->getProduct());
 
-                $consumption->setHowMuch($form_info['how_much']);
-                $consumption->setMealsOfTheDay($form_info['meals_of_the_day']);
-                $consumption->setUser($user);
-                $consumption->setProduct($product);
-                $consumption->setCreatedAt(new \DateTime('now'));
+            $em->persist($consumption);
+            $em->persist($user);
+            $em->flush();
 
-                $user = $countService->CountCurrentValues($user, $consumption->getHowMuch(), $product);
+            $this->addFlash('success', 'You have eaten ' . $consumption->getProduct()->getName() . '!');
 
-                $em->persist($consumption);
-                $em->persist($user);
-                $em->flush();
-
-                $this->addFlash('success', 'You have eaten ' . $product->getName() . '!');
-
-                return $this->redirectToRoute('user_show', [
-                    'id' => $user->getId()
-                ]);
-            }
+            return $this->redirectToRoute('user_show', [
+                'id' => $user->getId()
+            ]);
         }
 
         return [
@@ -95,29 +85,30 @@ class ConsumptionController extends Controller
         $day_consumption = array();
 
         for ($i = 0; $i < 5; $i++) {
-            $date = date('y-m-d', strtotime('-'.$i.' days', time()));
+            $date = new \DateTime();
+            $date->modify('-'.$i.' days');
             $em = $this->getDoctrine()->getManager();
             $consumption = $em->getRepository('EatingBundle:Consumption')
                 ->findByDateAndUserActive($user, $date);
+            $str_date = $date->format('Y-m-d');
 
             if ( !empty($consumption)) {
-                $day_consumption[$date]['breakfast'] = array();
-                $day_consumption[$date]['dinner'] = array();
-                $day_consumption[$date]['supper'] = array();
+                $day_consumption[$str_date]['breakfast'] = array();
+                $day_consumption[$str_date]['dinner'] = array();
+                $day_consumption[$str_date]['supper'] = array();
             }
 
             for ($j = 0; $j < count($consumption); $j++) {
                 if ($consumption[$j]->getMealsOfTheDay() == 'Breakfast') {
-                    array_push($day_consumption[$date]['breakfast'], $consumption[$j]);
+                    array_push($day_consumption[$str_date]['breakfast'], $consumption[$j]);
                 }
                 if ($consumption[$j]->getMealsOfTheDay() == 'Dinner') {
-                    array_push($day_consumption[$date]['dinner'], $consumption[$j]);
+                    array_push($day_consumption[$str_date]['dinner'], $consumption[$j]);
                 }
                 if ($consumption[$j]->getMealsOfTheDay() == 'Supper') {
-                    array_push($day_consumption[$date]['supper'], $consumption[$j]);
+                    array_push($day_consumption[$str_date]['supper'], $consumption[$j]);
                 }
             }
-//            $day_consumption = $changingConsumptionService->MakeOtherList($consumption, $date);
         }
 
         return [

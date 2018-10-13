@@ -12,20 +12,12 @@
             {{ form_start(form) }}
             {{ form_row(form.email) }}
             <div>
-            {{ form_label(form.plainPassword.first, 'Password', {
-                'label_attr': {'class': 'ea-form__label'}
-            }) }}
-            {{ form_widget(form.plainPassword.first, {
-                'attr': {'class': 'ea-form__field'}
-            }) }}
+            {{ form_label(form.plainPassword.first, 'Password') }}
+            {{ form_widget(form.plainPassword.first) }}
             </div>
             <div>
-            {{ form_label(form.plainPassword.second, 'Repeat Password', {
-                'label_attr': {'class': 'ea-form__label'}
-            }) }}
-            {{ form_widget(form.plainPassword.second, {
-                'attr': {'class': 'ea-form__field'}
-            }) }}
+            {{ form_label(form.plainPassword.second, 'Repeat Password') }}
+            {{ form_widget(form.plainPassword.second) }}
             </div>
             {{ form_rest(form) }}
             <div class="ea-button__wrapper">

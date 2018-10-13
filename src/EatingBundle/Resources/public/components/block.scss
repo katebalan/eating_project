@@ -4,6 +4,7 @@
   padding: 30px;
   box-shadow: 0 0 8px 0 $color-light-grey;
   margin-bottom: 15px;
+  position: relative;
 
   &--flex {
     display: flex;
@@ -40,5 +41,13 @@
   &__info {
     padding: 15px 0;
     color: $color-dark-grey;
+  }
+
+  &__edit-btn {
+    display: block;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: $color-light-grey;
   }
 }

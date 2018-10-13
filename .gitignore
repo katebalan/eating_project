@@ -53,3 +53,5 @@ web/cov/
 # sourcemaps
 /web/dist/css/*.css.map
 /web/dist/js/*.js.map
+web/data/*
+!web/data/.gitkeep

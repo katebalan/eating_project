@@ -44,7 +44,7 @@ class RecommendationController extends Controller
             $Dfats = $products[$i]->getFatsPer100gr() - $fats;
             $Dcarbohydrates = $products[$i]->getCarbohydratesPer100gr() - $carbohydrates;
 
-           if( $Dproteins * $Dproteins + $Dfats * $Dfats + $Dcarbohydrates * $Dcarbohydrates < 3000)
+            if ($Dproteins * $Dproteins + $Dfats * $Dfats + $Dcarbohydrates * $Dcarbohydrates < 3000)
                $pr[] = $products[$i];
 
         }
@@ -59,6 +59,10 @@ class RecommendationController extends Controller
             }
 
         });
+
+        if (!$pr) {
+            $this->addFlash('error', 'You already eaten too much, forget location of your refrigerator!');
+        }
 
         return [
             'products' => $pr

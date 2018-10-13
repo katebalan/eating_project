@@ -2,6 +2,7 @@
 
 namespace EatingBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -13,9 +14,9 @@ class ConsumptionFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('product_name', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+            ->add('product', EntityType::class, [
+                'class' => 'EatingBundle\Entity\Products',
+                'choice_label' => 'name',
             ])
             ->add('how_much', IntegerType::class, [
                 'attr' => ['class' => 'ea-form__field'],
@@ -35,7 +36,7 @@ class ConsumptionFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'attr' => ['class' => 'ea-form__inside' ]
+            'data_class' => 'EatingBundle\Entity\Consumption',
         ]);
     }
 

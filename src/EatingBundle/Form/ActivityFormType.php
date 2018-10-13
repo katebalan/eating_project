@@ -13,24 +13,24 @@ class ActivityFormType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+//                'attr' => ['class' => 'ea-form__field'],
+//                'label_attr' => ['class' => 'ea-form__label']
             ])
             ->add('kkal_per_5minutes', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+//                'attr' => ['class' => 'ea-form__field'],
+//                'label_attr' => ['class' => 'ea-form__label']
             ])
             ->add('proteins_per_5minutes', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+//                'attr' => ['class' => 'ea-form__field'],
+//                'label_attr' => ['class' => 'ea-form__label']
             ])
             ->add('fats_per_5minutes', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+//                'attr' => ['class' => 'ea-form__field'],
+//                'label_attr' => ['class' => 'ea-form__label']
             ])
             ->add('carbohydrates_per_5minutes', null, [
-                'attr' => ['class' => 'ea-form__field'],
-                'label_attr' => ['class' => 'ea-form__label']
+//                'attr' => ['class' => 'ea-form__field'],
+//                'label_attr' => ['class' => 'ea-form__label']
             ])
             ->add('rating', ChoiceType::class, [
                 'attr' => ['class' => 'ea-form__field'],

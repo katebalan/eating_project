@@ -5,8 +5,16 @@ namespace EatingBundle\Service;
 use EatingBundle\Entity\Products;
 use EatingBundle\Entity\User;
 
+/**
+ * Class CountService
+ * @package EatingBundle\Service
+ */
 class CountService
 {
+    /**
+     * @param User $user
+     * @return User
+     */
     public function CountDailyValues(User $user)
     {
         $weight = $user->getWeight();
@@ -46,6 +54,12 @@ class CountService
         return $user;
     }
 
+    /**
+     * @param User $user
+     * @param $how_much
+     * @param Products $product
+     * @return User
+     */
     public function CountCurrentValues(User $user, $how_much, Products $product)
     {
         $current_kkal = $user->getCurrentKkal() + $how_much * $product->getKkalPer100gr() / 100;

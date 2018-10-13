@@ -3,30 +3,33 @@
 {% block title %}{{ parent() }} Products{% endblock %}
 
 {% block body %}
-    <div class="ea-title">
+    <div class="ea-page__header">
         <h1>Products</h1>
         {% if is_granted('ROLE_ADMIN') %}
-            <div class="ea-button ea-button_list">
-                <a href="{{ path('product_new') }}">New Product</a>
-            </div>
+            <a href="{{ path('product_new') }}" class="btn btn-primary btn-lg">New Product</a>
         {% endif %}
     </div>
-    <div class="ea-list">
+    <div>
         {% for product in products %}
-            <div class="ea-list_items">
-                {% include 'EatingBundle:Product:sheet.html.twig' with {
-                    'product': product
-                } %}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <div class="ea-list_buttons">
-                        <div class="ea-button ea-button__list-edit">
-                            <a href="{{ path('product_show', {'id': product.id}) }}">Show</a>
-                        </div>
-                        <div class="ea-button ea-button__list-edit">
-                            <a href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
-                        </div>
+            <div class="ea-block ea-block--flex">
+                <div class="ea-block__left">
+                    <div class="ea-block__header">{{ product.name }}</div>
+                    <div class="ea-block__date">Created at {{ product.createdAt|date("m/d/Y") }}</div>
+                    <div class="ea-devider"></div>
+                    <div class="ea-block__info">
+                        kkal: {{ product.kkalPer100gr }} /
+                        proteins: {{ product.proteinsPer100gr }} /
+                        fats: {{ product.fatsPer100gr }} /
+                        carbohydrates: {{ product.carbohydratesPer100gr }}
                     </div>
-                {% endif %}
+                    <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">Show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-primary">Edit</a>
+                    {% endif %}
+                </div>
+                <div class="ea-block__right">
+                    <img src="{{ asset('img/no-image.png') }}">
+                </div>
             </div>
         {% endfor %}
     </div>

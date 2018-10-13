@@ -3,44 +3,33 @@
 {% block title %}{{ parent() }} Activity{% endblock %}
 
 {% block body %}
-    <div class="ea-title">
-        <h1>Our Activity</h1>
+    <div class="ea-page__header">
+        <h1>Activity</h1>
         {% if is_granted('ROLE_ADMIN') %}
-            <div class="ea-button ea-button_list">
-                <a href="{{ path('activity_new') }}">New Activity</a>
-            </div>
+            <a href="{{ path('activity_new') }}" class="btn btn-primary btn-lg">New Activity</a>
         {% endif %}
     </div>
-    <div class="ea-list">
+    <div>
         {% for activ in activity %}
-            <div class="ea-list_items">
-                <div class="ea-list_name">{{ activ.name }}</div>
-                <div class="ea-table">
-                    <div class="ea-table__row ea-table__row--bold">
-                        <div class="ea-table__item">Kkal</div>
-                        <div class="ea-table__item">Proteins</div>
-                        <div class="ea-table__item">Fats</div>
-                        <div class="ea-table__item">Carbohydrates</div>
+            <div class="ea-block ea-block--flex">
+                <div class="ea-block__left">
+                    <div class="ea-block__header">{{ activ.name }}</div>
+                    <div class="ea-block__date">Created at {{ activ.createdAt|date("m/d/Y") }}</div>
+                    <div class="ea-devider"></div>
+                    <div class="ea-block__info">
+                        kkal: {{ activ.kkalPer5minutes }} /
+                        proteins: {{ activ.proteinsPer5minutes }} /
+                        fats: {{ activ.fatsPer5minutes }} /
+                        carbohydrates: {{ activ.carbohydratesPer5minutes }}
                     </div>
-                    <div class="ea-table__row">
-                        <div class="ea-table__item">{{ activ.kkalPer5minutes }}</div>
-                        <div class="ea-table__item">{{ activ.proteinsPer5minutes }}</div>
-                        <div class="ea-table__item">{{ activ.fatsPer5minutes }}</div>
-                        <div class="ea-table__item">{{ activ.carbohydratesPer5minutes }}</div>
-                    </div>
-                    <div class="ea-table__description">* - per 5 minutes</div>
+                    <a href="{{ path('activity_show', {'id': activ.id}) }}" class="btn btn-primary">Show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('activity_edit', {'id': activ.id}) }}" class="btn btn-primary">Edit</a>
+                    {% endif %}
                 </div>
-                <div class="ea-list_block">
-                    <div class="ea-list_item">Rating</div>
-                    <div class="ea-list_item">{{ activ.rating }}</div>
+                <div class="ea-block__right">
+                    <img src="{{ asset('img/no-image.png') }}">
                 </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <div class="ea-list_buttons">
-                        <div class="ea-button ea-button__list-edit">
-                            <a href="{{ path('activity_edit', {'id': activ.id}) }}">Edit</a>
-                        </div>
-                    </div>
-                {% endif %}
             </div>
         {% endfor %}
     </div>

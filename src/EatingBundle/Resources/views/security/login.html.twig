@@ -13,7 +13,7 @@
                 {{ form_row(form._username) }}
                 {{ form_row(form._password) }}
                 <div class="ea-button__wrapper">
-                    <button type="submit" class="ea-button ea-button--center">Login</button>
+                    <button type="submit" class="btn btn-success btn-lg">Login</button>
                 </div>
             {{ form_end(form) }}
             {#
@@ -25,14 +25,8 @@
     </div>
     <div>
         <p class="ea-text ea-text--bold">Or you can try it: </p>
-        <div class="ea-button ea-button--front">
-            <a href="{{ path('user_register') }}">Registration</a>
-        </div>
-        <div class="ea-button ea-button--front">
-            <a href="{{ path('activity_list') }}">List of Activities </a>
-        </div>
-        <div class="ea-button ea-button--front">
-            <a href="{{ path('product_list') }}">List of products</a>
-        </div>
+        <a href="{{ path('user_register') }}" class="btn btn-primary btn-lg">Registration</a>
+        <a href="{{ path('activity_list') }}" class="btn btn-primary btn-lg">List of Activities </a>
+        <a href="{{ path('product_list') }}" class="btn btn-primary btn-lg">List of products</a>
     </div>
 {% endblock %}

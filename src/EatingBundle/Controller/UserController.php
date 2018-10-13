@@ -2,9 +2,11 @@
 
 namespace EatingBundle\Controller;
 
+use EatingBundle\Entity\User;
 use EatingBundle\Form\UserFormType;
 use EatingBundle\Service\CountService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,15 +23,16 @@ class UserController extends Controller
      *
      * @return mixed
      * @Route("/admin/user", name="user_list")
+     * @Template()
      */
-    public function userListAction()
+    public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('EatingBundle:User')->findAll();
 
-        return $this->render('@Eating/User/user_list.html.twig', [
+        return [
             'users' => $users
-        ]);
+        ];
     }
 
     /**
@@ -39,15 +42,15 @@ class UserController extends Controller
      * @param CountService $countService
      * @return mixed
      * @Route("/admin/user/new", name="user_new")
+     * @Template()
      */
-    public function userNewAction(CountService $countService, Request $request)
+    public function newAction(CountService $countService, Request $request)
     {
-//        $this->denyAccessUnlessGranted('ROLE_ADMIN');
-
         $form = $this->createForm(UserFormType::class);
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
             $user = $countService->CountDailyValues($user);
@@ -62,22 +65,23 @@ class UserController extends Controller
             $this->addFlash('success', 'New user is created!');
             return $this->redirectToRoute('user_list');
         }
-        return $this->render('@Eating/User/user_new.html.twig', [
+
+        return [
             'userForm' => $form->createView()
-        ]);
+        ];
     }
 
     /**
      * Controller are used to show user page
      *
-     * @param $userId
+     * @param User $user
      * @return mixed
-     * @Route("/user/{userId}", name="user_show")
+     * @Route("/user/{id}", name="user_show")
+     * @Template()
      */
-    public function userShowAction($userId)
+    public function showAction(User $user)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('EatingBundle:User')->findOneBy(['id' => $userId]);
 
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -95,8 +99,7 @@ class UserController extends Controller
 
         $consumption = $em->getRepository('EatingBundle:Consumption')->findByDateAndUserActive($user, $date);
 
-        if( empty($consumption))
-        {
+        if ( empty($consumption)) {
             $user->setCurrentKkal(0);
             $user->setCurrentProteins(0);
             $user->setCurrentFats(0);
@@ -126,9 +129,9 @@ class UserController extends Controller
             }
         }
 
-        return $this->render('@Eating/User/user_show.html.twig', [
+        return [
             'day_consumption' => $day_consumption,
             'user' => $user
-        ]);
+        ];
     }
 }

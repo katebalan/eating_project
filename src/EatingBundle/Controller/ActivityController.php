@@ -5,6 +5,7 @@ namespace EatingBundle\Controller;
 use EatingBundle\Entity\Activity;
 use EatingBundle\Form\ActivityFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,33 +13,37 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Class ActivityController
  * @package EatingBundle\Controller
+ *
+ * @Route("/activity")
  */
 class ActivityController extends Controller
 {
     /**
-     * Controller are used to show list of all activity
+     * Show list of all activity
      *
      * @return mixed
-     * @Route("/activity", name="activity_list")
+     * @Route("/", name="activity_list")
+     * @Template()
      */
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
         $activity = $em->getRepository('EatingBundle:Activity')->findAll();
 
-        return $this->render('EatingBundle:Activity:list.html.twig', [
+        return [
             'activity' => $activity
-        ]);
+        ];
     }
 
     /**
-     * Controller are used to create new activity
+     * Create new activity
      *
      * @param Request $request
      * @return mixed
-     * @Route("/activity/new", name="activity_new")
+     * @Route("/new", name="activity_new")
+     * @Template()
      */
-    public function activityNewAction(Request $request)
+    public function newAction(Request $request)
     {
         $form = $this->createForm(ActivityFormType::class);
 
@@ -53,21 +58,39 @@ class ActivityController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'New activity is creted!');
-            return $this->redirectToRoute('activity_list');
+            return $this->redirectToRoute('activity_show', ['id' => $activity->getId()]);
         }
 
-        return $this->render('EatingBundle:Activity:new.html.twig', [
-            'activityForm' => $form->createView()
-        ]);
+        return [
+            'form' => $form->createView()
+        ];
     }
 
     /**
+     * Show activity
+     *
+     * @param Activity $activity
+     * @return array
+     * @Route("/{id}", name="activity_show")
+     * @Template()
+     */
+    public function showAction(Activity $activity)
+    {
+        return [
+            'activity' => $activity
+        ];
+    }
+
+    /**
+     * Edit activity
+     *
      * @param Request $request
      * @param Activity $activity
-     * @return Response
-     * @Route("/activity/{id}/edit", name="activity_edit")
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/{id}/edit", name="activity_edit")
+     * @Template()
      */
-    public function activityEditAction(Request $request, Activity $activity)
+    public function editAction(Request $request, Activity $activity)
     {
         $form = $this->createForm(ActivityFormType::class, $activity);
 
@@ -81,10 +104,12 @@ class ActivityController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Activity is updated!');
-            return $this->redirectToRoute('activity_list');
+
+            return $this->redirectToRoute('activity_show', ['id' => $activity->getId()]);
         }
-        return $this->render('@Eating/Activity/edit.html.twig', [
-            'activityForm' => $form->createView()
-        ]);
+
+        return [
+            'form' => $form->createView()
+        ];
     }
 }

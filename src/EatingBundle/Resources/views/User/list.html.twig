@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Products{% endblock %}
+
+{% block body %}
+    <div class="ea-page__header">
+        <h1>Our Users</h1>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('user_new') }}" class="btn btn-primary btn-lg">New User</a>
+        {% endif %}
+    </div>
+    <div class="ea-list">
+        {% for user in users %}
+            <div class="ea-block ea-block--flex">
+                <div class="ea-block__left">
+                    <div class="ea-block__header">
+                        {% if user.firstName and user.secondName %}
+                            {{ user.firstName }} {{ user.secondName }}
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}
+                    </div>
+                    <div class="ea-block__date">Member from {{ user.createdAt|date("m/d/Y") }}</div>
+                    <div class="ea-devider"></div>
+                    <div class="ea-block__info">
+                        <div>{{ user.username }}</div>
+                        <div>{{ user.phone }}</div>
+                        {% if user.gender %}
+                            Male
+                        {% else %}
+                            Female
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="ea-block__right">
+                    <img src="{{ asset('img/no-image.png') }}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

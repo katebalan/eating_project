@@ -1,18 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: katya
- * Date: 08.12.17
- * Time: 12:10
- */
 
 namespace EatingBundle\Service;
 
 
 use EatingBundle\Entity\Consumption;
 
+/**
+ * Class ChangingConsumptionService
+ * @package EatingBundle\Service
+ */
 class ChangingConsumptionService
 {
+    /**
+     * @param Consumption $consumption
+     * @param $date
+     * @return mixed
+     */
     public function MakeOtherList(Consumption $consumption, $date)
     {
         if ( !empty($consumption)) {

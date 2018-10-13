@@ -5,10 +5,10 @@
     <p class="ea-text">This project can help you to control your eating and sports.</p>
     {% if is_granted('ROLE_USER') %}
         <p class="ea-text ea-text--bold">You are inside system!</p>
-        <div class="ea-button ea-button--front"><a href="{{ path('user_show', {'userId': userId }) }}">Your page</a></div>
+        <a href="{{ path('user_show', {'id': userId }) }}" class="btn btn-primary btn-lg" >Your page</a>
     {% else %}
-        <p class="ea-text ea-text--bold">You can try it: </p>
-        <div class="ea-button ea-button--front"><a href="{{ path('security_login') }}">Login</a></div>
-        <div class="ea-button ea-button--front"><a href="{{ path('user_register') }}">Registration</a></div>
+        <p class="text">You can try it: </p>
+        <a href="{{ path('security_login') }}" class="btn btn-primary btn-lg">Login</a>
+        <a href="{{ path('user_register') }}" class="btn btn-primary btn-lg">Registration</a>
     {% endif %}
 {% endblock %}

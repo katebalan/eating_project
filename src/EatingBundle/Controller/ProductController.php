@@ -109,7 +109,7 @@ class ProductController extends Controller
 
             $this->addFlash('success', 'Product is updated!');
 
-            return $this->redirectToRoute('product_show');
+            return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
         }
 
         return [

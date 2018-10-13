@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} Product Show{% endblock %}
+{% block title %}{{ parent() }} Activity Show{% endblock %}
 
 {% block body %}
     <div class="ea-page__header">
-        <h1>Product</h1>
+        <h1>Activity</h1>
     </div>
     <div class="ea-block ea-block--flex">
         <div class="ea-block__left">
             <div class="ea-block__header">
-                {{ product.name }}
+                {{ activity.name }}
             </div>
-            <div class="ea-block__date">Created at {{ product.createdAt|date("m/d/Y") }}</div>
+            <div class="ea-block__date">Created at {{ activity.createdAt|date("m/d/Y") }}</div>
             <div class="ea-devider"></div>
             <div class="ea-block__info">
-                <table class="ea-table-4 table table-striped">
+                <table class="ea-table table table-striped">
                     <thead>
                     <tr>
                         <td>Kkal</td>
@@ -25,19 +25,19 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{ product.kkalPer100gr }}</td>
-                        <td>{{ product.proteinsPer100gr }}</td>
-                        <td>{{ product.fatsPer100gr }}</td>
-                        <td>{{ product.carbohydratesPer100gr }}</td>
+                        <td>{{ activity.kkalPer5minutes }}</td>
+                        <td>{{ activity.proteinsPer5minutes }}</td>
+                        <td>{{ activity.fatsPer5minutes }}</td>
+                        <td>{{ activity.carbohydratesPer5minutes }}</td>
                     </tr>
                     </tbody>
                 </table>
-                <div>Rate: {{ product.rating }}</div>
+                <div>Rate: {{ activity.rating }}</div>
             </div>
-            <a href="{{ path('product_list') }}" class="btn btn-primary">Back</a>
+            <a href="{{ path('activity_list') }}" class="btn btn-primary">Back</a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-primary">Edit</a>
-                <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-danger">Delete</a>
+                <a href="{{ path('activity_edit', {'id': activity.id}) }}" class="btn btn-primary">Edit</a>
+                {#<a href="{{ path('activity_delete', {'id': activity.id}) }}" class="btn btn-danger">Delete</a>#}
             {% endif %}
         </div>
         <div class="ea-block__right">

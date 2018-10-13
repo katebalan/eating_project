@@ -7,6 +7,7 @@ use EatingBundle\Entity\User;
 use EatingBundle\Form\ConsumptionFormType;
 use EatingBundle\Service\ChangingConsumptionService;
 use EatingBundle\Service\CountService;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,26 +29,26 @@ class ConsumptionController extends Controller
      * @param Request $request
      * @param User $user
      * @param CountService $countService
-     * @return RedirectResponse|Response
+     * @return RedirectResponse|array
      * @Route("/consumption/{id}/new", name="consumption_new")
+     * @Template()
      */
-    public function consumptionNewAction(CountService $countService, Request $request, User $user)
+    public function newAction(CountService $countService, Request $request, User $user)
     {
         $form = $this->createForm(ConsumptionFormType::class);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 //            $user = $this->getUser();
             $form_info = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
             $product = $em->getRepository('EatingBundle:Products')->findOneBy(['name' => $form_info['product_name']]);
 
-            if( empty($product) ) {
+            if (empty($product) ) {
                 $this->addFlash('error', 'Product doesn\'t exist');
-            }
-            else {
+            } else {
                 $consumption = new Consumption();
 
                 $consumption->setHowMuch($form_info['how_much']);
@@ -62,25 +63,26 @@ class ConsumptionController extends Controller
                 $em->persist($user);
                 $em->flush();
 
-                $this->addFlash('success', 'You have eaten new product!');
+                $this->addFlash('success', 'You have eaten ' . $product->getName() . '!');
 
                 return $this->redirectToRoute('user_show', [
-                    'userId' => $user->getId()
+                    'id' => $user->getId()
                 ]);
             }
         }
 
-        return $this->render('@Eating/Consumption/consumption_new.html.twig', [
+        return [
             'form' =>$form->createView()
-        ]);
+        ];
     }
 
     /**
      * @param User $user
-     * @return Response
+     * @return array
      * @Route("/user/{id}/history", name="consumption_history")
+     * @Template()
      */
-    public function consumptionHistoryAction(User $user, ChangingConsumptionService $changingConsumptionService)
+    public function historyAction(User $user, ChangingConsumptionService $changingConsumptionService)
     {
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -118,10 +120,10 @@ class ConsumptionController extends Controller
 //            $day_consumption = $changingConsumptionService->MakeOtherList($consumption, $date);
         }
 
-        return $this->render('@Eating/Consumption/consumption_history.html.twig', [
+        return [
             'user' => $user,
             'days_consumption' => $day_consumption
-        ]);
+        ];
     }
 
 }

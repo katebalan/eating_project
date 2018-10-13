@@ -1,62 +1,55 @@
-<div class="ea-user-show__info">
-    <div class="ea-list_block">
-        <div class="ea-list_item">Weight</div>
-        <div class="ea-list_item">{{ user.weight }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Height</div>
-        <div class="ea-list_item">{{ user.height }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">E-mail</div>
-        <div class="ea-list_item">{{ user.username }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Phone</div>
-        <div class="ea-list_item">{{ user.phone }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Age</div>
-        <div class="ea-list_item">{{ user.age }}</div>
-    </div>
-    <div class="ea-list_block">
-        <div class="ea-list_item">Gender</div>
-        <div class="ea-list_item">
+<div class="ea-block ea-block--flex">
+    <div class="ea-block__left">
+        <div class="ea-block__header">
+            {% if user.firstName and user.secondName %}
+                {{ user.firstName }} {{ user.secondName }}
+            {% else %}
+                {{ user.username }}
+            {% endif %}
+        </div>
+        <div class="ea-block__date">Member from {{ user.createdAt|date("m/d/Y") }}</div>
+        <div class="ea-devider"></div>
+        <div class="ea-block__info">
+            <div>{{ user.username }}</div>
+            <div>{{ user.phone }}</div>
             {% if user.gender %}
                 Male
             {% else %}
                 Female
             {% endif %}
         </div>
+        <table class="ea-table-5 table table-striped">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>Kkal</td>
+                    <td>Proteins</td>
+                    <td>Fats</td>
+                    <td>Carbohydrates</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Daily</td>
+                    <td>{{ user.dailyKkal }}</td>
+                    <td>{{ user.dailyProteins }}</td>
+                    <td>{{ user.dailyFats }}</td>
+                    <td>{{ user.dailyCarbohydrates }}</td>
+                </tr>
+                <tr>
+                    <td>Current</td>
+                    <td>{{ user.currentKkal }}</td>
+                    <td>{{ user.currentProteins }}</td>
+                    <td>{{ user.currentFats }}</td>
+                    <td>{{ user.currentCarbohydrates }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{{ path('consumption_new', {'id': user.id}) }}" class="btn btn-primary">New consumption</a>
+        <a href="{{ path('recommendation_list') }}" class="btn btn-primary">Recommendations</a>
+        <a href="{{ path('consumption_history', {'id': user.id}) }}" class="btn btn-primary">History</a>
     </div>
-</div>
-<div class="ea-table">
-    <h3>Daily</h3>
-    <div class="ea-table__row ea-table__row--bold">
-        <div class="ea-table__item">Kkal</div>
-        <div class="ea-table__item">Proteins</div>
-        <div class="ea-table__item">Fats</div>
-        <div class="ea-table__item">Carbohydrates</div>
-    </div>
-    <div class="ea-table__row">
-        <div class="ea-table__item">{{ user.dailyKkal }}</div>
-        <div class="ea-table__item">{{ user.dailyProteins }}</div>
-        <div class="ea-table__item">{{ user.dailyFats }}</div>
-        <div class="ea-table__item">{{ user.dailyCarbohydrates }}</div>
-    </div>
-</div>
-<div class="ea-table">
-    <h3>Current</h3>
-    <div class="ea-table__row ea-table__row--bold">
-        <div class="ea-table__item">Kkal</div>
-        <div class="ea-table__item">Proteins</div>
-        <div class="ea-table__item">Fats</div>
-        <div class="ea-table__item">Carbohydrates</div>
-    </div>
-    <div class="ea-table__row">
-        <div class="ea-table__item">{{ user.currentKkal }}</div>
-        <div class="ea-table__item">{{ user.currentProteins }}</div>
-        <div class="ea-table__item">{{ user.currentFats }}</div>
-        <div class="ea-table__item">{{ user.currentCarbohydrates }}</div>
+    <div class="ea-block__right">
+        <img src="{{ asset('img/no-image.png') }}">
     </div>
 </div>

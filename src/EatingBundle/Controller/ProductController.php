@@ -131,7 +131,7 @@ class ProductController extends Controller
             $em->remove($product);
             $em->flush();
 
-            $this->addFlash('success', 'Product is deleted!');
+            $this->addFlash('success', 'Product '.$product->getName().' was deleted!');
         }
 
         return $this->redirectToRoute('product_list');

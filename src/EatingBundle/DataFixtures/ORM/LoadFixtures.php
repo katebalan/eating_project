@@ -26,7 +26,7 @@ class LoadFixtures implements FixtureInterface
             'Dinner',
             'Breakfast',
         ];
-        $number = rand(0, 100);
+        $number = rand(0, 20);
         $key = array_rand($genera);
 
         return $genera[$key].$number;

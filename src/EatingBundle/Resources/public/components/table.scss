@@ -1,27 +1,25 @@
 @charset "UTF-8";
 
-.ea-table {
-  padding: 0 20px;
-
-  &__row {
-    display: flex;
-    flex-wrap: nowrap;
-
-    &--bold {
-      font-weight: bold;
-    }
+.ea-table-4, .ea-table-5, .ea-table-6 {
+  thead {
+    font-weight: 800;
   }
+}
 
-  &__item {
-    width: 24%;
-    text-align: center;
-    border: 1px solid rgba(39, 102, 145, 0.2);
-    padding: 5px 0;
+.ea-table-4 {
+  td {
+    width: 25%;
   }
+}
 
-  &__description {
-    text-align: right;
-    font-size: 12px;
-    padding: 0 60px;
+.ea-table-5 {
+  td {
+    width: 20%;
+  }
+}
+
+.ea-table-6 {
+  td {
+    width: 16%;
   }
 }

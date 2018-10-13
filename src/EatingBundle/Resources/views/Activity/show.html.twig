@@ -37,7 +37,7 @@
             <a href="{{ path('activity_list') }}" class="btn btn-primary">Back</a>
             {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('activity_edit', {'id': activity.id}) }}" class="btn btn-primary">Edit</a>
-                {#<a href="{{ path('activity_delete', {'id': activity.id}) }}" class="btn btn-danger">Delete</a>#}
+                <a href="{{ path('activity_delete', {'id': activity.id}) }}" class="btn btn-danger">Delete</a>
             {% endif %}
         </div>
         <div class="ea-block__right">

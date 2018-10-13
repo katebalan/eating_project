@@ -6,8 +6,9 @@
     <h1>New User</h1>
     <div class="ea-form">
         {{ form_start(userForm) }}
-        {{ form_widget(userForm) }}
-        <button type="submit" class="ea-button">Save</button>
+            {{ form_widget(userForm) }}
+            <button type="submit" class="btn btn-success btn-lg">Save</button>
+            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">Back</a>
         {{ form_end(userForm) }}
     </div>
 {% endblock %}

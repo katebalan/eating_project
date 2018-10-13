@@ -112,4 +112,26 @@ class ActivityController extends Controller
             'form' => $form->createView()
         ];
     }
+
+    /**
+     * Delete activity
+     *
+     * @param Activity|null $activity
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/{id}/delete", name="activity_delete")
+     */
+    public function deleteAction(?Activity $activity)
+    {
+        if (!$activity) {
+            throw $this->createNotFoundException('The activity does not exist');
+        } else {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($activity);
+            $em->flush();
+
+            $this->addFlash('success', 'Activity '.$activity->getName().' was deleted!');
+        }
+
+        return $this->redirectToRoute('activity_list');
+    }
 }

@@ -1,50 +1,11 @@
 @charset "UTF-8";
 
-.ea-header {
-  width: 100%;
-  margin-bottom: 20px;
+.ea-page__header {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 20px;
 
-  &__nav {
-    top: 0;
-    position: fixed;
-    background: $color-grey;
-    box-shadow: 1px 1px 10px 0 grey;
-    width: inherit;
-    z-index: 50;
-
-    ul {
-      list-style: none;
-      padding: 0 30px;
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      max-width: 900px;
-      margin: 0 auto;
-
-      li {
-        padding: 0;
-
-        a {
-          display: block;
-          padding: 10px 15px;
-          text-decoration: none;
-          font-size: 20px;
-          color: #fff;
-          font-weight: bold;
-
-          &:hover {
-            background: $color-light-grey;
-          }
-        }
-      }
-    }
-  }
-
-  &__image {
-    background: url(/img/background_food.jpg);
-    height: 400px;
-    background-size: 920px;
-    margin-top: 45px;
-    box-shadow: 1px 1px 36px -4px $color-grey;
+  h1 {
+    margin: 0;
   }
 }

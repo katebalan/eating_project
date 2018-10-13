@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+.ea-block {
+  padding: 30px;
+  box-shadow: 0 0 8px 0 $color-light-grey;
+  margin-bottom: 15px;
+
+  &--flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    width: 79%;
+  }
+
+  &__right {
+    width: 20%;
+  }
+
+  &__header {
+    padding: 15px 0 0;
+    font-size: 22px;
+    font-weight: 800;
+    width: 100%;
+  }
+
+  &__sub_header {
+    padding: 15px 0 0;
+    font-size: 20px;
+  }
+
+  &__date {
+    font-size: 13px;
+    font-style: italic;
+    padding: 0 0 2px 10px;
+    color: $color-grey;
+  }
+
+  &__info {
+    padding: 15px 0;
+    color: $color-dark-grey;
+  }
+}

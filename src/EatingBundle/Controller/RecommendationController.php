@@ -3,8 +3,8 @@
 namespace EatingBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class RecommendationController
@@ -17,10 +17,11 @@ class RecommendationController extends Controller
     /**
      * Controller are used to recommend products
      *
-     * @return Response
+     * @return array
      * @Route("/", name="recommendation_list")
+     * @Template()
      */
-    public function recommendationAction()
+    public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
         $products = $em->getRepository('EatingBundle:Products')->findAllOrderedByDescActive();
@@ -59,9 +60,8 @@ class RecommendationController extends Controller
 
         });
 
-        return $this->render('EatingBundle:Recommendation:list.html.twig', [
+        return [
             'products' => $pr
-        ]);
+        ];
     }
 }
-

@@ -12,6 +12,9 @@
     <div class="ea-list">
         {% for user in users %}
             <div class="ea-block ea-block--flex">
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="ea-block__edit-btn">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
                 <div class="ea-block__left">
                     <div class="ea-block__header">
                         {% if user.firstName and user.secondName %}

@@ -1,5 +1,5 @@
 EatingBundle\Entity\Products:
-  products_{1..5}:
+  products_{1..21}:
     name: <product_name()>
     kkal_per_100gr: <numberBetween(400, 600)>
     proteins_per_100gr: <numberBetween(0, 30)>
@@ -8,7 +8,7 @@ EatingBundle\Entity\Products:
     rating: <numberBetween(1, 6)>
     createdAt: <dateTimeBetween('-6 months', 'now')>
 EatingBundle\Entity\Activity:
-  activity_{1..5}:
+  activity_{1..4}:
     name: <activity_name()>
     kkal_per_5minutes: <numberBetween(5, 108)>
     proteins_per_5minutes: <numberBetween(5, 20)>

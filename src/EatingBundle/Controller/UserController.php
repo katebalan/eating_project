@@ -83,9 +83,9 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
+//        if (!is_object($user) || !$user instanceof UserInterface) {
+//            throw new AccessDeniedException('This user does not have access to this section.');
+//        }
 
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
             throw new AccessDeniedException('This user does not have access to this action.');
@@ -146,7 +146,7 @@ class UserController extends Controller
     public function editAction(Request $request, ?User $user)
     {
         if (!$user) {
-            throw $this->createNotFoundException('The product does not exist');
+            throw $this->createNotFoundException('The user does not exist');
         }
 
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
@@ -180,6 +180,10 @@ class UserController extends Controller
     public function redirectShowAction()
     {
         $user = $this->getUser();
+
+        if (!$user) {
+            throw $this->createNotFoundException('The user does not exist');
+        }
 
         return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
     }

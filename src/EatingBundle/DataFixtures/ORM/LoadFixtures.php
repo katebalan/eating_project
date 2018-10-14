@@ -7,9 +7,25 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Nelmio\Alice\Fixtures;
 
+/**
+ * Class LoadFixtures
+ * @package EatingBundle\DataFixtures\ORM
+ */
 class LoadFixtures implements FixtureInterface
 {
+    /**
+     * @var int
+     */
+    private $product_key = 0;
 
+    /**
+     * @var int
+     */
+    private $activity_key = 0;
+
+    /**
+     * @param ObjectManager $manager
+     */
     public function load(ObjectManager $manager)
     {
         $objects = Fixtures::load(__DIR__ . '/fixtures.yml',
@@ -19,19 +35,42 @@ class LoadFixtures implements FixtureInterface
             ]);
     }
 
+    /**
+     * @return mixed
+     */
     public function product_name()
     {
-        $genera = [
-            'Supper',
-            'Dinner',
-            'Breakfast',
+        $produts = [
+            'Bacon',
+            'Cheese',
+            'Eggs',
+            'Granola',
+            'Omelet',
+            'Sausage',
+            'Slice of bread',
+            'Slice of toast',
+            'Hot chocolate',
+            'Milk',
+            'Tea',
+            'Sugar',
+            'Water',
+            'Yogurt',
+            'Chicken',
+            'Pizza',
+            'Caesar\'s salad',
+            'Chef salad',
+            'Broccoli',
+            'Apple',
+            'Banana',
+            'Cherry',
         ];
-        $number = rand(0, 20);
-        $key = array_rand($genera);
 
-        return $genera[$key].$number;
+        return $produts[$this->product_key++];
     }
 
+    /**
+     * @return mixed
+     */
     public function activity_name()
     {
         $activity = [
@@ -40,12 +79,13 @@ class LoadFixtures implements FixtureInterface
             'Gym',
             'Yoga',
         ];
-        $number = rand(0, 100);
-        $key = array_rand($activity);
 
-        return $activity[$key].$number;
+        return $activity[$this->activity_key++];
     }
 
+    /**
+     * @return string
+     */
     public function user_phone()
     {
         $phone = '+38099';
@@ -57,6 +97,9 @@ class LoadFixtures implements FixtureInterface
         return $phone;
     }
 
+    /**
+     * @return mixed
+     */
     public function meals_of_the_day()
     {
         $meals = [

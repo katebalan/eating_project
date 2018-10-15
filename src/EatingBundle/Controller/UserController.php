@@ -174,17 +174,17 @@ class UserController extends Controller
         ];
     }
 
-    /**
-     * @Route("/user", name="redirect_show")
-     */
-    public function redirectShowAction()
-    {
-        $user = $this->getUser();
-
-        if (!$user) {
-            throw $this->createNotFoundException('The user does not exist');
-        }
-
-        return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
-    }
+//    /**
+//     * @Route("/user", name="redirect_show")
+//     */
+//    public function redirectShowAction()
+//    {
+//        $user = $this->getUser();
+//
+//        if (!$user) {
+//            throw $this->createNotFoundException('The user does not exist');
+//        }
+//
+//        return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
+//    }
 }

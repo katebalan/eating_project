@@ -4,7 +4,9 @@ namespace EatingBundle\Controller;
 
 use EatingBundle\Entity\User;
 use EatingBundle\Form\UserFormType;
+use EatingBundle\Form\UserPasswordType;
 use EatingBundle\Service\CountService;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -82,10 +84,6 @@ class UserController extends Controller
     public function showAction(User $user)
     {
         $em = $this->getDoctrine()->getManager();
-
-//        if (!is_object($user) || !$user instanceof UserInterface) {
-//            throw new AccessDeniedException('This user does not have access to this section.');
-//        }
 
         if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
             throw new AccessDeniedException('This user does not have access to this action.');
@@ -174,17 +172,43 @@ class UserController extends Controller
         ];
     }
 
-//    /**
-//     * @Route("/user", name="redirect_show")
-//     */
-//    public function redirectShowAction()
-//    {
-//        $user = $this->getUser();
-//
-//        if (!$user) {
-//            throw $this->createNotFoundException('The user does not exist');
-//        }
-//
-//        return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
-//    }
+
+    /**
+     * @param Request $request
+     * @param User|null $user
+     * @Route("/user/{id}/edit_password", name="user_edit_password")
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     *
+     * @Template()
+     */
+    public function editPasswordAction(Request $request, ?User $user)
+    {
+        if (!$user) {
+            throw $this->createNotFoundException('The user does not exist');
+        }
+
+        if (!$this->isGranted('ROLE_ADMIN') && $this->getUser() != $user) {
+            throw new AccessDeniedException('This user does not have access to this action.');
+        }
+
+        $form = $this->createForm(UserPasswordType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'User\'s password is updated!');
+
+            return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
+        }
+
+        return [
+            'form' => $form->createView()
+        ];
+    }
 }

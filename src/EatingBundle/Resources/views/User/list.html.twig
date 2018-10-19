@@ -12,9 +12,17 @@
     <div class="ea-list">
         {% for user in users %}
             <div class="ea-block ea-block--flex">
-                <a href="{{ path('user_edit', {'id': user.id}) }}" class="ea-block__edit-btn">
-                    <span class="glyphicon glyphicon-edit"></span>
-                </a>
+                <div class="ea-block__edit-btn__wrapper">
+                    <a href="{{ path('user_show', {'id': user.id}) }}" class="ea-block__edit-btn">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}" class="ea-block__edit-btn">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <a href="{{ path('user_edit_password', {'id': user.id}) }}" class="ea-block__edit-btn">
+                        <span class="glyphicon glyphicon-lock"></span>
+                    </a>
+                </div>
                 <div class="ea-block__left">
                     <div class="ea-block__header">
                         {% if user.firstName and user.secondName %}

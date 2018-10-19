@@ -18,13 +18,6 @@ class UserFormType extends AbstractType
             ->add('firstName', null)
             ->add('secondName', null)
             ->add('email', EmailType::class)
-            ->add('plainPassword',  RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'options' => array('attr' => array('class' => 'password-field')),
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password'),
-            ])
             ->add('age', null)
             ->add('gender', ChoiceType::class, [
                 'choices' => [
@@ -41,6 +34,13 @@ class UserFormType extends AbstractType
                     'Moderate activity (work is sitting, but the office has to run, and in addition, two or three times a week you find time for sports).' => 1.3,
                     'High activity (your work is a constant movement)' => 1.5
                 ]
+            ])
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Admin' => 'ROLE_ADMIN',
+                ],
+                'expanded' => true,
+                'multiple' => true,
             ]);
     }
 
@@ -48,7 +48,6 @@ class UserFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'EatingBundle\Entity\User',
-            'attr' => ['class' => 'ea-form__inside' ],
         ]);
     }
 

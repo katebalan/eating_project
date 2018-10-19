@@ -45,9 +45,12 @@
 
   &__edit-btn {
     display: block;
-    position: absolute;
-    top: 2px;
-    right: 2px;
     color: $color-light-grey;
+
+    &__wrapper {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+    }
   }
 }

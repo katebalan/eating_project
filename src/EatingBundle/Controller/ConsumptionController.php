@@ -48,7 +48,7 @@ class ConsumptionController extends Controller
             $consumption->setUser($user);
             $consumption->setCreatedAt(new \DateTime('now'));
 
-            $user = $countService->CountCurrentValues($user, $consumption->getHowMuch(), $consumption->getProduct());
+            $user = $countService->countCurrentValues($user, $consumption->getHowMuch(), $consumption->getProduct());
 
             $em->persist($consumption);
             $em->persist($user);
@@ -68,11 +68,12 @@ class ConsumptionController extends Controller
 
     /**
      * @param User $user
+     * @param CountService $countService
      * @return array
      * @Route("/user/{id}/history", name="consumption_history")
      * @Template()
      */
-    public function historyAction(User $user, ChangingConsumptionService $changingConsumptionService)
+    public function historyAction(User $user, CountService $countService)
     {
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -82,34 +83,7 @@ class ConsumptionController extends Controller
             throw new AccessDeniedException('This user does not have access to this action.');
         }
 
-        $day_consumption = array();
-
-        for ($i = 0; $i < 5; $i++) {
-            $date = new \DateTime();
-            $date->modify('-'.$i.' days');
-            $em = $this->getDoctrine()->getManager();
-            $consumption = $em->getRepository('EatingBundle:Consumption')
-                ->findByDateAndUserActive($user, $date);
-            $str_date = $date->format('Y-m-d');
-
-            if ( !empty($consumption)) {
-                $day_consumption[$str_date]['breakfast'] = array();
-                $day_consumption[$str_date]['dinner'] = array();
-                $day_consumption[$str_date]['supper'] = array();
-            }
-
-            for ($j = 0; $j < count($consumption); $j++) {
-                if ($consumption[$j]->getMealsOfTheDay() == 'Breakfast') {
-                    array_push($day_consumption[$str_date]['breakfast'], $consumption[$j]);
-                }
-                if ($consumption[$j]->getMealsOfTheDay() == 'Dinner') {
-                    array_push($day_consumption[$str_date]['dinner'], $consumption[$j]);
-                }
-                if ($consumption[$j]->getMealsOfTheDay() == 'Supper') {
-                    array_push($day_consumption[$str_date]['supper'], $consumption[$j]);
-                }
-            }
-        }
+        $day_consumption = $countService->consumptionToArray($user, 5);
 
         return [
             'user' => $user,

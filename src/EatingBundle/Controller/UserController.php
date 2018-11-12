@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints\Count;
 
 /**
  * Class UserController
@@ -55,7 +56,7 @@ class UserController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
-            $user = $countService->CountDailyValues($user);
+            $user = $countService->countDailyValues($user);
 
             $user->setPlainPassword('fuckyou');
             $user->setCreatedAt(new \DateTime('now'));
@@ -81,7 +82,7 @@ class UserController extends Controller
      * @Route("/user/{id}", name="user_show")
      * @Template()
      */
-    public function showAction(User $user)
+    public function showAction(User $user, CountService $countService)
     {
         $em = $this->getDoctrine()->getManager();
 

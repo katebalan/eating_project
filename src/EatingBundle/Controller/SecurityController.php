@@ -78,7 +78,7 @@ class SecurityController extends Controller
             /** @var User $user */
             $user = $form->getData();
 
-            $user = $countService->CountDailyValues($user);
+            $user = $countService->countDailyValues($user);
             $user->setCreatedAt(new \DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();

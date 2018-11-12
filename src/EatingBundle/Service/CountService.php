@@ -2,6 +2,7 @@
 
 namespace EatingBundle\Service;
 
+use Doctrine\ORM\EntityManager;
 use EatingBundle\Entity\Products;
 use EatingBundle\Entity\User;
 
@@ -12,10 +13,35 @@ use EatingBundle\Entity\User;
 class CountService
 {
     /**
+     * @var EntityManager $em
+     */
+    private $em;
+
+    /**
+     * @var array
+     */
+    private $properties = [
+        'Kkal',
+        'Proteins',
+        'Fats',
+        'Carbohydrates'
+
+    ];
+
+    /**
+     * CountService constructor.
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+    /**
      * @param User $user
      * @return User
      */
-    public function CountDailyValues(User $user)
+    public function countDailyValues(User $user)
     {
         $weight = $user->getWeight();
         $energy_exchange = $user->getEnergyExchange();
@@ -60,18 +86,52 @@ class CountService
      * @param Products $product
      * @return User
      */
-    public function CountCurrentValues(User $user, $how_much, Products $product)
+    public function countCurrentValues(User $user, $how_much, Products $product)
     {
-        $current_kkal = $user->getCurrentKkal() + $how_much * $product->getKkalPer100gr() / 100;
-        $current_proteins = $user->getCurrentProteins() + $how_much * $product->getProteinsPer100gr() / 100;
-        $current_fats = $user->getCurrentFats() + $how_much * $product->getFatsPer100gr() / 100;
-        $current_carb = $user->getCurrentCarbohydrates() + $how_much * $product->getCarbohydratesPer100gr() / 100;
-
-        $user->setCurrentKkal($current_kkal);
-        $user->setCurrentProteins($current_proteins);
-        $user->setCurrentFats($current_fats);
-        $user->setCurrentCarbohydrates($current_carb);
+        foreach ($this->properties as $property) {
+            $user->{'setCurrent' . $property}(
+                $user->{'getCurrent' . $property}() + $how_much * $product->{'get' . $property . 'Per100gr'}() / 100
+            );
+        }
 
         return $user;
+    }
+
+    /**
+     * @param User $user
+     * @return array
+     */
+    public function consumptionToArray(User $user, $count_days = 1)
+    {
+        $day_consumption = array();
+
+        for ($i = 0; $i < $count_days; $i++) {
+            $date = new \DateTime();
+            $date->modify('-'.$i.' days');
+
+            $consumption = $this->em->getRepository('EatingBundle:Consumption')
+                ->findByDateAndUserActive($user, $date);
+            $str_date = $date->format('Y-m-d');
+
+            if ( !empty($consumption)) {
+                $day_consumption[$str_date]['breakfast'] = array();
+                $day_consumption[$str_date]['dinner'] = array();
+                $day_consumption[$str_date]['supper'] = array();
+            }
+
+            for ($j = 0; $j < count($consumption); $j++) {
+                if ($consumption[$j]->getMealsOfTheDay() == 'Breakfast') {
+                    array_push($day_consumption[$str_date]['breakfast'], $consumption[$j]);
+                }
+                if ($consumption[$j]->getMealsOfTheDay() == 'Dinner') {
+                    array_push($day_consumption[$str_date]['dinner'], $consumption[$j]);
+                }
+                if ($consumption[$j]->getMealsOfTheDay() == 'Supper') {
+                    array_push($day_consumption[$str_date]['supper'], $consumption[$j]);
+                }
+            }
+        }
+
+        return $day_consumption;
     }
 }

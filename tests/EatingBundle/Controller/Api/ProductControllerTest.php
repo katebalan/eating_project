@@ -14,15 +14,15 @@ class ProductControllerTest extends DoctrineTestCase
     /**
      * Test: get list of objects
      */
-    public function testGetProducts()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/api/product');
-        $response = $client->getResponse();
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'HTTP code is not 200');
-    }
+//    public function testGetProducts()
+//    {
+//        $client = static::createClient();
+//
+//        $crawler = $client->request('GET', '/api/product');
+//        $response = $client->getResponse();
+//
+//        $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'HTTP code is not 200');
+//    }
 
     /**
      * Test: get object by id
@@ -41,22 +41,22 @@ class ProductControllerTest extends DoctrineTestCase
     /**
      * Test: add new object
      */
-    public function testPostProduct()
-    {
-        $client = static::createClient();
-
-        $crawler = $client->request('POST', '/api/product/new', array(
-            'name' => 'FOOD',
-            'kkal' => '156',
-            'proteins' => 56,
-            'fats' => 65,
-            'carbohydrates' => 42,
-            'rating' => 2,
-        ));
-        $response = $client->getResponse();
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'HTTP code is not 200');
-    }
+//    public function testPostProduct()
+//    {
+//        $client = static::createClient();
+//
+//        $crawler = $client->request('POST', '/api/product/new', array(
+//            'name' => 'FOOD',
+//            'kkal' => '156',
+//            'proteins' => 56,
+//            'fats' => 65,
+//            'carbohydrates' => 42,
+//            'rating' => 2,
+//        ));
+//        $response = $client->getResponse();
+//
+//        $this->assertEquals(200, $client->getResponse()->getStatusCode(), 'HTTP code is not 200');
+//    }
 
     /**
      * Test: update existed object

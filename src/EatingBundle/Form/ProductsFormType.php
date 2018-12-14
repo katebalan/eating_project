@@ -4,6 +4,7 @@ namespace EatingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -43,6 +44,9 @@ class ProductsFormType extends AbstractType
                     '5' => 5,
                     '6' => 6
                 ]
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Download image (png, jpeg, jpg)',
             ]);
     }
 

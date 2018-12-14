@@ -16,6 +16,7 @@ class ActivityControllerTest extends WebTestCase
 //        );
 //    }
 
+
     public function testNewActivity() {
         $client = self::createClient();
 

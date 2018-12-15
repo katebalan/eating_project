@@ -112,4 +112,17 @@ class LoadFixtures implements FixtureInterface
 
         return $meals[$key];
     }
+
+    public function product_image()
+    {
+        $images = [
+            'files/food1.jpg',
+            'files/food2.jpg',
+            'files/food3.jpg',
+        ];
+
+        $key = array_rand($images);
+
+        return $images[$key];
+    }
 }

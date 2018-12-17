@@ -2,6 +2,7 @@
 
 namespace EatingBundle\Form;
 
+use EatingBundle\Entity\Products;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -54,7 +55,7 @@ class ProductsFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'EatingBundle\Entity\Products',
+            'data_class' => Products::class,
         ]);
     }
 

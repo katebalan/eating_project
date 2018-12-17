@@ -63,8 +63,8 @@ class Products
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "application/jpeg", "application/png", "application/jpg" })
+     * @Assert\NotBlank(message="Please, upload the product image as a jpg, jpeg or pdf file.")
+     * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
     private $image;
 

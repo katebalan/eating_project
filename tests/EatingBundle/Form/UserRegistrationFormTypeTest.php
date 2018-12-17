@@ -17,10 +17,11 @@ class UserRegistrationFormTypeTest extends TypeTestCase
             'email' => 'harrypotter@gmail.com',
             'weight' => '60',
             'height' => '170',
-            'energy_exchange' => 1.1
+            'energy_exchange' => 1.1,
         ];
 
-        $form = $this->factory->create(UserRegistrationFormType::class);
+        $objectToCompare = new User();
+        $form = $this->factory->create(UserRegistrationFormType::class, $objectToCompare);
 
         $user = new User();
 

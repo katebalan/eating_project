@@ -47,11 +47,12 @@ web/cov/
 /.idea/*
 /nbproject/*
 
-# uploads
-/web/uploads/
-
 # sourcemaps
 /web/dist/css/*.css.map
 /web/dist/js/*.js.map
-#web/data/data.sqlite
-#!web/data/.gitkeep
+
+# uploads
+web/files/
+!web/files/products/food1.jpg
+!web/files/products/food2.jpg
+!web/files/products/food3.jpg

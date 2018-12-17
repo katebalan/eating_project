@@ -1,5 +1,6 @@
 <div class="ea-form">
     {{ form_start(form) }}
+        {{ form_row(form.image) }}
         {{ form_widget(form) }}
         <button type="submit" class="btn btn-success btn-lg">Save</button>
         <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">Back</a>

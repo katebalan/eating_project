@@ -17,6 +17,13 @@
 
   &__right {
     width: 20%;
+    height: 154px;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
   }
 
   &__header {

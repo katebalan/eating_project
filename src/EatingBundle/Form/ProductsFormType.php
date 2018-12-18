@@ -48,7 +48,7 @@ class ProductsFormType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => 'Download image (png, jpeg, jpg)',
-                'mapped' => false
+                'required' => false,
             ]);
     }
 

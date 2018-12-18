@@ -41,9 +41,10 @@ class ProductController extends Controller
      * Controller are used to create new product
      *
      * @param Request $request
-     * @return mixed
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/new", name="product_new")
      * @Template()
+     * @throws \Exception
      */
     public function newAction(Request $request)
     {
@@ -55,23 +56,25 @@ class ProductController extends Controller
             $product = $form->getData();
             $product->setCreatedAt(new \DateTime('now'));
 
-            $file = $product->getFile();
+            $file = $product->getImage();
 
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            if ($file) {
+                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
 
-            // Move the file to the directory where brochures are stored
-            try {
-                $file->move(
-                    $this->getParameter('file_directory') . 'products/',
-                    $fileName
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('file_directory') . 'products/',
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochure' property to store the PDF file name
+                // instead of its contents
+                $product->setImage($fileName);
             }
-
-            // updates the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $product->setFile($fileName);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
@@ -79,7 +82,7 @@ class ProductController extends Controller
 
             $this->addFlash('success', 'New product is created!');
 
-            return $this->redirectToRoute('product_show');
+            return $this->redirectToRoute('product_show', ['id' => $product->getId()]);
         }
         return [
             'form' => $form->createView()
@@ -116,9 +119,12 @@ class ProductController extends Controller
             throw $this->createNotFoundException('The product does not exist');
         }
 
-        $product->setImage(
-            new File($this->getParameter('file_directory') . 'products/' . $product->getImage())
-        );
+        $fileName = $product->getImage();
+        if ($fileName) {
+            $product->setImage(
+                new File($this->getParameter('file_directory') . 'products/' . $fileName)
+            );
+        }
 
         $form = $this->createForm(ProductsFormType::class, $product);
 
@@ -129,20 +135,22 @@ class ProductController extends Controller
 
             $file = $product->getImage();
 
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+            if ($file) {
+                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
 
-            // Move the file to the directory where brochures are stored
-            try {
-                $file->move(
-                    $this->getParameter('file_directory') . 'products/',
-                    $fileName
-                );
-            } catch (FileException $e) {
-                // ... handle exception if something happens during file upload
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('file_directory') . 'products/',
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochure' property to store the PDF file name
+                // instead of its contents
             }
-
-            // updates the 'brochure' property to store the PDF file name
-            // instead of its contents
             $product->setImage($fileName);
 
             $em = $this->getDoctrine()->getManager();

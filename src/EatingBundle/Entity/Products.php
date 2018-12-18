@@ -61,9 +61,8 @@ class Products
     private $consumption;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      *
-     * @Assert\NotBlank(message="Please, upload the product image as a jpg, jpeg or pdf file.")
      * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
     private $image;

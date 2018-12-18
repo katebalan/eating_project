@@ -33,3 +33,10 @@ img {
   height: 2px;
   border-bottom: 1px solid $color-light-grey;
 }
+
+.ea-form {
+  &__image {
+    width: 20%;
+    margin-bottom: 15px;
+  }
+}

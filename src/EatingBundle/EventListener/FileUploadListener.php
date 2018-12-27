@@ -54,7 +54,7 @@ class FileUploadListener
      */
     private function uploadFile($entity)
     {
-        // upload only works for Product entities
+        // upload only works for Products entities
         if (!$entity instanceof Products) {
             return;
         }

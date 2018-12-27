@@ -8,12 +8,11 @@ services:
         resource: '../../Controller/'
         public: true
 
-    service.file_uploader:
-        class: EatingBundle\Service\FileUploader
+    EatingBundle\Service\FileUploader:
+        public: true
         arguments: ['%file_directory%']
 
-    event_listener.file_uploader:
-        class: EatingBundle\EventListener\FileUploadListener
+    EatingBundle\EventListener\FileUploadListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }

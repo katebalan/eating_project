@@ -5,6 +5,7 @@ namespace EatingBundle\Controller;
 
 use EatingBundle\Entity\Products;
 use EatingBundle\Form\ProductsFormType;
+use EatingBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -41,12 +42,13 @@ class ProductController extends Controller
      * Controller are used to create new product
      *
      * @param Request $request
+     * @param FileUploader $fileUploader
      * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/new", name="product_new")
      * @Template()
      * @throws \Exception
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, FileUploader $fileUploader)
     {
         $form = $this->createForm(ProductsFormType::class);
 
@@ -59,20 +61,7 @@ class ProductController extends Controller
             $file = $product->getImage();
 
             if ($file) {
-                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $file->move(
-                        $this->getParameter('file_directory') . 'products/',
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochure' property to store the PDF file name
-                // instead of its contents
+                $fileName = $fileUploader->upload($file);
                 $product->setImage($fileName);
             }
 

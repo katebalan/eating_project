@@ -9,9 +9,7 @@ use EatingBundle\Service\FileUploader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 /**
  * Class ProductsController
@@ -58,13 +56,6 @@ class ProductController extends Controller
             $product = $form->getData();
             $product->setCreatedAt(new \DateTime('now'));
 
-            $file = $product->getImage();
-
-            if ($file) {
-                $fileName = $fileUploader->upload($file);
-                $product->setImage($fileName);
-            }
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);
             $em->flush();
@@ -108,39 +99,12 @@ class ProductController extends Controller
             throw $this->createNotFoundException('The product does not exist');
         }
 
-        $fileName = $product->getImage();
-        if ($fileName) {
-            $product->setImage(
-                new File($this->getParameter('file_directory') . 'products/' . $fileName)
-            );
-        }
-
         $form = $this->createForm(ProductsFormType::class, $product);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
-
-            $file = $product->getImage();
-
-            if ($file) {
-                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $file->move(
-                        $this->getParameter('file_directory') . 'products/',
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochure' property to store the PDF file name
-                // instead of its contents
-            }
-            $product->setImage($fileName);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($product);

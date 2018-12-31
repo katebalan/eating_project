@@ -22,6 +22,7 @@ class FileUploadListener
 
     /**
      * FileUploadListener constructor.
+     *
      * @param FileUploader $uploader
      */
     public function __construct(FileUploader $uploader)
@@ -30,6 +31,8 @@ class FileUploadListener
     }
 
     /**
+     * Listen create actions
+     *
      * @param LifecycleEventArgs $args
      */
     public function prePersist(LifecycleEventArgs $args)
@@ -40,6 +43,8 @@ class FileUploadListener
     }
 
     /**
+     * Listen update actions
+     *
      * @param PreUpdateEventArgs $args
      */
     public function preUpdate(PreUpdateEventArgs $args)
@@ -50,6 +55,8 @@ class FileUploadListener
     }
 
     /**
+     * Upload new file and save new path into entity
+     *
      * @param $entity
      */
     private function uploadFile($entity)
@@ -73,6 +80,8 @@ class FileUploadListener
     }
 
     /**
+     * Listen Edit actions
+     *
      * @param LifecycleEventArgs $args
      */
     public function postLoad(LifecycleEventArgs $args)
@@ -83,8 +92,8 @@ class FileUploadListener
             return;
         }
 
-        if ($fileName = $entity->getBrochure()) {
-            $entity->setBrochure(new File($this->uploader->getTargetDirectory().'/'.$fileName));
+        if ($fileName = $entity->getImage()) {
+            $entity->setImage(new File($this->uploader->getTargetDirectory() . 'products/' . $fileName));
         }
     }
 }

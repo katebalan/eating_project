@@ -7,6 +7,9 @@
     <div class="ea-form">
         {{ form_start(form) }}
             {{ form_widget(form) }}
+            {% if form.vars.data and form.vars.data.image %}
+                <div class="ea-form__image"><img src="{{ asset('files/activity/' ~ form.vars.data.image.filename) }}"></div>
+            {% endif %}
             <button type="submit" class="btn btn-success btn-lg">Save</button>
             <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">Back</a>
         {{ form_end(form) }}

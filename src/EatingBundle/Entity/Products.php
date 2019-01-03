@@ -202,5 +202,4 @@ class Products
     {
         $this->image = $image;
     }
-
 }

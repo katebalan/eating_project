@@ -22,6 +22,14 @@ class LoadFixtures implements FixtureInterface
      * @var int
      */
     private $activity_key = 0;
+    private $activity_image_key = 0;
+
+    private $activity = [
+        'walking',
+        'running',
+        'gym',
+        'yoga',
+    ];
 
     /**
      * @param ObjectManager $manager
@@ -73,14 +81,7 @@ class LoadFixtures implements FixtureInterface
      */
     public function activity_name()
     {
-        $activity = [
-            'Walking',
-            'Running',
-            'Gym',
-            'Yoga',
-        ];
-
-        return $activity[$this->activity_key++];
+        return ucfirst($this->activity[$this->activity_key++]);
     }
 
     /**
@@ -124,5 +125,10 @@ class LoadFixtures implements FixtureInterface
         $key = array_rand($images);
 
         return $images[$key];
+    }
+
+    public function activity_image()
+    {
+        return $this->activity[$this->activity_image_key++] . ".jpg";
     }
 }

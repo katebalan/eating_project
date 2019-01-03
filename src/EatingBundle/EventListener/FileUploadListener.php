@@ -2,6 +2,7 @@
 
 namespace EatingBundle\EventListener;
 
+use EatingBundle\Entity\Activity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -19,6 +20,8 @@ class FileUploadListener
      * @var FileUploader $uploader
      */
     private $uploader;
+
+    private $file;
 
     /**
      * FileUploadListener constructor.
@@ -61,21 +64,29 @@ class FileUploadListener
      */
     private function uploadFile($entity)
     {
+        $folder = "";
         // upload only works for Products entities
-        if (!$entity instanceof Products) {
+        if (!($entity instanceof Products or $entity instanceof Activity)) {
             return;
+        }
+        if ($entity instanceof Products) {
+            $folder = "products";
+        }
+        if ($entity instanceof Activity) {
+            $folder = "activity";
         }
 
         $file = $entity->getImage();
 
         // only upload new files
         if ($file instanceof UploadedFile) {
-            $fileName = $this->uploader->upload($file);
+            $fileName = $this->uploader->upload($file, $folder);
             $entity->setImage($fileName);
-        } elseif ($file instanceof File) {
+        } elseif ($this->file instanceof File) {
             // prevents the full file path being saved on updates
             // as the path is set on the postLoad listener
-            $entity->setImage($file->getFilename());
+            $entity->setImage($this->file->getFilename());
+            unset($this->file);
         }
     }
 
@@ -86,14 +97,22 @@ class FileUploadListener
      */
     public function postLoad(LifecycleEventArgs $args)
     {
+        $folder = "";
         $entity = $args->getEntity();
 
-        if (!$entity instanceof Products) {
+        if (!($entity instanceof Products or $entity instanceof Activity)) {
             return;
+        }
+        if ($entity instanceof Products) {
+            $folder = "products";
+        }
+        if ($entity instanceof Activity) {
+            $folder = "activity";
         }
 
         if ($fileName = $entity->getImage()) {
-            $entity->setImage(new File($this->uploader->getTargetDirectory() . 'products/' . $fileName));
+            $entity->setImage(new File($this->uploader->getTargetDirectory() . $folder . '/' . $fileName));
+            $this->file = $entity->getImage();
         }
     }
 }

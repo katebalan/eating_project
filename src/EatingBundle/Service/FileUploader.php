@@ -27,14 +27,15 @@ class FileUploader
 
     /**
      * @param UploadedFile $file
+     * @param String $folder
      * @return string
      */
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, string $folder)
     {
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory() . 'products/', $fileName);
+            $file->move($this->getTargetDirectory() . $folder . '/', $fileName);
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }

@@ -17,6 +17,7 @@ EatingBundle\Entity\Activity:
     carbohydrates_per_5minutes: <numberBetween(5, 20)>
     rating: <numberBetween(1, 6)>
     createdAt: <dateTimeBetween('-6 months', 'now')>
+    image: <activity_image()>
 EatingBundle\Entity\User:
   user_1:
     email: admin@admin.com

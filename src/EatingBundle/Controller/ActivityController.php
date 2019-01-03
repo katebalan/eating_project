@@ -42,6 +42,7 @@ class ActivityController extends Controller
      * @return mixed
      * @Route("/new", name="activity_new")
      * @Template()
+     * @throws \Exception
      */
     public function newAction(Request $request)
     {
@@ -58,6 +59,7 @@ class ActivityController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'New activity is creted!');
+
             return $this->redirectToRoute('activity_show', ['id' => $activity->getId()]);
         }
 
@@ -92,6 +94,10 @@ class ActivityController extends Controller
      */
     public function editAction(Request $request, Activity $activity)
     {
+        if (!$activity) {
+            throw $this->createNotFoundException('The product does not exist');
+        }
+
         $form = $this->createForm(ActivityFormType::class, $activity);
 
         $form->handleRequest($request);

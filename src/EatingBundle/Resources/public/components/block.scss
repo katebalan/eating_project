@@ -9,10 +9,15 @@
   &--flex {
     display: flex;
     justify-content: space-between;
+    padding: 2px;
   }
 
   &__left {
-    width: 79%;
+    width: 80%;
+  }
+
+  &--flex &__left {
+    padding: 28px 10px 28px 28px;
   }
 
   &__right {

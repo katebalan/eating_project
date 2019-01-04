@@ -80,3 +80,6 @@ web/files/activity/*
 !web/files/activity/running.jpg
 !web/files/activity/walking.jpg
 !web/files/activity/gym.jpg
+
+web/files/user/*
+!web/files/user/*.svg

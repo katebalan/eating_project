@@ -6,6 +6,7 @@ use EatingBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -45,7 +46,12 @@ class UserRegistrationFormType extends AbstractType
                     'Moderate activity (work is sitting, but the office has to run, and in addition, two or three times a week you find time for sports).' => 1.5,
                     'High activity (your work is a constant movement)' => 1.7
                 ]
-            ]);
+            ])
+//            ->add('image', FileType::class, [
+//                'label' => '',
+//                'required' => false,
+//            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

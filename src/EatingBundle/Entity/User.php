@@ -22,18 +22,21 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @Assert\NotBlank()
      * @Assert\Email()
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
+
     /**
      * The encoded password
      *
      * @ORM\Column(type="string", length=64)
      */
     private $password;
+
     /**
      * A non-persisted field that's used to create the encoded password.
      *
@@ -41,38 +44,47 @@ class User implements UserInterface
      * @var string
      */
     private $plainPassword;
+
     /**
      * @ORM\Column(type="json_array")
      */
     private $roles = [];
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $first_name;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $second_name;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $age;
+
     /**
      * @ORM\Column(type="boolean")
      */
     private $gender;
+
     /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $phone;
+
     /**
      * @ORM\Column(type="float")
      */
     private $weight;
+
     /**
      * @ORM\Column(type="float")
      */
     private $height;
+
     /**
      * @ORM\Column(type="float", nullable=true)
      */
@@ -82,14 +94,17 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $daily_kkal;
+
     /**
      * @ORM\Column(type="float")
      */
     private $daily_proteins;
+
     /**
      * @ORM\Column(type="float")
      */
     private $daily_fats;
+
     /**
      * @ORM\Column(type="float")
      */
@@ -99,26 +114,38 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $current_kkal = 0;
+
     /**
      * @ORM\Column(type="float")
      */
     private $current_proteins = 0;
+
     /**
      * @ORM\Column(type="float")
      */
     private $current_fats = 0;
+
     /**
      * @ORM\Column(type="float")
      */
     private $current_carbohydrates = 0;
+
     /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
     /**
      * @ORM\OneToMany(targetEntity="EatingBundle\Entity\Consumption", mappedBy="user")
      */
     private $consumption;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     *
+     * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
+     */
+    private $image;
 
     public function getUsername() {
         return $this->email;
@@ -150,8 +177,6 @@ class User implements UserInterface
     {
         $this->plainPassword = null;
     }
-
-
 
     /**
      * @param mixed $roles
@@ -482,4 +507,19 @@ class User implements UserInterface
         $this->createdAt = $createdAt;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
 }

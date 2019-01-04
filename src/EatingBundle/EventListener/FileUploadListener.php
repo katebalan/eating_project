@@ -3,6 +3,7 @@
 namespace EatingBundle\EventListener;
 
 use EatingBundle\Entity\Activity;
+use EatingBundle\Entity\User;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -66,7 +67,7 @@ class FileUploadListener
     {
         $folder = "";
         // upload only works for Products entities
-        if (!($entity instanceof Products or $entity instanceof Activity)) {
+        if (!($entity instanceof Products or $entity instanceof Activity) or $entity instanceof User) {
             return;
         }
         if ($entity instanceof Products) {
@@ -74,6 +75,9 @@ class FileUploadListener
         }
         if ($entity instanceof Activity) {
             $folder = "activity";
+        }
+        if ($entity instanceof User) {
+            $folder = "user";
         }
 
         $file = $entity->getImage();
@@ -109,6 +113,9 @@ class FileUploadListener
         if ($entity instanceof Activity) {
             $folder = "activity";
         }
+//        if ($entity instanceof User) {
+//            $folder = "user";
+//        }
 
         if ($fileName = $entity->getImage()) {
             $entity->setImage(new File($this->uploader->getTargetDirectory() . $folder . '/' . $fileName));

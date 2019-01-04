@@ -3,8 +3,12 @@
 {% block title %}{{ parent() }} User History{% endblock %}
 
 {% block body %}
+    {% include '@Eating/User/user_info.html.twig' with {
+        'user': user
+    } %}
+
     <div class="ea-block">
-        <div class="ea-block__header">User's history : {{ user.firstName }} {{ user.secondName }}</div>
+        <div class="ea-block__header">History</div>
         {% for date, mealsConsumption in days_consumption %}
             <div class="ea-block__date">Date: {{ date }}</div>
             <div class="ea-devider"></div>

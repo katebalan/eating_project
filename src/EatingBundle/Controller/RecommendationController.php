@@ -61,7 +61,7 @@ class RecommendationController extends Controller
         });
 
         if (!$pr) {
-            $this->addFlash('error', 'You already eaten too much, forget location of your refrigerator!');
+            $this->addFlash('error', 'You already eaten too much, forget the location of your refrigerator!');
         }
 
         return [

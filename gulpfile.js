@@ -43,14 +43,8 @@ var path = {
     clean: './build'
 };
 
-// gulp.task('sass', function(){
-//     return gulp.src('src/EatingBundle/Resources/public/style.scss')
-//         .pipe(sass()) // Using gulp-sass
-//         .pipe(gulp.dest('web/css'))
-// });
-
 gulp.task('watch', function(){
-    gulp.watch('src/EatingBundle/Resources/public/style.scss', ['sass']);
+    gulp.watch('src/EatingBundle/Resources/public/style.scss', ['css']);
     // Other watchers
 });
 
@@ -64,7 +58,7 @@ gulp.task('js', function () {
         .pipe(reload({stream: true})); //И перезагрузим сервер
 });
 
-gulp.task('sass', function () {
+gulp.task('css', function () {
     gulp.src(path.src.style) //Выберем наш main.scss
         .pipe(sourcemaps.init()) //То же самое что и с js
         .pipe(sass()) //Скомпилируем
@@ -94,14 +88,14 @@ gulp.task('fonts:build', function() {
 
 gulp.task('build', [
     'js',
-    'sass',
+    'css',
     'fonts:build',
     'img'
 ]);
 
 gulp.task('watch', function(){
     watch([path.watch.style], function(event, cb) {
-        gulp.start('sass');
+        gulp.start('css');
     });
     watch([path.watch.js], function(event, cb) {
         gulp.start('js');

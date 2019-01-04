@@ -1,101 +1,40 @@
-eating_project
+EA: Eating Project
 ======
 
+* Production:   http://eating-project.herokuapp.com/
 * Date          September 22, 2017
 * Symfony:      3.3.5
 * PHP:          7.1.x
 * dependencies: Composer, Node,js, npm, Bower, Gulp, SASS
 
-# To install project
+## To install project
 
-* composer install
-* create file app/config/parameters.yml
-```
-# This file is auto-generated during the composer install
+* ```git clone git@github.com:katebalan/eating_project.git```
+* ```cd eating_project/``` - enter to project's folder
+* ```composer install```
+A file app/config/parameters.yml must be auto-generated during the composer install.
+Make sure that you fill it correct:
+``` app/config/parameters.yml
 parameters:
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: eating_project
-    database_user: root
-    database_password: garrypotter
     mailer_transport: smtp
     mailer_host: 127.0.0.1
-    mailer_user: ket11141@gmail.com
+    mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
 
 ```
-then you need create database:
-```
-./bin/console doctrine:database:create
-```
-and make migrations:
-```
-./bin/console doctrine:migrations:migrate
-```
-you can use fixtures with command
-```
-php bin/console doctrine:fixtures:load
-```
-kjdkjn vjk 
-* npm install
-* bower install
-uh kjh kj nkjc 
+* ```./bin/console doctrine:database:create``` - to create database
+* ```./bin/console doctrine:schema:create``` - to create schema
+* ```./bin/console doctrine:fixtures:load``` - to use fixtures
+* ```./bin/console server:start``` - to start build-in server
+* open in browser http://127.0.0.1:8000/
 
-#### HOW TO FIX PROBLEMS WITH .gitignore file on repository
+if you have some problems with cache, logs or sessions, you can use:
+```chmod 777 -R var/cache var/sessions var/logs```
 
-```
-git rm -r --cached .
-git add .
-git commit -m "fixed untracked files"
-```
-Useful links:
+in web/data/ folder you can find database.
 
-```
-composer require doctrine/doctrine-migrations-bundle
-https://knpuniversity.com/screencast/symfony-forms/the-form-type-class
-
-```
-
-#### **add new migrations:**
-```
-./bin/console doctrine:migrations:diff
-./bin/console doctrine:migrations:migrate
-
-```
-#### **forms**
-```
-http://symfony.com/doc/current/reference/forms/types.html
-https://web-programming.com.ua/dobavlenie-datepicker-vidzhet-kalendarya-na-jquery/
-https://css-tricks.com/gulp-for-beginners/
-
-#TO DO
-https://knpuniversity.com/screencast/symfony-security/logout-and-last-username#play
-
-```
-
-# gulpfile's command
-```
-gulp sass
-```
-- compile sass files in one file
-```
-gulp js
-``` 
-- compile all js files in one file
-```
-gulp img
-``` 
-- add all images to web/img folder
-
-
-# git 
-git push -u origin consumption
-
-You do these steps:
-
-git checkout -b your_branch
-git push -u origin your_branch
-show all branches (see result):
-
-git branch
+## Gulpfile's command
+* ``` gulp css ``` - compile sass files in one file
+* ``` gulp js ```  - compile all js files in one file
+* ``` gulp img ```  - add all images to web/img folder

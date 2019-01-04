@@ -11,7 +11,7 @@
     </div>
     <div>
         {% for product in products %}
-            <div class="ea-block ea-block--flex">
+            <div class="ea-block ea-block--flex ea-block--fixed">
                 <div class="ea-block__left">
                     <div class="ea-block__header">{{ product.name }}</div>
                     <div class="ea-block__date">Created at {{ product.createdAt|date("m/d/Y") }}</div>

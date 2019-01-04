@@ -23,12 +23,38 @@ class LoadFixtures implements FixtureInterface
      */
     private $activity_key = 0;
     private $activity_image_key = 0;
+    private $product_image_key = 0;
 
     private $activity = [
         'walking',
         'running',
         'gym',
         'yoga',
+    ];
+
+    private $produts = [
+        'bacon',
+        'cheese',
+        'eggs',
+        'granola',
+        'omelet',
+        'sausage',
+        'slice of bread',
+        'slice of toast',
+        'hot chocolate',
+        'milk',
+        'tea',
+        'sugar',
+        'water',
+        'yogurt',
+        'chicken',
+        'pizza',
+        'caesar\'s salad',
+        'chef salad',
+        'broccoli',
+        'apple',
+        'banana',
+        'cherry',
     ];
 
     /**
@@ -48,32 +74,7 @@ class LoadFixtures implements FixtureInterface
      */
     public function product_name()
     {
-        $produts = [
-            'Bacon',
-            'Cheese',
-            'Eggs',
-            'Granola',
-            'Omelet',
-            'Sausage',
-            'Slice of bread',
-            'Slice of toast',
-            'Hot chocolate',
-            'Milk',
-            'Tea',
-            'Sugar',
-            'Water',
-            'Yogurt',
-            'Chicken',
-            'Pizza',
-            'Caesar\'s salad',
-            'Chef salad',
-            'Broccoli',
-            'Apple',
-            'Banana',
-            'Cherry',
-        ];
-
-        return $produts[$this->product_key++];
+        return ucfirst($this->produts[$this->product_key++]);
     }
 
     /**
@@ -116,15 +117,7 @@ class LoadFixtures implements FixtureInterface
 
     public function product_image()
     {
-        $images = [
-            'food1.jpg',
-            'food2.jpg',
-            'food3.jpg',
-        ];
-
-        $key = array_rand($images);
-
-        return $images[$key];
+        return str_replace(' ', '_', $this->produts[$this->product_image_key++]) . ".jpg";
     }
 
     public function activity_image()

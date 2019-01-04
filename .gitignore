@@ -52,7 +52,7 @@ web/cov/
 /web/dist/js/*.js.map
 
 # uploads
-web/files/
+web/files/products/*
 !web/files/products/apple.jpg
 !web/files/products/bacon.jpg
 !web/files/products/banana.jpg
@@ -75,6 +75,7 @@ web/files/
 !web/files/products/water*
 !web/files/products/yogurt*
 
+web/files/activity/*
 !web/files/activity/yoga.jpg
 !web/files/activity/running.jpg
 !web/files/activity/walking.jpg

@@ -58,6 +58,6 @@
         <a href="{{ path('consumption_history', {'id': user.id}) }}" class="btn btn-primary">History</a>
     </div>
     <div class="ea-block__right">
-        <img src="{{ asset('img/no-image.png') }}">
+        <img src="{{ user.image ? asset('files/user/' ~ user.image) : asset('img/no-image.png') }}">
     </div>
 </div>

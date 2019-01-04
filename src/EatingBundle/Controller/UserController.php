@@ -46,6 +46,7 @@ class UserController extends Controller
      * @return mixed
      * @Route("/admin/user/new", name="user_new")
      * @Template()
+     * @throws \Exception
      */
     public function newAction(CountService $countService, Request $request)
     {
@@ -81,6 +82,7 @@ class UserController extends Controller
      * @return mixed
      * @Route("/user/{id}", name="user_show")
      * @Template()
+     * @throws \Exception
      */
     public function showAction(User $user, CountService $countService)
     {
@@ -158,7 +160,8 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-
+            var_dump($user);
+            exit;
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

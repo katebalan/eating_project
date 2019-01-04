@@ -26,7 +26,6 @@
 
   &__right {
     width: 20%;
-    background-color: $color-light-grey;
 
     img {
       height: 100%;
@@ -63,10 +62,14 @@
     display: block;
     color: $color-light-grey;
 
+    &:hover {
+      color: $color-dark-grey2;
+    }
+
     &__wrapper {
       position: absolute;
-      top: 4px;
-      right: 4px;
+      top: 102px;
+      right: 21%;
     }
   }
 }

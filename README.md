@@ -2,7 +2,7 @@ eating_project
 ======
 
 * Date          September 22, 2017
-* Symfony:      3.3.5
+* Symfony:      3.4.17
 * PHP:          7.1.x
 * dependencies: Composer, Node,js, npm, Bower, Gulp, SASS
 

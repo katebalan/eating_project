@@ -25,7 +25,7 @@
                     {% endif %}
                 </div>
                 <div class="ea-block__right">
-                    <img src="{{ asset('img/no-image.png') }}">
+                    <img src="{{ product.image ? asset('files/products/' ~ product.image.filename) : asset('img/no-image.png') }}">
                 </div>
             </div>
         {% endfor %}

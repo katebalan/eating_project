@@ -56,9 +56,9 @@ EatingBundle\Entity\User:
     createdAt: <dateTimeBetween('-6 months', 'now')>
     image: female.svg
 EatingBundle\Entity\Consumption:
-  consumption_{1..10}:
+  consumption_{1..20}:
     user: '@user_*'
     product: '@products_*'
     how_much: <numberBetween(70, 233)>
     meals_of_the_day: <meals_of_the_day()>
-    createdAt: <dateTimeBetween('-1 day', 'now')>
+    createdAt: <dateTimeBetween('-3 day', 'now')>

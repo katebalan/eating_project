@@ -18,24 +18,29 @@ class Consumption
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\User", inversedBy="consumption")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
     /**
      * @ORM\ManyToOne(targetEntity="EatingBundle\Entity\Products", inversedBy="consumption")
      * @ORM\JoinColumn(nullable=false)
      */
     private $product;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $how_much;
+
     /**
      * @ORM\Column(type="string")
      */
     private $meals_of_the_day;
+
     /**
      * @ORM\Column(type="datetime")
      */

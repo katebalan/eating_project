@@ -5,9 +5,6 @@ namespace EatingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -43,10 +40,6 @@ class UserFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
             ]);
-//            ->add('image', FileType::class, [
-//                'label' => '',
-//                'required' => false,
-//            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

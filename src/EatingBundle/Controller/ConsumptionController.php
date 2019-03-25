@@ -2,20 +2,16 @@
 
 namespace EatingBundle\Controller;
 
-use EatingBundle\Entity\Consumption;
 use EatingBundle\Entity\User;
 use EatingBundle\Form\ConsumptionFormType;
-use EatingBundle\Service\ChangingConsumptionService;
 use EatingBundle\Service\CountService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Tests\Fixtures\ToString;
 
 /**
  * Class ConsumptionController
@@ -31,6 +27,8 @@ class ConsumptionController extends Controller
      * @param User $user
      * @param CountService $countService
      * @return RedirectResponse|array
+     * @throws \Exception
+     *
      * @Route("/consumption/{id}/new", name="consumption_new")
      * @Template()
      */

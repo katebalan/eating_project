@@ -112,7 +112,7 @@ class FileUploadListener
 
         if ($fileName = $entity->getImage()) {
             $entity->setImage(new File($this->uploader->getTargetDirectory() . $folder . '/' . $fileName));
-            $this->file = $entity->getFile();
+            $this->file = $entity->getImage();
         }
     }
 }

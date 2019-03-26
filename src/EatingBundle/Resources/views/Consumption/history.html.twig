@@ -9,38 +9,41 @@
 
     <div class="ea-block">
         <div class="ea-block__header">History</div>
-        {% for date, mealsConsumption in days_consumption %}
-            <div class="ea-block__date">Date: {{ date }}</div>
-            <div class="ea-devider"></div>
-            {% for meal, consumptions in mealsConsumption %}
-                {% if consumptions %}
-                    <div class="ea-block__sub_header">{{ meal|capitalize }}</div>
-                    <table class="ea-table-6 table table-striped">
-                        <thead>
-                        <tr>
-                            <td>Product</td>
-                            <td>Gramm</td>
-                            <td>Kkal</td>
-                            <td>Proteins</td>
-                            <td>Fats</td>
-                            <td>Carbohydrates</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in consumptions %}
-                            <tr>
-                                <td>{{ item.product.name }}</td>
-                                <td>{{ item.howMuch }}</td>
-                                <td>{{ item.howMuch * item.product.kkalPer100gr / 100 }}</td>
-                                <td>{{ item.howMuch * item.product.proteinsPer100gr / 100 }}</td>
-                                <td>{{ item.howMuch * item.product.fatsPer100gr / 100 }}</td>
-                                <td>{{ item.howMuch * item.product.carbohydratesPer100gr / 100 }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                {% endif %}
-            {% endfor %}
-        {% endfor %}
     </div>
+
+    {% for date, mealsConsumption in days_consumption %}
+        <div class="ea-block">
+        <div class="ea-block__date">Date: {{ date }}</div>
+        <div class="ea-devider"></div>
+        {% for meal, consumptions in mealsConsumption %}
+            {% if consumptions %}
+                <div class="ea-block__sub_header">{{ meal|capitalize }}</div>
+                <table class="ea-table-6 table table-striped">
+                    <thead>
+                    <tr>
+                        <td>Product</td>
+                        <td>Gramm</td>
+                        <td>Kkal</td>
+                        <td>Proteins</td>
+                        <td>Fats</td>
+                        <td>Carbohydrates</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in consumptions %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.howMuch }}</td>
+                            <td>{{ item.howMuch * item.product.kkalPer100gr / 100 }}</td>
+                            <td>{{ item.howMuch * item.product.proteinsPer100gr / 100 }}</td>
+                            <td>{{ item.howMuch * item.product.fatsPer100gr / 100 }}</td>
+                            <td>{{ item.howMuch * item.product.carbohydratesPer100gr / 100 }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endfor %}
 {% endblock %}

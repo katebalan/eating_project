@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Configure Apache and installs other services
 RUN a2enmod rewrite \
+    && service apache2 restart \
     && apt-get update \
     && echo 'ServerName localhost' >> /etc/apache2/apache2.conf \
     && apt-get install -y curl git \
@@ -24,5 +25,5 @@ RUN chmod 0755 /run.sh
 
 WORKDIR /var/www/html/application
 RUN composer install --no-interaction --ignore-platform-reqs
-EXPOSE 85
+EXPOSE 80
 CMD ["/run.sh"]

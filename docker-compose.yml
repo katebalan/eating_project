@@ -1,16 +1,24 @@
 version: '2'
+
 services:
-  mysql:
+  db:
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: eating_project
+    ports:
+      - "3307:3306"
     volumes:
-      - db:/var/lib/mysql
+      - db_data:/var/lib/mysql
+
   application:
     build: .
     ports:
-      - '80:85'
+      - "81:80"
     depends_on:
-      - mysql
+      - db
+    volumes:
+      - .:/app
+
 volumes:
-  db:
+  db_data:

@@ -45,6 +45,7 @@ web/cov/
 # environment
 *.*~
 /.idea/*
+python/.idea
 /nbproject/*
 
 # sourcemaps

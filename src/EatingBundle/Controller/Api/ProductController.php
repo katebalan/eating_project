@@ -21,11 +21,21 @@ class ProductController extends FOSRestController
      */
     public function listAction()
     {
-        $restresult = $this->getDoctrine()->getRepository('EatingBundle:Products')->findAll();
-        if ($restresult === null) {
+        $restresults = $this->getDoctrine()->getRepository('EatingBundle:Products')->findAll();
+
+        if ($restresults === null) {
             return new View("There are no products exist", Response::HTTP_NOT_FOUND);
         }
-        return $restresult;
+
+        $result = [];
+        foreach ($restresults as $restresult) {
+            $result[] = [
+                'id' => $restresult->getId(),
+                'name' => $restresult->getName(),
+            ];
+        }
+
+        return $result;
     }
 
     /**
@@ -37,7 +47,13 @@ class ProductController extends FOSRestController
         if ($singleresult === null) {
             return new View("Product not found", Response::HTTP_NOT_FOUND);
         }
-        return $singleresult;
+
+        $result = [
+            'id' => $singleresult->getId(),
+            'name' => $singleresult->getName(),
+        ];
+
+        return $result;
     }
 
     /**

@@ -3,6 +3,8 @@ version: '2'
 services:
   db:
     image: mysql
+    container_name: ea_mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: eating_project
@@ -12,13 +14,31 @@ services:
       - db_data:/var/lib/mysql
 
   application:
+    image: ea_symfony
+    container_name: ea_symfony
+    restart: always
     build: .
     ports:
       - "81:80"
     depends_on:
       - db
     volumes:
-      - .:/app
+      - .:/src
+
+  python:
+    image: ea_python
+    container_name: ea_python
+    restart: always
+    depends_on:
+      - application
+    build:
+      context: ./docker/python
+      dockerfile: Dockerfile
+    entrypoint:
+      - python
+      - test.py
+    volumes:
+      - ./python:/mnt/src
 
 volumes:
   db_data:

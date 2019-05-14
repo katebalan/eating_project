@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} Products Edit{% endblock %}
+{% block title %}{{ parent() }} {{ 'Products Edit'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Product</h1>
+    <h1>{{ 'Edit Product'|trans }}</h1>
     {% include 'EatingBundle:Product:form.html.twig' with {
         'form': form
     } %}

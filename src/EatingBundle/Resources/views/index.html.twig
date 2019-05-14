@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>It's Eating-project!</h1>
-    <p class="ea-text">This project can help you to control your eating and sports.</p>
+    <h1>{{ 'It\'s Eating-project'|trans }}!</h1>
+    <p class="ea-text">{{ 'This project can help you to control your eating and sports'|trans }}.</p>
     {% if is_granted('ROLE_USER') %}
-        <p class="ea-text ea-text--bold">You are inside system!</p>
-        <a href="{{ path('user_show', {'id': userId }) }}" class="btn btn-primary btn-lg" >Your page</a>
+        <p class="ea-text ea-text--bold">{{ 'You are inside system'|trans }}!</p>
+        <a href="{{ path('user_show', {'id': userId }) }}" class="btn btn-primary btn-lg">{{ 'Your page'|trans }}</a>
     {% else %}
         <p class="text">You can try it: </p>
-        <a href="{{ path('security_login') }}" class="btn btn-primary btn-lg">Login</a>
-        <a href="{{ path('user_register') }}" class="btn btn-primary btn-lg">Registration</a>
+        <a href="{{ path('security_login') }}" class="btn btn-primary btn-lg">{{ 'Login'|trans }}</a>
+        <a href="{{ path('user_register') }}" class="btn btn-primary btn-lg">{{ 'Registration'|trans }}</a>
     {% endif %}
 {% endblock %}

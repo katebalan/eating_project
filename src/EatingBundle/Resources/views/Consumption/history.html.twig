@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} User History{% endblock %}
+{% block title %}{{ parent() }} {{ 'User History'|trans }}{% endblock %}
 
 {% block body %}
     {% include '@Eating/User/user_info.html.twig' with {
@@ -8,12 +8,12 @@
     } %}
 
     <div class="ea-block">
-        <div class="ea-block__header">History</div>
+        <div class="ea-block__header">{{ 'History'|trans }}</div>
     </div>
 
     {% for date, mealsConsumption in days_consumption %}
         <div class="ea-block">
-        <div class="ea-block__date">Date: {{ date }}</div>
+        <div class="ea-block__date">{{ 'Date'|trans }}: {{ date }}</div>
         <div class="ea-devider"></div>
         {% for meal, consumptions in mealsConsumption %}
             {% if consumptions %}
@@ -21,12 +21,12 @@
                 <table class="ea-table-6 table table-striped">
                     <thead>
                     <tr>
-                        <td>Product</td>
-                        <td>Gramm</td>
-                        <td>Kkal</td>
-                        <td>Proteins</td>
-                        <td>Fats</td>
-                        <td>Carbohydrates</td>
+                        <td>{{ 'Product'|trans }}</td>
+                        <td>{{ 'Gramm'|trans }}</td>
+                        <td>{{ 'Kkal'|trans }}</td>
+                        <td>{{ 'Proteins'|trans }}</td>
+                        <td>{{ 'Fats'|trans }}</td>
+                        <td>{{ 'Carbohydrates'|trans }}</td>
                     </tr>
                     </thead>
                     <tbody>

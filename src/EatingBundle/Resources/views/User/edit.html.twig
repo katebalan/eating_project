@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} User Edit{% endblock %}
+{% block title %}{{ parent() }} {{ 'User Edit'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <h1>{{ 'Edit User'|trans }}</h1>
     <div class="ea-form">
         {{ form_start(form) }}
             {#{% if is_granted("ROLE_ADMIN") %}#}
@@ -12,8 +12,8 @@
             {{ form_widget(form) }}
 
         {#{{ form_rest(false) }}#}
-            <button type="submit" class="btn btn-success btn-lg">Save</button>
-            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">Back</a>
+            <button type="submit" class="btn btn-success btn-lg">{{ 'Save'|trans }}</button>
+            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">{{ 'Back'|trans }}</a>
         {{ form_end(form) }}
     </div>
 {% endblock %}

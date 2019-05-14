@@ -26,6 +26,7 @@ security:
             #http_basic: ~
             pattern:    ^/
             provider: our_db_provider
+            logout_on_user_change: true
             logout:
                 path: /logout
             # https://symfony.com/doc/current/security/form_login_setup.html

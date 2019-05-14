@@ -1,26 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} Product Show{% endblock %}
+{% block title %}{{ parent() }} {{ 'Product Show'|trans }}{% endblock %}
 
 {% block body %}
     <div class="ea-page__header">
-        <h1>Product</h1>
+        <h1>{{ 'Product'|trans }}</h1>
     </div>
     <div class="ea-block ea-block--flex">
         <div class="ea-block__left">
             <div class="ea-block__header">
                 {{ product.name }}
             </div>
-            <div class="ea-block__date">Created at {{ product.createdAt|date("m/d/Y") }}</div>
+            <div class="ea-block__date">{{ 'Created at'|trans }} {{ product.createdAt|date("m/d/Y") }}</div>
             <div class="ea-devider"></div>
             <div class="ea-block__info">
                 <table class="ea-table-4 table table-striped">
                     <thead>
                     <tr>
-                        <td>Kkal</td>
-                        <td>Proteins</td>
-                        <td>Fats</td>
-                        <td>Carbohydrates</td>
+                        <td>{{ 'Kkal'|trans }}</td>
+                        <td>{{ 'Proteins'|trans }}</td>
+                        <td>{{ 'Fats'|trans }}</td>
+                        <td>{{ 'Carbohydrates'|trans }}</td>
                     </tr>
                     </thead>
                     <tbody>
@@ -32,12 +32,12 @@
                     </tr>
                     </tbody>
                 </table>
-                <div>Rate: {{ product.rating }}</div>
+                <div>{{ 'Rate'|trans }}: {{ product.rating }}</div>
             </div>
-            <a href="{{ path('product_list') }}" class="btn btn-primary">Back</a>
+            <a href="{{ path('product_list') }}" class="btn btn-primary">{{ 'Back'|trans }}</a>
             {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-primary">Edit</a>
-                <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-danger">Delete</a>
+                <a href="{{ path('product_edit', {'id': product.id}) }}" class="btn btn-primary">{{ 'Edit'|trans }}</a>
+                <a href="{{ path('product_delete', {'id': product.id}) }}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
             {% endif %}
         </div>
         <div class="ea-block__right">

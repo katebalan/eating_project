@@ -4,9 +4,15 @@ imports:
     - { resource: services.yml }
     - { resource: "@EatingBundle/Resources/config/services.yml" }
 
+parameters:
+    container.autowiring.strict_mode: true
+    locale: ua
+
 framework:
     #esi: ~
-    translator: { fallbacks: ['en'] }
+    translator:      { fallbacks: ["%locale%"] }
+    default_locale:  "%locale%"
+
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -17,7 +23,6 @@ framework:
     #serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
-#    default_locale: '%locale%'
     trusted_hosts: ~
     session:
         # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id

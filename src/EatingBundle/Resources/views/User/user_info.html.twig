@@ -15,37 +15,37 @@
                 {{ user.username }}
             {% endif %}
         </div>
-        <div class="ea-block__date">Member from {{ user.createdAt|date("m/d/Y") }}</div>
+        <div class="ea-block__date">{{ 'Member from'|trans }} {{ user.createdAt|date("m/d/Y") }}</div>
         <div class="ea-devider"></div>
         <div class="ea-block__info">
             <div>{{ user.username }}</div>
             <div>{{ user.phone }}</div>
             {% if user.gender %}
-                Male
+                {{ 'Male'|trans }}
             {% else %}
-                Female
+                {{ 'Female'|trans }}
             {% endif %}
         </div>
         <table class="ea-table-5 table table-striped">
             <thead>
                 <tr>
                     <td></td>
-                    <td>Kkal</td>
-                    <td>Proteins</td>
-                    <td>Fats</td>
-                    <td>Carbohydrates</td>
+                    <td>{{ 'Kkal'|trans }}</td>
+                    <td>{{ 'Proteins'|trans }}</td>
+                    <td>{{ 'Fats'|trans }}</td>
+                    <td>{{ 'Carbohydrates'|trans }}</td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Daily</td>
+                    <td>{{ 'Daily'|trans }}</td>
                     <td>{{ user.dailyKkal }}</td>
                     <td>{{ user.dailyProteins }}</td>
                     <td>{{ user.dailyFats }}</td>
                     <td>{{ user.dailyCarbohydrates }}</td>
                 </tr>
                 <tr>
-                    <td>Current</td>
+                    <td>{{ 'Current'|trans }}</td>
                     <td>{{ user.currentKkal }}</td>
                     <td>{{ user.currentProteins }}</td>
                     <td>{{ user.currentFats }}</td>
@@ -53,9 +53,9 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ path('consumption_new', {'id': user.id}) }}" class="btn btn-primary">New consumption</a>
-        <a href="{{ path('recommendation_list') }}" class="btn btn-primary">Recommendations</a>
-        <a href="{{ path('consumption_history', {'id': user.id}) }}" class="btn btn-primary">History</a>
+        <a href="{{ path('consumption_new', {'id': user.id}) }}" class="btn btn-primary">{{ 'New consumption'|trans }}</a>
+        <a href="{{ path('recommendation_list') }}" class="btn btn-primary">{{ 'Recommendations'|trans }}</a>
+        <a href="{{ path('consumption_history', {'id': user.id}) }}" class="btn btn-primary">{{ 'History'|trans }}</a>
     </div>
     <div class="ea-block__right">
         <img src="{{ user.image ? asset('files/user/' ~ user.image) : asset('img/no-image.png') }}">

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} User Show{% endblock %}
+{% block title %}{{ parent() }} {{ 'User Show'|trans }}{% endblock %}
 
 {% block body %}
     {% include '@Eating/User/user_info.html.twig' with {
@@ -9,19 +9,19 @@
 
     {% if day_consumption %}
         <div class="ea-block">
-            <div class="ea-block__header">Consumption</div>
+            <div class="ea-block__header">{{ 'Consumption'|trans }}</div>
             {% for meal, consumptions in day_consumption %}
                 {% if consumptions %}
                     <div class="ea-block__sub_header">{{ meal|capitalize }}</div>
                     <table class="ea-table-6 table table-striped">
                         <thead>
                             <tr>
-                                <td>Product</td>
-                                <td>Gramm</td>
-                                <td>Kkal</td>
-                                <td>Proteins</td>
-                                <td>Fats</td>
-                                <td>Carbohydrates</td>
+                                <td>{{ 'Product'|trans }}</td>
+                                <td>{{ 'Gramm'|trans }}</td>
+                                <td>{{ 'Kkal'|trans }}</td>
+                                <td>{{ 'Proteins'|trans }}</td>
+                                <td>{{ 'Fats'|trans }}</td>
+                                <td>{{ 'Carbohydrates'|trans }}</td>
                             </tr>
                         </thead>
                         <tbody>

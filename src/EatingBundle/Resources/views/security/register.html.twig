@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Registration!</h1>
+    <h1>{{ 'Registration'|trans }}</h1>
     {#{% if error %}#}
         {#<div class="alert alert-danger">#}
             {#{{ error.messageKey|trans(error.messageData, 'security') }}#}
@@ -21,7 +21,7 @@
             </div>
             {{ form_rest(form) }}
             <div class="ea-button__wrapper">
-                <button type="submit" class="btn btn-success btn-lg">Register</button>
+                <button type="submit" class="btn btn-success btn-lg">{{ 'Register'|trans }}</button>
             </div>
             {{ form_end(form) }}
             {#
@@ -33,7 +33,7 @@
     </div>
     <div>
         <div class="text">Or you can try it: </div>
-        <a href="{{ path('activity_list') }}" class="btn btn-primary btn-lg">List of Activities </a>
-        <a href="{{ path('product_list') }}" class="btn btn-primary btn-lg">List of products</a>
+        <a href="{{ path('activity_list') }}" class="btn btn-primary btn-lg">{{ 'List of Activities'|trans }}</a>
+        <a href="{{ path('product_list') }}" class="btn btn-primary btn-lg">{{ 'List of products'|trans }}</a>
     </div>
 {% endblock %}

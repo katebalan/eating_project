@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Login!</h1>
+    <h1>{{ 'Login'|trans }}</h1>
     {% if error %}
         <div class="alert alert-danger">
             {{ error.messageKey|trans(error.messageData, 'security') }}
@@ -12,7 +12,7 @@
             {{ form_start(form) }}
                 {{ form_row(form._username) }}
                 {{ form_row(form._password) }}
-                <button type="submit" class="btn btn-success btn-lg">Login</button>
+                <button type="submit" class="btn btn-success btn-lg">{{ 'Login'|trans }}</button>
             {{ form_end(form) }}
             {#
                     If you want to control the URL the user
@@ -22,9 +22,9 @@
         </form>
     </div>
     <div>
-        <p class="ea-text ea-text--bold">Or you can try it: </p>
-        <a href="{{ path('user_register') }}" class="btn btn-primary btn-lg">Registration</a>
-        <a href="{{ path('activity_list') }}" class="btn btn-primary btn-lg">List of Activities </a>
-        <a href="{{ path('product_list') }}" class="btn btn-primary btn-lg">List of products</a>
+        <p class="ea-text ea-text--bold">{{ 'Or you can try it'|trans }}: </p>
+        <a href="{{ path('user_register') }}" class="btn btn-primary btn-lg">{{ 'Registration'|trans }}</a>
+        <a href="{{ path('activity_list') }}" class="btn btn-primary btn-lg">{{ 'List of Activities'|trans }}</a>
+        <a href="{{ path('product_list') }}" class="btn btn-primary btn-lg">{{ 'List of products'|trans }}</a>
     </div>
 {% endblock %}

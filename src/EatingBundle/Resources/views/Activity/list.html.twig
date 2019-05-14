@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} Activity{% endblock %}
+{% block title %}{{ parent() }} {{ 'Activity'|trans }}{% endblock %}
 
 {% block body %}
     <div class="ea-page__header">
-        <h1>Activity</h1>
+        <h1>{{ 'Activity'|trans }}</h1>
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('activity_new') }}" class="btn btn-primary btn-lg">New Activity</a>
+            <a href="{{ path('activity_new') }}" class="btn btn-primary btn-lg">{{ 'New Activity'|trans }}</a>
         {% endif %}
     </div>
     <div>
@@ -14,7 +14,7 @@
             <div class="ea-block ea-block--flex ea-block--fixed">
                 <div class="ea-block__left">
                     <div class="ea-block__header">{{ activ.name }}</div>
-                    <div class="ea-block__date">Created at {{ activ.createdAt|date("m/d/Y") }}</div>
+                    <div class="ea-block__date">{{ 'Created at'|trans }} {{ activ.createdAt|date("m/d/Y") }}</div>
                     <div class="ea-devider"></div>
                     <div class="ea-block__info">
                         kkal: {{ activ.kkalPer5minutes }} /
@@ -22,9 +22,9 @@
                         fats: {{ activ.fatsPer5minutes }} /
                         carbohydrates: {{ activ.carbohydratesPer5minutes }}
                     </div>
-                    <a href="{{ path('activity_show', {'id': activ.id}) }}" class="btn btn-primary">Show</a>
+                    <a href="{{ path('activity_show', {'id': activ.id}) }}" class="btn btn-primary">{{ 'Show'|trans }}</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('activity_edit', {'id': activ.id}) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ path('activity_edit', {'id': activ.id}) }}" class="btn btn-primary">{{ 'Edit'|trans }}</a>
                     {% endif %}
                 </div>
                 <div class="ea-block__right">

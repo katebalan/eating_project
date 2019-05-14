@@ -4,7 +4,7 @@ namespace EatingBundle\Controller\Api;
 
 
 use EatingBundle\Entity\Products;
-use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class ProductController
  * @package EatingBundle\Controller\Api
  */
-class ProductController extends FOSRestController
+class ProductController extends AbstractFOSRestController
 {
     /**
      * @Rest\Get("/api/product")

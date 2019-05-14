@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ parent() }} User New{% endblock %}
+{% block title %}{{ parent() }} {{ 'User New'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>New User</h1>
+    <h1>{{ 'New User'|trans }}</h1>
     <div class="ea-form">
         {{ form_start(userForm) }}
             {{ form_widget(userForm) }}
-            <button type="submit" class="btn btn-success btn-lg">Save</button>
-            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">Back</a>
+            <button type="submit" class="btn btn-success btn-lg">{{ 'Save'|trans }}</button>
+            <a href="{{ app.request.headers.get('referer') }}" class="btn btn-primary btn-lg">{{ 'Back'|trans }}</a>
         {{ form_end(userForm) }}
     </div>
 {% endblock %}

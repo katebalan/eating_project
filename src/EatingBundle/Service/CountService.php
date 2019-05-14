@@ -2,7 +2,7 @@
 
 namespace EatingBundle\Service;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use EatingBundle\Entity\Products;
 use EatingBundle\Entity\User;
 
@@ -13,7 +13,7 @@ use EatingBundle\Entity\User;
 class CountService
 {
     /**
-     * @var EntityManager $em
+     * @var EntityManagerInterface $em
      */
     private $em;
 
@@ -30,9 +30,10 @@ class CountService
 
     /**
      * CountService constructor.
-     * @param EntityManager $em
+     *
+     * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }

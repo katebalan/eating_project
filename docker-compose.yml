@@ -16,7 +16,9 @@ services:
   application:
     image: ea_symfony
     container_name: ea_symfony
-    build: .
+    build:
+      context: ./docker/application
+      dockerfile: Dockerfile
     ports:
       - "81:80"
     depends_on:

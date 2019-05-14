@@ -14,13 +14,13 @@ RUN a2enmod rewrite \
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Add custom Apache config file
-ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
+ADD docker/application/000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Add project files
 COPY / /var/www/html/application
 
 # Add addition bach script file for configuring Symfony Application
-COPY run.sh /run.sh
+COPY docker/application/run.sh /run.sh
 RUN chmod 0755 /run.sh
 
 WORKDIR /var/www/html/application

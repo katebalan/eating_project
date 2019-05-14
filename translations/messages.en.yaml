@@ -59,3 +59,36 @@ Register: Register
 'List of Activities': 'List of Activities'
 'List of products': 'List of products'
 'Or you can try it': 'Or you can try it'
+Name: Name
+Rating: Rating
+Kkal per 100gr: Kkal per 100gr
+Proteins per 100gr: Proteins per 100gr
+Fats per 100gr: Fats per 100gr
+Carbohydrates per 100gr: Carbohydrates per 100gr
+Kkal per 5minutes: Kkal per 5minutes
+Proteins per 5minutes: Proteins per 5minutes
+Fats per 5minutes: Fats per 5minutes
+Carbohydrates per 5minutes: Carbohydrates per 5minutes
+Download image (png, jpeg, jpg): Download image (png, jpeg, jpg)
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5
+6: 6
+First name: First name
+Second name: Second name
+Email: Email
+Age: Age
+Gender: Gender
+Phone: Phone
+Weight: Weight
+Height: Height
+Energy exchange: Energy exchange
+Roles: Roles
+Admin: Admin
+Low activity (you are passive): Low activity (you are passive)
+Moderate activity (work is sitting, but in addition, two or three times a week you find time for sports): Moderate activity (work is sitting, but in addition, two or three times a week you find time for sports)
+High activity (your work is a constant movement): High activity (your work is a constant movement)
+Password: Password
+Repeat Password: Repeat Password

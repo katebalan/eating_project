@@ -57,5 +57,38 @@ Consumption: Споживання
 'Edit User': 'Редагування користувача'
 Register: Реєстрація
 'List of Activities': 'Список активностей'
-'List of products': 'список продуктів'
+'List of products': 'Cписок продуктів'
 'Or you can try it': 'Чи ви можете спробувати'
+Name: Назва
+Rating: Рейтинг
+Kkal per 100gr: Калорій на 100 гр
+Proteins per 100gr: Протеїнів на 100 гр
+Fats per 100gr: Жирів на 100 гр
+Carbohydrates per 100gr: Вуглеводів на 100 гр
+Kkal per 5minutes: Калорій за 5 хв
+Proteins per 5minutes: Протеїнів за 5 хв
+Fats per 5minutes: Жирів за 5 хв
+Carbohydrates per 5minutes: Вуглеводів за 5 хв
+Download image (png, jpeg, jpg): Завантажити картинку (png, jpeg, jpg)
+1: 1
+2: 2
+3: 3
+4: 4
+5: 5
+6: 6
+First name: Ім'я
+Second name: Прізвище
+Email: Емейл
+Age: Вік
+Gender: Стать
+Phone: Телефон
+Weight: Вага
+Height: Зріст
+Energy exchange: Обмін енергією
+Roles: Ролі
+Admin: Адміністратор
+Low activity (you are passive): Низька активність (ви не рухливий(а))
+Moderate activity (work is sitting, but in addition, two or three times a week you find time for sports): Помірна активність (робота сидяча, а крім того, два-три рази на тиждень ви знайдете час для занять спортом)
+High activity (your work is a constant movement): Висока активність (ви в постійному рухі)
+Password: Пароль
+Repeat Password: Повторно введіть пароль

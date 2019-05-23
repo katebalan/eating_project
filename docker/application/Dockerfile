@@ -14,7 +14,7 @@ RUN a2enmod rewrite \
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Add custom Apache config file
-ADD docker/application/000-default.conf /etc/apache2/sites-available/000-default.conf
+ADD 000-default.conf /etc/apache2/sites-available/000-default.conf
 
 # Add project files
 COPY / /var/www/html/application

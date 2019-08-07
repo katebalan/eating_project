@@ -30,6 +30,7 @@
         "jms/translation-bundle": "^1.4",
         "nelmio/cors-bundle": "^1.5",
         "sensio/framework-extra-bundle": "^5.0",
+        "symfony/flex": "^1.4",
         "symfony/monolog-bundle": "^3.1.0",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^3.2",

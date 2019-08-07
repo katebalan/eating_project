@@ -33,3 +33,5 @@ if you have some problems with cache, logs or sessions, you can use:
 ```chmod 777 -R var/cache var/sessions var/logs```
 
 in web/data/ folder you can find database.
+
+https://symfonycasts.com/screencast/symfony4-upgrade/flex#play

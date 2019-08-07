@@ -42,6 +42,3 @@ services:
         autowire: true
         tags:
             - { name: doctrine.event_subscriber }
-
-#    EatingBundle/Service/CountService:
-

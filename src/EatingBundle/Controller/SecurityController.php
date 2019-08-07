@@ -5,11 +5,14 @@ namespace EatingBundle\Controller;
 use EatingBundle\Entity\User;
 use EatingBundle\Form\LoginFormType;
 use EatingBundle\Form\UserRegistrationFormType;
+use EatingBundle\Security\LoginFormAuthenticator;
 use EatingBundle\Service\CountService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * Class SecurityController
@@ -20,14 +23,12 @@ class SecurityController extends Controller
     /**
      * Controller are used to login users
      *
+     * @param AuthenticationUtils $authenticationUtils
      * @return Response
      * @Route("/login", name="security_login")
      */
-    public function loginAction()
+    public function loginAction(AuthenticationUtils $authenticationUtils)
     {
-    //        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
-
-        $authenticationUtils = $this->get('security.authentication_utils');
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -63,18 +64,23 @@ class SecurityController extends Controller
      *
      * @param Request $request
      * @param CountService $countService
+     * @param GuardAuthenticatorHandler $authenticatorHandler
+     * @param LoginFormAuthenticator $authenticator
      * @return mixed
      * @Route("/register", name="user_register")
+     * @throws \Exception
      */
-    public function registerAction(CountService $countService, Request $request)
-    {
-    //        $this->denyAccessUnlessGranted('ROLE_ANONYMOUS');
-
+    public function registerAction(
+        CountService $countService,
+        Request $request,
+        GuardAuthenticatorHandler $authenticatorHandler,
+        LoginFormAuthenticator $authenticator
+    ) {
         $form = $this->createForm(UserRegistrationFormType::class);
 
         $form->handleRequest($request);
 
-        if($form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {
             /** @var User $user */
             $user = $form->getData();
 
@@ -87,10 +93,10 @@ class SecurityController extends Controller
 
             $this->addFlash('success', 'Welcome '.$user->getFirstName().' '.$user->getSecondName());
 
-            return $this->get('security.authentication.guard_handler')->authenticateUserAndHandleSuccess(
+            return $authenticatorHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,
-                $this->get('app.security.login_form_authenticator'),
+                $authenticator,
                 'main'
             );
         }

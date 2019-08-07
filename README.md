@@ -33,8 +33,3 @@ if you have some problems with cache, logs or sessions, you can use:
 ```chmod 777 -R var/cache var/sessions var/logs```
 
 in web/data/ folder you can find database.
-
-## Gulpfile's command
-* ``` gulp css ``` - compile sass files in one file
-* ``` gulp js ```  - compile all js files in one file
-* ``` gulp img ```  - add all images to web/img folder

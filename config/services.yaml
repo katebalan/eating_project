@@ -27,12 +27,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-    app.security.login_form_authenticator:
-        class: EatingBundle\Security\LoginFormAuthenticator
-        autowire: true
+#    app.security.login_form_authenticator:
+#        class: EatingBundle\Security\LoginFormAuthenticator
+#        autowire: true
 
-    app.doctrine.hash_password_listener:
-        class: EatingBundle\Doctrine\HashPasswordListener
-        autowire: true
-        tags:
-            - { name: doctrine.event_subscriber }
+
+#    Doctrine\ORM\EntityManager: '@doctrine.orm.default_entity_manager'
+
+    EatingBundle\Doctrine\HashPasswordListener:
+        tags: [doctrine.event_subscriber]
